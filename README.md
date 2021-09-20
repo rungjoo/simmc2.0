@@ -8,11 +8,16 @@
 - [apex](https://github.com/NVIDIA/apex) for multi-gpu
 
 ## Preprocessing
-Preprocess the image files in advance. The preprocessed result has the image name as the key and visual as the value.
 
+1. Download Data
+Download the [data](https://github.com/facebookresearch/simmc2/tree/master/data) provided by the challenge organizer and put it in the data folder.
+
+2. Image saving
+Preprocess the image files in advance. The preprocessed result has the image name as the key and visual as the value.
 ```bash
 python3 image_preprocessor.py
 ```
+The result is saved in res folder.
 
 ## Step 1
 
