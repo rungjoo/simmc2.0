@@ -162,10 +162,9 @@ def main():
     """Testing"""   
     if not os.path.exists('results'):
         os.makedirs('results')
-    test_path = os.path.join('results', model_type+'_models'+"_"+post_type+"_"+obj_type+"_"+user_train_type+"_dstc.json")    
+    test_path = os.path.join('results', "dstc_prediction.json")    
     test_bleuscore, test_bleustd = Generate(model, devtest_loader, test_path, args)
     logger.info("BLEU: {}, std: {}".format(test_bleuscore, test_bleustd))
-    print("###Save Path### ", save_path)
 
 def Generate(model, dataloader, test_path, args):
     obj = args.object
@@ -231,7 +230,7 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
+    parser  = argparse.ArgumentParser(description = "Subtask4" )
     parser.add_argument( "--model_type", help = "gpt2-large", default = 'gpt2-large') # large
     parser.add_argument( "--max_len", type=int, help = "generate max_len", default = 30)   
     

@@ -320,7 +320,7 @@ def Generate(model, dataloader, save_path, dataname, epoch, args):
     obj = args.object
     
     model.eval()
-    pred_path = os.path.join(save_path, dataname+str(epoch)+'.log')
+    pred_path = os.path.join(save_path, dataname+str(epoch)+'_prediction.log')
     f = open(pred_path, 'w')
     
     ## batch = 1 in generate function
@@ -371,7 +371,7 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
+    parser  = argparse.ArgumentParser(description = "Subtask4" )
     parser.add_argument( "--epoch", type=int, help = 'training epochs', default = 5) # 12 for iemocap
     parser.add_argument( "--norm", type=int, help = "max_grad_norm", default = 10)    
     parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-6) # 1e-5
