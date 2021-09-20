@@ -137,7 +137,7 @@ def main():
     model = BaseModel(model_type, post).cuda()
     if args.distributed:
         model = DDP(model, delay_allreduce=True)
-    model_path = os.path.join(save_path, 'model.pt')    
+    model_path = os.path.join('model', 'model.pt')    
     checkpoint = torch.load(model_path)
     modify_checkpoint = OrderedDict()
     for k, v in checkpoint.items():

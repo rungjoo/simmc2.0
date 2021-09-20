@@ -161,7 +161,6 @@ def main():
         user_train_type = 'user_train_no_use'
     meta = args.meta
     
-    # save_path = os.path.join(model_type+'_models', post_type, obj_type, user_train_type)
     save_path = 'results'
     
     print("###Save Path### ", save_path)
@@ -292,7 +291,7 @@ def main():
         bleuscore, bleustd = Generate(model, dev_loader, save_path, 'dev', epoch, args)
         logger.info("Dev Epoch: {}, BLEU: {}, std: {}".format(epoch, bleuscore, bleustd))
         if bleuscore > best_bleuscore:
-            _SaveModel(model, save_path)
+            _SaveModel(model, 'model')
             best_bleuscore = bleuscore
             
             best_epoch = epoch
