@@ -162,7 +162,7 @@ def main():
     """Testing"""   
     if not os.path.exists('results'):
         os.makedirs('results')
-    test_path = os.path.join('results', "dstc_prediction.json")    
+    test_path = os.path.join('results', "dstc10-simmc-teststd-pred-subtask-4-generation.json")    
     test_bleuscore, test_bleustd = Generate(model, devtest_loader, test_path, args)
     logger.info("BLEU: {}, std: {}".format(test_bleuscore, test_bleustd))
 
