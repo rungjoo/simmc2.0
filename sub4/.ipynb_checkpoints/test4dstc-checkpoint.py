@@ -94,7 +94,8 @@ def main():
         user_train_type = 'user_train_no_use'
     meta = args.meta
     
-    save_path = os.path.join(model_type+'_models', post_type, obj_type, user_train_type)
+    # save_path = os.path.join(model_type+'_models', post_type, obj_type, user_train_type)
+    save_path = 'results'
     
     print("###Save Path### ", save_path)
     print("post? (meta matching): ", post)
@@ -241,7 +242,6 @@ if __name__ == '__main__':
     parser.add_argument('--user_train', action='store_true', help='training from system object matching')    
     
     parser.add_argument('--post', action='store_true', help='post-trained model')    
-    parser.add_argument('--post_back', action='store_true', help='post-trained model at background')
     
     parser.add_argument("--local_rank", type=int, default=0)
         
