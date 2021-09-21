@@ -1,5 +1,8 @@
 # Subtask4
 
+## Download
+Download model.pt from the model folder.
+
 ## Training
 ```bash
 bash train.sh
