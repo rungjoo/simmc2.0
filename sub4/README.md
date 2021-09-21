@@ -1,7 +1,7 @@
 # Subtask4
 
-## Download
-Download model.pt from the model folder.
+## Download the pre-trained model 
+Download model.pt from the [model folder](https://github.com/rungjoo/dstc10/tree/master/sub4/model).
 
 ## Training
 ```bash
