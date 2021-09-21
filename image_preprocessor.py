@@ -39,8 +39,8 @@ def main(args):
 if __name__ == '__main__': 
     """Parameters"""
     parser  = argparse.ArgumentParser(description = "Image data save" )
-    parser.add_argument( "--input1", type=str, default="/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/simmc2_scene_images_dstc10_public_part1/*")
-    parser.add_argument( "--input2", type=str, default="/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/simmc2_scene_images_dstc10_public_part2/*")
+    parser.add_argument( "--input1", type=str, default="./data/simmc2_scene_images_dstc10_public_part1/*")
+    parser.add_argument( "--input2", type=str, default="./data/simmc2_scene_images_dstc10_public_part2/*")
     parser.add_argument( "--output_dir", type=str,  default='./res/')
        
     args = parser.parse_args()
