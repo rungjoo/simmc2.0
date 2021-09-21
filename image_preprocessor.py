@@ -17,7 +17,7 @@ def process_images(image_path1, image_path2, output_dir):
 
     image_list = image_list1+image_list2
 
-    # image 미리 로드해서 pickle로 저장
+    # Preload image and save as pickle
     image_visual = {}
     for idx, image_path in tqdm(enumerate(image_list), total=len(image_list), desc="Loading Images"):
         img_key = os.path.splitext(os.path.basename(image_path))[0]
@@ -27,7 +27,7 @@ def process_images(image_path1, image_path2, output_dir):
             print("ERROR", image_path)
 
     print ("Saving...") 
-    output_path = os.path.join(output_dir, 'image_obj_py37.pickle') # image_obj.pickle
+    output_path = os.path.join(output_dir, 'image_obj.pickle') # image_obj.pickle
     with open(output_path, 'wb') as f:
         pickle.dump(image_visual, f, pickle.HIGHEST_PROTOCOL)
     print ("Finished")
