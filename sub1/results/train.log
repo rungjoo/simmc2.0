@@ -1,0 +1,19 @@
+########################################
+Epoch: 0, DevAcc: 81.45363408521304, DevDomainAcc: 0
+DevTestAcc: 86.34453781512606, DevTestDomainAcc: 0
+Epoch: 1, DevAcc: 78.0701754385965, DevDomainAcc: 0
+Epoch: 2, DevAcc: 87.96992481203007, DevDomainAcc: 0
+DevTestAcc: 89.75840336134453, DevTestDomainAcc: 0
+Epoch: 3, DevAcc: 90.72681704260651, DevDomainAcc: 0
+DevTestAcc: 90.86134453781513, DevTestDomainAcc: 0
+Epoch: 4, DevAcc: 89.59899749373433, DevDomainAcc: 0
+Epoch: 5, DevAcc: 54.01002506265664, DevDomainAcc: 0
+Epoch: 6, DevAcc: 92.4812030075188, DevDomainAcc: 0
+DevTestAcc: 91.59663865546219, DevTestDomainAcc: 0
+Epoch: 7, DevAcc: 93.35839598997494, DevDomainAcc: 0
+DevTestAcc: 91.7016806722689, DevTestDomainAcc: 0
+Epoch: 8, DevAcc: 94.61152882205513, DevDomainAcc: 0
+DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
+Epoch: 9, DevAcc: 93.734335839599, DevDomainAcc: 0
+
+Epoch: 8, DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
