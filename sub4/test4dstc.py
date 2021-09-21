@@ -22,14 +22,14 @@ from utils import img2feature, CalBELU
 
 """ generate model """
 from transformers import GPT2Tokenizer
-gpt_model_path = '/data/project/rw/rung/02_source/model/gpt2-large'
+gpt_model_path = "gpt2-large" # '/data/project/rw/rung/02_source/model/gpt2-large'
 gpt_tokenizer = GPT2Tokenizer.from_pretrained(gpt_model_path)
 
 text_tokenizer = gpt_tokenizer
 endIDX, whichres, resIDX = -1, -1, -1
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'        
+image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'        
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_input_generate(context, slots):
@@ -63,10 +63,10 @@ def make_batch_generate(sessions):
         batch_token_list.append(torch.tensor(batch_token).unsqueeze(0))
     
     batch_obj_features = []    
-    for visual_list in zip(batch_visuals):
+    for visual_list in batch_visuals:
         object_visuals = []
         if len(visual_list) > 0:
-            for visual in zip(visual_list):
+            for visual in visual_list:
                 object_visuals.append(img2feature(visual, image_feature_extractor))
             batch_obj_features.append(torch.cat(object_visuals,0))
         else:
@@ -149,11 +149,11 @@ def main():
     
     """dataset Loading"""
     image_obj_path = "../res/image_obj.pickle"
-    description_path = "/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/public/*scene*"
-    fashion_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/fashion_prefab_metadata_all.json'
-    furniture_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/furniture_prefab_metadata_all.json'
+    description_path = "../data/public/*scene*"
+    fashion_path = '../data/fashion_prefab_metadata_all.json'
+    furniture_path = '../data/furniture_prefab_metadata_all.json'
     
-    devtest_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/simmc2_dials_dstc10_devtest.json'
+    devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
             
     user_eval = False
     devtest_dataset = task4_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path, user_eval)

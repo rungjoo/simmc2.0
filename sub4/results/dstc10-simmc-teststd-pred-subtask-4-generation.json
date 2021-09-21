@@ -1215,7 +1215,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I have a pink, white, and yellow blouse on the back wall, a pink, white, and yellow blouse on the back wall,"
+				"response": "I have a pink and white blouse on the back wall, a pink and white blouse on the back wall, and a pink and white bl"
 			},
 			{
 				"turn_id": 4,
@@ -1716,7 +1716,7 @@
 			},
 			{
 				"turn_id": 5,
-				"response": "What do you think of this black coat on the right shelf?"
+				"response": "What do you think of this grey coat on the right shelf?"
 			},
 			{
 				"turn_id": 6,
@@ -1728,7 +1728,7 @@
 			},
 			{
 				"turn_id": 8,
-				"response": "The grey shirt is XS and the other is M."
+				"response": "The grey shirt is an XS and the other is a M."
 			}
 		]
 	},
@@ -1757,7 +1757,7 @@
 			},
 			{
 				"turn_id": 5,
-				"response": "Okay, I will add it to your cart."
+				"response": "Okay, I'll add it to your cart."
 			},
 			{
 				"turn_id": 6,
@@ -2111,7 +2111,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure! I am adding them now."
+				"response": "Sure! I am adding those now."
 			},
 			{
 				"turn_id": 5,
@@ -2267,7 +2267,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I've got the blue and white one to the left of the blue jeans."
+				"response": "I can help you find a grey shirt. I have this grey shirt on the back of the table to the left."
 			},
 			{
 				"turn_id": 4,
@@ -2288,7 +2288,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black coat on the right?"
+				"response": "What do you think of the brown coat on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -2296,7 +2296,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "It's in XL and is by Downtown Stylists."
+				"response": "It's an XL from Downtown Stylists."
 			},
 			{
 				"turn_id": 3,
@@ -3039,7 +3039,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I've got the black one at the far left of the wall, the gray and white one at the far right, and the black one at the"
+				"response": "I've got the black one at the far left of the wall, the gray one at the far right, and the black one at the far right"
 			},
 			{
 				"turn_id": 3,
@@ -3383,7 +3383,7 @@
 			},
 			{
 				"turn_id": 8,
-				"response": "Of course. I've added those to your cart."
+				"response": "Of course. I'll add those now."
 			},
 			{
 				"turn_id": 9,
@@ -3728,7 +3728,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the blue one on the left, the white one on the right, and the grey one on the right."
+				"response": "I have a dark grey tshirt on the back wall, a dark grey tshirt on the front rack, and a dark grey tshirt on the"
 			},
 			{
 				"turn_id": 1,
@@ -3736,7 +3736,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The violet one is by StyleNow Feed and has a 4.9 rating. The red one is by Uptown Studio and has a 2."
+				"response": "The violet shirt is by StyleNow Feed and has a 4.9 rating. The red shirt is by Uptown Studio and has a 2."
 			},
 			{
 				"turn_id": 3,
@@ -3756,11 +3756,11 @@
 			},
 			{
 				"turn_id": 7,
-				"response": "Certainly! I'll add that to your cart right away."
+				"response": "Sure thing! I'll put that in your cart for you."
 			},
 			{
 				"turn_id": 8,
-				"response": "I'm sorry, but I can't find anything like that."
+				"response": "That purple shirt on the table is the only one that matches your criteria."
 			},
 			{
 				"turn_id": 9,
@@ -5349,7 +5349,7 @@
 			},
 			{
 				"turn_id": 6,
-				"response": "How about this grey and white one on the table?"
+				"response": "How about this grey and white shirt on the table?"
 			}
 		]
 	},
@@ -5875,7 +5875,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, I don't have anything like that right now."
+				"response": "I have two more dresses like that one, one in brown and one in black."
 			},
 			{
 				"turn_id": 3,
@@ -6056,11 +6056,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the grey and white jacket on the top left, the grey and white jacket on the bottom right, or the grey and white"
+				"response": "What do you think of the grey and white jacket on the top left, the blue jacket on the bottom right, or the grey and white jacket on"
 			},
 			{
 				"turn_id": 1,
-				"response": "Both jackets are from River Chateau and come in sizes XS, S, M, L, XL, and XXL."
+				"response": "Both jackets are made by River Chateau and come in sizes XS, M, L, XL, and XXL."
 			},
 			{
 				"turn_id": 2,
@@ -6076,7 +6076,7 @@
 			},
 			{
 				"turn_id": 5,
-				"response": "I'll put those in your cart for you."
+				"response": "Sure thing, I'll add those to your cart."
 			},
 			{
 				"turn_id": 6,
@@ -7960,7 +7960,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the black coat on the top left, the grey coat on the top right, or the light grey coat on the top right?"
+				"response": "How about the black coat on the top left, the grey coat on the top right, or the black coat on the top right?"
 			},
 			{
 				"turn_id": 1,
@@ -8189,7 +8189,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "Of course, I'll add that to your cart."
+				"response": "Of course, I'll add that now."
 			},
 			{
 				"turn_id": 2,
@@ -8247,7 +8247,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Okay, they will be added to your cart."
+				"response": "Okay, both items will be added to your cart."
 			},
 			{
 				"turn_id": 4,
@@ -8568,7 +8568,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Sorry, I don't have anything like that."
+				"response": "Sure, there's a black and olive dress on the rack in front of you, as well as a brown and black dress on the rack in the"
 			},
 			{
 				"turn_id": 3,
@@ -8576,7 +8576,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure, I'll add that to your cart now."
+				"response": "Sure, I've added it to your cart."
 			}
 		]
 	},
@@ -8585,7 +8585,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the blue jacket on the top right or the grey and white jacket on the bottom right?"
+				"response": "What do you think of the grey and white jacket on the top right?"
 			},
 			{
 				"turn_id": 1,
@@ -8597,7 +8597,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "What do you think of the white and black blouse on the top shelf?"
+				"response": "What do you think of the blue and white one on the top left?"
 			},
 			{
 				"turn_id": 4,
@@ -8639,11 +8639,11 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "The brown and black dress is from Uptown Gallery and has a rating of 3.9. The grey dress is from Ocean Wears and has"
+				"response": "The brown and black dress is from Uptown Gallery and is rated 3.9. The grey dress is from Ocean Wears and is rated 3"
 			},
 			{
 				"turn_id": 2,
-				"response": "Sorry, but no item matches your search criteria."
+				"response": "Sorry, but no other item matches your search criteria."
 			},
 			{
 				"turn_id": 3,
@@ -8672,11 +8672,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I'm sorry, I don't have anything like that."
+				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
 			},
 			{
 				"turn_id": 4,
-				"response": "Ok. I will add those two items now."
+				"response": "Ok, I will add those two items now."
 			}
 		]
 	},
@@ -8685,11 +8685,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several blue jackets and a blue jacket which match your criteria. What do you think of them?"
+				"response": "There are several jackets which match your criteria. What do you think of them?"
 			},
 			{
 				"turn_id": 1,
-				"response": "They're both long-sleeved jackets with a 2.8 rating."
+				"response": "They're both rated 2.8 and have full sleeves."
 			},
 			{
 				"turn_id": 2,
@@ -8697,7 +8697,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Both dresses cost $139.99 and have a 3.6 rating."
+				"response": "Both of these dresses cost $139.99 and have a 3.6 rating."
 			},
 			{
 				"turn_id": 4,
@@ -8710,7 +8710,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the brown dress on the rack?"
+				"response": "What do you think of the two black dresses on the rack?"
 			},
 			{
 				"turn_id": 1,
@@ -8718,11 +8718,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The black dress on the back left and the maroon dress on the right are what I have like that."
+				"response": "I couldn't find anything like that."
 			},
 			{
 				"turn_id": 3,
-				"response": "Sure, I'll add those now."
+				"response": "Sure thing."
 			},
 			{
 				"turn_id": 4,
@@ -8743,7 +8743,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Yes, the maroon one comes in XS, M, L, XL, and XXL, while the purple one comes in S, XL"
+				"response": "Sure, they're both available in XS, S, M, L, XL, and XXL."
 			},
 			{
 				"turn_id": 3,
@@ -8751,7 +8751,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure, I've added both items to your cart."
+				"response": "Of course, I've added both items to your cart."
 			}
 		]
 	},
@@ -8768,7 +8768,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Sure! What do you think about the black dress on the back rack, the brown dress on the front rack, or the purple dress on the back"
+				"response": "I'm sorry, but I do not have anything like that right now."
 			},
 			{
 				"turn_id": 3,
@@ -10089,7 +10089,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Ok. I'll put those in your cart for you."
+				"response": "Ok. I'll add those to your cart."
 			},
 			{
 				"turn_id": 3,
@@ -10400,7 +10400,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I'm sorry, that's all I have. Can I get you something different?"
+				"response": "I'm sorry, those are the only two we have."
 			},
 			{
 				"turn_id": 2,
@@ -10816,7 +10816,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black dress on the rack to the left?"
+				"response": "What do you think of the black dress on the rack?"
 			},
 			{
 				"turn_id": 1,
@@ -11278,7 +11278,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Okay, I will add those to your cart."
+				"response": "Okay, I will add those items to your cart."
 			},
 			{
 				"turn_id": 4,
@@ -12245,7 +12245,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "Okay, I will add those grey trousers to your cart."
+				"response": "Okay, I will add them to your cart."
 			},
 			{
 				"turn_id": 2,
@@ -12266,7 +12266,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the white and black one on the top left, the white and grey one on the top right, and the white and black one on the"
+				"response": "I have the white and black one on the top left, the white and black one on the top right, and the white and black one on the"
 			},
 			{
 				"turn_id": 1,
@@ -12303,11 +12303,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The brown pants on the right are by River Chateau, and the other brown pants on the left are by River Chateau."
+				"response": "I have these brown pants on the right, what do you think?"
 			},
 			{
 				"turn_id": 4,
-				"response": "Great! I'll add that to your cart."
+				"response": "Okay. I've added it to your cart."
 			}
 		]
 	},
@@ -12324,7 +12324,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have this white and black one on the top left of the wall, the white and black one on the top right of the wall, and the"
+				"response": "I have this white and black one on the top left of the wall, the white and black one on the bottom right of the wall, and the"
 			},
 			{
 				"turn_id": 3,
@@ -12341,7 +12341,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the white and black one hanging on the top left of the wall, the white and black one on the top right of the wall, and"
+				"response": "I have the white and black one hanging on the top right of the wall, the white and black one on the top left of the wall, and"
 			},
 			{
 				"turn_id": 1,
@@ -12349,7 +12349,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "This one is a small."
+				"response": "This one is available in S."
 			},
 			{
 				"turn_id": 3,
@@ -12374,7 +12374,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "They are both available in S."
+				"response": "They are both available in S and are in size S."
 			},
 			{
 				"turn_id": 3,
@@ -12416,11 +12416,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure!  What do you think of the grey ones on the right?"
+				"response": "Sure, what do you think of the grey trousers on the bottom right?"
 			},
 			{
 				"turn_id": 1,
-				"response": "I can help with that! What do you think about the white and black one to the left of the grey trousers, the white and grey one to"
+				"response": "I can help with that! What do you think about the white and black one to the left of the grey trousers, the white and black one to"
 			},
 			{
 				"turn_id": 2,
@@ -12766,7 +12766,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this one on the top left of the wall."
+				"response": "I have this one on the top right of the wall."
 			},
 			{
 				"turn_id": 1,
@@ -12791,15 +12791,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the grey and white ones on the bottom right of the wall, the light grey ones on the bottom right of the wall, and the black"
+				"response": "I have the blue jeans on the bottom left of the wall and the light blue jeans on the bottom right."
 			},
 			{
 				"turn_id": 1,
-				"response": "The one on the left has a 4.6 rating, while the one on the right has a 4.9."
+				"response": "The blue pair is rated 4.6, while the light blue pair is rated 4.9."
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
+				"response": "I'm sorry, I can't find anything like that."
 			},
 			{
 				"turn_id": 3,
@@ -12832,7 +12832,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "There is a grey and white pair of jeans and a black and white pair of jeans which match your criteria."
+				"response": "There are several jeans which match your criteria."
 			}
 		]
 	},
@@ -12849,7 +12849,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Sure, the first pair is $244.99 and the second is $174.99."
+				"response": "Sure, the pair on the left costs $244.99 and the pair on the right costs $184.99."
 			},
 			{
 				"turn_id": 3,
@@ -12857,7 +12857,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure! The blue and black jeans have a rating of 4.6 and the other is rated 4.9."
+				"response": "Sure! The blue and black jeans have a 4.6 rating and the blue jeans have a 4.9 rating."
 			}
 		]
 	},
@@ -13132,7 +13132,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "How is this grey tshirt on the rack in front of us?"
+				"response": "How is this grey and white tshirt on the rack in front of us?"
 			}
 		]
 	},
@@ -13166,7 +13166,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the blue one on the top left, the grey one on the bottom right, and the brown one on the bottom right."
+				"response": "I have the blue one on the bottom left of the wall, the brown one on the bottom right of the wall, and the grey one on the"
 			},
 			{
 				"turn_id": 1,
@@ -14004,7 +14004,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Okay. I'll add two of them."
+				"response": "Okay. I'll add two of them to your cart."
 			}
 		]
 	},
@@ -14256,7 +14256,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The white rug in the back is what I have to show you."
+				"response": "The grey rug in the back is what I have to show you."
 			}
 		]
 	},
@@ -15268,7 +15268,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the grey and white jacket on the top right?"
+				"response": "I have this one on the bottom right of the wall."
 			},
 			{
 				"turn_id": 1,
@@ -15343,7 +15343,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the red, white, and yellow one hanging on the top left of the wall, the black one on the bottom right, and the red"
+				"response": "I have the black and white one hanging on the top left of the wall, the red, white, and yellow one hanging on the bottom right of"
 			},
 			{
 				"turn_id": 1,
@@ -15351,7 +15351,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have the grey pair in the back left."
+				"response": "I have the grey ones in the back left and the brown ones in the front right."
 			},
 			{
 				"turn_id": 3,
@@ -15359,7 +15359,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Both pairs of grey pants cost $189.99."
+				"response": "Both of these pants are priced at $189.99."
 			}
 		]
 	},
@@ -15405,7 +15405,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I have the black pair in the second cubby from the right and the grey pair in the second cubby from the right."
+				"response": "I have the grey pair in the second cubby from the right and the black pair in the second cubby from the right."
 			},
 			{
 				"turn_id": 4,
@@ -15418,7 +15418,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several grey trousers which match your criteria. What do you think?"
+				"response": "There are several grey trousers and a grey and white trousers which match your criteria."
 			},
 			{
 				"turn_id": 1,
@@ -16530,7 +16530,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "There are several black dresses which match your criteria. What do you think of them?"
+				"response": "There is a black dress and a purple dress which match your criteria."
 			},
 			{
 				"turn_id": 4,
@@ -16893,11 +16893,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black and white blouse on the right or the grey and white blouse on the left?"
+				"response": "What do you think of the black and white blouse on the left, the grey and white blouse on the right, or the black blouse"
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this black and white one, the black one, and the black and white one."
+				"response": "I have this black and white one, this white and black one, and this light grey one."
 			},
 			{
 				"turn_id": 2,
@@ -16922,7 +16922,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "Of course! I'll add those to your cart right away."
+				"response": "Sure thing! I'll add those to your cart right away."
 			},
 			{
 				"turn_id": 2,
@@ -16930,7 +16930,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "What do you think about the black shoes on the right?"
+				"response": "I can help you find shoes. I have the black ones on the right and the grey ones on the left."
 			},
 			{
 				"turn_id": 4,
@@ -16943,7 +16943,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the black and white one on the left, the blue and white one on the right, or the grey and white one on the left?"
+				"response": "How about the grey and white one on the left, the black and white one on the right, or the grey and white one on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -16959,7 +16959,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "It is in size S and has a customer rating of 3.7."
+				"response": "It is in size S and has a rating of 3.7."
 			}
 		]
 	},
@@ -17193,7 +17193,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the green tshirt or the pink tshirt?"
+				"response": "What do you think of the dark green tshirt?"
 			},
 			{
 				"turn_id": 1,
@@ -17218,7 +17218,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several black blouses which match your criteria."
+				"response": "There is a red, white blouse on the rack in the back."
 			},
 			{
 				"turn_id": 1,
@@ -17234,7 +17234,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "The first is $29.99 and the other is $24.99."
+				"response": "The green and white blouse is $29.99 and the other is $24.99."
 			}
 		]
 	},
@@ -17243,7 +17243,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black one hanging on the top right of the wall, the red and white one hanging on the bottom right of the wall, and the"
+				"response": "I have this green and white one on the top left of the wall, the green and white one on the bottom right of the wall, and the"
 			},
 			{
 				"turn_id": 1,
@@ -17284,7 +17284,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "That jacket is made by Coats & More and has a rating of 3.3."
+				"response": "That jacket is made by Coats & More and has a 3.3 rating."
 			}
 		]
 	},
@@ -17293,7 +17293,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several black blouses and a red, white, and yellow blouse which match your criteria."
+				"response": "There is a black blouse, a white and black blouse, and a red, white, and yellow blouse which match your criteria."
 			},
 			{
 				"turn_id": 1,
@@ -17326,7 +17326,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have the green one in the middle of the top row on the wall, the green one in the middle of the bottom row, and the green"
+				"response": "I have the green one in the back, the green one in the middle, and the green one in the front."
 			},
 			{
 				"turn_id": 3,
@@ -17334,7 +17334,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Okay. I will add those to your cart."
+				"response": "Great! I'll add those to your cart."
 			}
 		]
 	},
@@ -17343,7 +17343,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, what do you think of the black jacket hanging up on the left wall?"
+				"response": "What do you think of the red and white jacket on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -17368,7 +17368,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There is a green hoodie which matches your criteria."
+				"response": "There is a green hoodie which matches your search criteria."
 			},
 			{
 				"turn_id": 1,
@@ -17384,7 +17384,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "It is $39.99 and is available in XS, S, and XL."
+				"response": "It is priced at 39.99 and is available in XS, S, and XL."
 			}
 		]
 	},
@@ -17393,7 +17393,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the blue pants on the right?"
+				"response": "What do you think of the brown pants on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -17418,15 +17418,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There is a brown hoodie which matches your criteria."
+				"response": "There are several green hoodies and a blue hoodie which match your criteria."
 			},
 			{
 				"turn_id": 1,
-				"response": "What do you think of the grey and white blouse or the green, violet, and pink blouse?"
+				"response": "There is a black blouse and a red, white, and yellow blouse. What do you think of them?"
 			},
 			{
 				"turn_id": 2,
-				"response": "There is a black blouse, a grey and white blouse, and a red, white, and yellow blouse. What do you think of"
+				"response": "There is a black blouse, a white, black, and red blouse, and a black blouse. What do you think of those?"
 			},
 			{
 				"turn_id": 3,
@@ -17447,7 +17447,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this white and black one on the top right of the wall, the red and white one on the bottom left, and the blue and white"
+				"response": "I have this green and white one on the rack in the middle of the room."
 			},
 			{
 				"turn_id": 2,
@@ -17459,7 +17459,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure thing, I've added it to your cart."
+				"response": "Sure thing, I'll add that to your cart now."
 			}
 		]
 	},
@@ -17468,11 +17468,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this white and black one on the top right of the wall, the red and white one on the bottom left of the wall, and the"
+				"response": "How about this black and white one on the top right of the wall, the green and white one on the bottom right of the wall, or the"
 			},
 			{
 				"turn_id": 1,
-				"response": "I'm sorry, I don't have anything like that."
+				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
 			},
 			{
 				"turn_id": 2,
@@ -17480,11 +17480,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The one in the cubby is rated 2.8 and comes in S. The one in the cubby is rated 3.4 and comes in"
+				"response": "The green one is rated 2.8 and comes in S, M, and L. The blue one is rated 3.4 and comes in S"
 			},
 			{
 				"turn_id": 4,
-				"response": "I have the blue one on the back wall."
+				"response": "I have the brown one on the center rack."
 			}
 		]
 	},
@@ -17493,7 +17493,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have a couple of brown ones, what do you think?"
+				"response": "I have a couple of green hoodies, one on the left and one on the right. What do you think?"
 			},
 			{
 				"turn_id": 1,
@@ -17501,7 +17501,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Of course, I'll add that to your cart now."
+				"response": "Certainly, I've added it to your cart."
 			},
 			{
 				"turn_id": 3,
@@ -17518,15 +17518,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Do you like the brown one on the top right or the blue one on the bottom right?"
+				"response": "I have this green one on the top left of the wall, the blue one on the bottom right, and the green one on the bottom right."
 			},
 			{
 				"turn_id": 1,
-				"response": "Ok, I'll put them in your cart for you."
+				"response": "Great! I'll add them to your cart."
 			},
 			{
 				"turn_id": 2,
-				"response": "Both of these hoodies are by Downtown Consignment and are in size S."
+				"response": "Both of these hoodies are by Downtown Consignment and are size S."
 			},
 			{
 				"turn_id": 3,
@@ -17534,7 +17534,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "This one is rated 4.7 and costs $184.99."
+				"response": "This pair is rated 4.7 and costs $184.99."
 			}
 		]
 	},
@@ -18488,7 +18488,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this blue one on the right."
+				"response": "I have this blue one on the left."
 			},
 			{
 				"turn_id": 1,
@@ -18572,7 +18572,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the wooden table in the back right corner?"
+				"response": "How about the wooden table in the back right?"
 			},
 			{
 				"turn_id": 1,
@@ -18899,7 +18899,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The first one is from Art Den and has a 3.8 rating. The other is from Uptown Studio and has a 3.0 rating"
+				"response": "The one on the left is from Art Den and has a 3.8 rating. The one on the right is from Uptown Studio and has"
 			}
 		]
 	},
@@ -19711,7 +19711,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this black one on the bottom right of the wall."
+				"response": "I have a pink one on the left, a red and white one on the right, and a pink one on the left."
 			},
 			{
 				"turn_id": 1,
@@ -19736,7 +19736,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this black one on the bottom right."
+				"response": "I have this pink one on the left side of the rack."
 			},
 			{
 				"turn_id": 1,
@@ -19744,7 +19744,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, but I can't find anything like that at the moment."
+				"response": "I'm sorry, I can't find anything like that. Can I get you something different?"
 			},
 			{
 				"turn_id": 3,
@@ -19752,7 +19752,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure thing! I'll add those to your cart right away."
+				"response": "Great! I'll add those to your cart."
 			}
 		]
 	},
@@ -19761,7 +19761,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black one on the center rack, the grey one on the center rack, and the black one on the center rack."
+				"response": "I have the black one on the top right of the wall, the black one on the bottom right of the wall, and the black one on the"
 			},
 			{
 				"turn_id": 1,
@@ -19773,7 +19773,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I have the brown one on the center front rack."
+				"response": "I have the pink one in the top left cubby."
 			},
 			{
 				"turn_id": 4,
@@ -19786,7 +19786,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black one on the right side of the rack, the grey one on the left side of the rack, and the black one on the"
+				"response": "I have two black blazers on the right side of the rack, one on the right side of the wall and the other on the left side"
 			},
 			{
 				"turn_id": 1,
@@ -19811,7 +19811,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black and white one on the top right?"
+				"response": "What do you think of the white and black blouse on the top right or the white and grey blouse on the bottom right?"
 			},
 			{
 				"turn_id": 1,
@@ -19840,7 +19840,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "Sure, the black sweater on the top row to your left is an XXL."
+				"response": "Sure, the black sweater on the table is an XXL, and the green sweater is an XXL."
 			},
 			{
 				"turn_id": 2,
@@ -19848,7 +19848,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Sure, the black sweater is a knit pattern, and has a 3.1 rating.  The white and grey one is a plain pattern, and"
+				"response": "Sure, the black sweater is a knit pattern, and has a 3.1 rating.  The grey sweater is a plain pattern, and has a"
 			},
 			{
 				"turn_id": 4,
@@ -19861,7 +19861,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this black one on the top right of the wall, the grey one on the bottom right, and the black one on the bottom left."
+				"response": "I have this white and black one on the bottom right of the wall."
 			},
 			{
 				"turn_id": 1,
@@ -19886,7 +19886,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the pink sweater on the top right?"
+				"response": "What do you think of the pink sweater on the table?"
 			},
 			{
 				"turn_id": 1,
@@ -19894,7 +19894,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have this grey and white one on the top right of the wall rack, the black one on the bottom right of the wall rack, and the"
+				"response": "I have this white and black blouse on the bottom right of the wall rack."
 			},
 			{
 				"turn_id": 3,
@@ -19919,7 +19919,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, that's all I have for sweaters with good ratings."
+				"response": "I'm sorry, but I have no other sweaters with good ratings."
 			},
 			{
 				"turn_id": 3,
@@ -19936,7 +19936,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this black one on the top right of the wall."
+				"response": "I have this white and black one on the bottom right of the wall."
 			},
 			{
 				"turn_id": 1,
@@ -19961,7 +19961,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the black one on the top right, the grey one on the bottom right, or the black one on the bottom left?"
+				"response": "I have the black one on the top left, the grey one on the bottom right, and the black one on the bottom right."
 			},
 			{
 				"turn_id": 1,
@@ -19969,11 +19969,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I am sorry but I have no other coats."
+				"response": "I am sorry but there are no other coats."
 			},
 			{
 				"turn_id": 3,
-				"response": "The grey one is rated 4.6 and is from Art News Today. The brown one is rated 4.1 and is from Downtown Stylists"
+				"response": "The grey one is rated 4.6 and is from Art News Today. The other is rated 4.1 and is from Downtown Stylists."
 			},
 			{
 				"turn_id": 4,
@@ -19986,15 +19986,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the blue one on the right, the grey and white one on the left, or the brown one on the right?"
+				"response": "How about the grey and white jacket on the top right, the blue jacket on the top left, or the grey and white jacket on the top right"
 			},
 			{
 				"turn_id": 1,
-				"response": "The blue one is $99.99 and comes in L. The other is $174.99 and comes in S, XL, and XXL"
+				"response": "The grey jacket is $99.99 and comes in L. The blue jacket is $174.99 and comes in S and XL."
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
+				"response": "I'm sorry, but I do not see anything like that at the moment."
 			},
 			{
 				"turn_id": 3,
@@ -20015,7 +20015,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "How about this grey one?"
+				"response": "What about this black one?"
 			},
 			{
 				"turn_id": 2,
@@ -20036,11 +20036,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, what do you think of the grey one hanging up on the right?"
+				"response": "Sure, what do you think of the black coat on the right?"
 			},
 			{
 				"turn_id": 1,
-				"response": "Sure, there's a grey and white one hanging on the right side of the table."
+				"response": "Sure, there's a grey and white one hanging up on the right side of the wall.  There's also a blue jacket hanging up on the"
 			},
 			{
 				"turn_id": 2,
@@ -20073,11 +20073,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Sure, the one on the left is available in S and XL, and the one on the right is available in S and XL."
+				"response": "Sure, the one on the left is available in S and XL, while the one on the right is available in S and XL."
 			},
 			{
 				"turn_id": 4,
-				"response": "Both are available in S and XL, and cost $59.99."
+				"response": "They're both available in S and XL, and they cost $59.99."
 			}
 		]
 	},
@@ -21719,7 +21719,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I will update your cart for you."
+				"response": "Great! I'll add that blouse to your cart."
 			},
 			{
 				"turn_id": 3,
@@ -21727,7 +21727,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "I've got one on the top row on the right, as well as a black one on the bottom row on the left."
+				"response": "I've got a green one hanging up on the top row on the right."
 			}
 		]
 	},
@@ -21748,7 +21748,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Great, I'll add that to your cart."
+				"response": "Great, I'll add it to your cart."
 			},
 			{
 				"turn_id": 4,
@@ -21786,7 +21786,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black one on the top left?"
+				"response": "What do you think of the green hoodie on the top left?"
 			},
 			{
 				"turn_id": 1,
@@ -21815,7 +21815,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have the black dress on the left rack and the purple one on the right rack."
+				"response": "I have the purple one on the left rack and the black one on the right rack."
 			},
 			{
 				"turn_id": 2,
@@ -21823,7 +21823,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The pink one is from Modern Arts and comes in XS, S, M, XL, and XXL. The black one is from 212 Local"
+				"response": "The purple one is from Modern Arts and comes in XS, S, M, XL, and XXL. The black one is from 212 Local"
 			},
 			{
 				"turn_id": 4,
@@ -21840,7 +21840,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "There is a grey dress which matches your criteria."
+				"response": "Sorry, but no item matches your search criteria."
 			},
 			{
 				"turn_id": 2,
@@ -21936,7 +21936,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the grey and white shirt on the table?"
+				"response": "How about this blue and white shirt on the table?"
 			},
 			{
 				"turn_id": 1,
@@ -21948,11 +21948,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I have a red and white sweater on the left side of the table display, a red and white sweater on the right side of the table display,"
+				"response": "I have two red sweaters on the table display on the left, one on the left and one on the right. What do you think?"
 			},
 			{
 				"turn_id": 4,
-				"response": "The black dress is a L and the red dress is an XL."
+				"response": "The black dress is a size L, and the red dress is a size XL."
 			}
 		]
 	},
@@ -21961,7 +21961,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the pink sweater on the top left or the red and white sweater on the bottom right?"
+				"response": "What do you think of the red and white sweater on the table?"
 			},
 			{
 				"turn_id": 1,
@@ -21969,11 +21969,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "That dress is a size L and has a rating of 4.5."
+				"response": "That dress is a size L and has a 4.5 rating."
 			},
 			{
 				"turn_id": 3,
-				"response": "I'm sorry, but there are no other sweaters that match your criteria."
+				"response": "I'm sorry, but I cannot find any other sweaters."
 			},
 			{
 				"turn_id": 4,
@@ -21990,7 +21990,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this purple dress on the left, the black dress on the right, and the purple dress on the left."
+				"response": "I have this black dress on the left side of the rack, the grey dress on the right side of the rack, and the purple dress on the"
 			},
 			{
 				"turn_id": 2,
@@ -22011,7 +22011,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several sweaters which match your criteria. What do you think of them?"
+				"response": "What do you think of the red and white sweater on the table?"
 			},
 			{
 				"turn_id": 1,
@@ -22023,7 +22023,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "There is a red sweater and a pink sweater on the table on the right. What do you think of them?"
+				"response": "There is a red sweater on the table on the left, a red sweater on the table on the right, and a red sweater on the table on"
 			},
 			{
 				"turn_id": 4,
@@ -22036,7 +22036,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the pink one on the top right, the blue one on the bottom right, or the pink one on the bottom left?"
+				"response": "How about the red and white one on the table, the red and white one on the table, or the red and white one on the table?"
 			},
 			{
 				"turn_id": 1,
@@ -22073,11 +22073,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Sure thing."
+				"response": "Of course, both have been added to your cart."
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure thing, both items will be added to your cart."
+				"response": "Of course, both items will be added to your cart."
 			}
 		]
 	},
@@ -22094,7 +22094,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have the black one on the bottom row on the wall, the black one on the bottom row on the wall, and the black one on the"
+				"response": "I have the black one on the bottom row on the wall, the purple one on the bottom row on the wall, and the maroon one on"
 			},
 			{
 				"turn_id": 3,
@@ -22115,7 +22115,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this black one and this brown one."
+				"response": "I have this brown and black one and this black one."
 			},
 			{
 				"turn_id": 2,
@@ -22127,7 +22127,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "The maroon one is rated 3.2 and is available in XS, XL, L, S, XXL, and M. The other"
+				"response": "The maroon one is rated 3.2 and comes in XS, XL, L, S, XXL, and M. The brown and"
 			}
 		]
 	},
@@ -22136,7 +22136,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black dress on the bottom rack, the purple dress on the bottom rack, and the maroon dress on the bottom rack."
+				"response": "I have the black one on the bottom left, the purple one on the bottom right, and the maroon one on the bottom right."
 			},
 			{
 				"turn_id": 1,
@@ -22169,7 +22169,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Sorry, but no item matches your search criteria."
+				"response": "There are several similar items, including a black dress, a grey dress, and a maroon dress."
 			},
 			{
 				"turn_id": 3,
@@ -22186,7 +22186,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the green one on the top left of the wall and the brown one on the bottom right."
+				"response": "I have this brown one on the rack to the left."
 			},
 			{
 				"turn_id": 1,
@@ -22198,11 +22198,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Do you like this black one hanging on the rack in the back right?"
+				"response": "I have this purple one hanging on the rack in the front left."
 			},
 			{
 				"turn_id": 4,
-				"response": "Ok. I will add that dress now."
+				"response": "Ok. I will add that now."
 			}
 		]
 	},
@@ -22215,7 +22215,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have a white and black one in the blouse display and a grey and white one in the display."
+				"response": "I have a white and black one in the blouse display and a red, white, and yellow one in the display."
 			},
 			{
 				"turn_id": 2,
@@ -22286,7 +22286,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the purple dress on the rack to the left, the purple dress on the rack to the right, and the purple dress on the rack to"
+				"response": "I have the purple dress on the rack to the left, the black dress on the rack to the right, and the purple dress on the rack to"
 			},
 			{
 				"turn_id": 1,
@@ -22294,7 +22294,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, I don't have anything else like that right now."
+				"response": "I'm sorry, but there are no other affordable dresses in stock."
 			},
 			{
 				"turn_id": 3,
@@ -22311,15 +22311,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have a green one on the top left, a green one on the top right, and a green one on the bottom right."
+				"response": "I have this brown one on the rack to the left."
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this purple dress hanging on the left side of the rack."
+				"response": "I have this black one on the back wall."
 			},
 			{
 				"turn_id": 2,
-				"response": "Certainly! I'll add that hoodie to your cart."
+				"response": "Certainly! I'll add that to your cart now."
 			},
 			{
 				"turn_id": 3,
@@ -22611,7 +22611,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the light grey one on the top right, the black one on the bottom right, or the light grey one on the bottom left?"
+				"response": "How about the light grey one on the top right or the black one on the bottom right?"
 			},
 			{
 				"turn_id": 1,
@@ -22686,7 +22686,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black dress on the left, the grey dress on the right, or the black and olive dress on the right?"
+				"response": "What do you think of the black dress on the left, the grey dress on the right, or the black and white dress on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -22711,7 +22711,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the brown and black one on the right side of the rack, the black and olive one on the left side of the rack, and the"
+				"response": "I have the black one on the bottom right, the brown one on the bottom left, and the black one on the bottom right."
 			},
 			{
 				"turn_id": 1,
@@ -23686,7 +23686,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, what do you think of the black coat on the rack in the back?  It's by Cats Are Great and has long sleeves."
+				"response": "Sure, what do you think of the black coat on the rack in the middle of the room?  It's by Cats Are Great and has long"
 			},
 			{
 				"turn_id": 1,
@@ -24111,7 +24111,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black coat on the rack in the back?"
+				"response": "What do you think of the black coat on the rack?"
 			},
 			{
 				"turn_id": 1,
@@ -24536,7 +24536,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the light grey one on the top right of the wall, the light grey one on the bottom right of the wall, and the light grey"
+				"response": "How about the grey one on the top right or the black one on the top left?"
 			},
 			{
 				"turn_id": 1,
@@ -24561,7 +24561,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the light grey one on the top right, the black one on the bottom right, and the light grey one on the bottom left."
+				"response": "How do you like these ones?"
 			},
 			{
 				"turn_id": 1,
@@ -24586,7 +24586,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the light grey one on the top right, the black one on the bottom right, and the light grey one on the bottom left."
+				"response": "How about the black one on the top right, the grey one on the top left, or the light grey one on the top right?"
 			},
 			{
 				"turn_id": 1,
@@ -24636,7 +24636,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this black one on the top left of the wall, the black one on the bottom right of the wall, and the black one on the"
+				"response": "I have this black one on the back wall, the brown one on the front rack, and the black one on the back wall."
 			},
 			{
 				"turn_id": 1,
@@ -24652,7 +24652,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "It costs $239.99 and is in size M."
+				"response": "It costs $139.99 and is a M."
 			}
 		]
 	},
@@ -24661,7 +24661,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the light grey one on the top right, the black one on the bottom right, and the light grey one on the bottom left."
+				"response": "How about the grey one on the top right or the black one on the top left?"
 			},
 			{
 				"turn_id": 1,
@@ -24686,7 +24686,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the light grey one on the top right, the black one on the bottom right, and the light grey one on the bottom left."
+				"response": "Do you like the black one on the back wall or the grey one on the front rack?"
 			},
 			{
 				"turn_id": 1,
@@ -24694,7 +24694,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The one in the back is $239.99 and is from Pedals & Gears. The one on the right is $94.99 and is"
+				"response": "The one in the back is $239.99 and is by Pedals & Gears. The one on the right is $94.99 and is"
 			},
 			{
 				"turn_id": 3,
@@ -24719,11 +24719,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have the black one on the front left rack and the black one on the front right rack."
+				"response": "I have the brown one on the back left rack."
 			},
 			{
 				"turn_id": 3,
-				"response": "The black one is rated 3.3 and the brown one is rated 3.9."
+				"response": "The black one is rated 3.3. The brown one is rated 3.9."
 			},
 			{
 				"turn_id": 4,
@@ -26511,7 +26511,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this blue one on the rack in the back."
+				"response": "I have this black one on the rack in the back."
 			},
 			{
 				"turn_id": 1,
@@ -27111,7 +27111,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, there's a light grey jacket hanging up on the right wall."
+				"response": "Sure, there's a blue jacket hanging up on the right wall."
 			},
 			{
 				"turn_id": 1,
@@ -27686,7 +27686,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the white and black one hanging on the top right of the wall, the grey and white one on the bottom left of the wall, and"
+				"response": "I have the white and black one hanging on the top right of the wall, the grey and white one on the bottom left, and the white and"
 			},
 			{
 				"turn_id": 1,
@@ -27894,7 +27894,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "How do you like the yellow tshirt on the back wall?"
+				"response": "How do you like the red, white tshirt on the back wall?"
 			},
 			{
 				"turn_id": 3,
@@ -27911,7 +27911,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There is a brown t-shirt which matches your criteria."
+				"response": "There is a red t-shirt which matches your criteria."
 			},
 			{
 				"turn_id": 1,
@@ -27961,11 +27961,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There is a grey and white jacket which matches your criteria."
+				"response": "There are several blue and green jackets which match your criteria."
 			},
 			{
 				"turn_id": 1,
-				"response": "There is a grey and white jacket and a blue and grey jacket. What do you think?"
+				"response": "There is a blue and green jacket and a grey and white jacket. What do you think?"
 			},
 			{
 				"turn_id": 2,
@@ -27990,7 +27990,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have this black dress on the rack in the back."
+				"response": "I have this black dress on the right side of the rack."
 			},
 			{
 				"turn_id": 2,
@@ -28019,7 +28019,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have the red, white, and yellow one you showed me, the black and white one hanging up on the top left, and the red,"
+				"response": "I have the black and white one hanging up on the top right, the red, white, and yellow one hanging up on the bottom left, and"
 			},
 			{
 				"turn_id": 3,
@@ -28027,7 +28027,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Okay. I'll put that blouse in your cart for you."
+				"response": "I'll put that blouse in your cart as well."
 			}
 		]
 	},
@@ -28036,7 +28036,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this green one on the top right of the wall."
+				"response": "How about the green hoodie on the top right, the green hoodie on the top left, or the green hoodie on the top right?"
 			},
 			{
 				"turn_id": 1,
@@ -28752,7 +28752,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "There is a plain hoodie on the rack in the middle and a brown hoodie on the rack in the right corner that might interest you."
+				"response": "There is a plain hoodie hanging on the left wall that matches your criteria."
 			}
 		]
 	},
@@ -28836,7 +28836,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this blue one on the bottom right of the wall."
+				"response": "How about this blue one?"
 			},
 			{
 				"turn_id": 1,
@@ -28861,7 +28861,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have a couple of jackets you might like.  There's a blue jacket on the bottom right, and a brown jacket on the bottom left."
+				"response": "How do you like these ones?"
 			},
 			{
 				"turn_id": 1,
@@ -28911,7 +28911,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the brown one on the top right or the blue one on the bottom right?"
+				"response": "How about the brown one on the top right of the wall, the blue one on the bottom left of the wall, or the brown one on the"
 			},
 			{
 				"turn_id": 1,
@@ -29236,7 +29236,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I've got the green one on the bottom right, the green one on the bottom left, and the green one on the bottom right."
+				"response": "I've got the brown one hanging on the bottom row on the wall."
 			},
 			{
 				"turn_id": 1,
@@ -29244,7 +29244,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Both of those green hoodies are priced at $114.99."
+				"response": "Both of those hoodies are green, and they cost $114.99."
 			},
 			{
 				"turn_id": 3,
@@ -29340,7 +29340,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "There is a green hoodie on the back wall which you might like."
+				"response": "There is a brown hoodie on the back wall which you might like."
 			},
 			{
 				"turn_id": 2,
@@ -32734,7 +32734,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the grey one in the back?"
+				"response": "How about this grey one?"
 			},
 			{
 				"turn_id": 1,
@@ -33815,7 +33815,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "That's the only item which matches your criteria."
+				"response": "That's the only item I have like that."
 			}
 		]
 	},
@@ -34466,7 +34466,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I'm sorry, that's all I have in stock right now."
+				"response": "I'm sorry, I don't have anything like that right now."
 			}
 		]
 	},
@@ -34902,7 +34902,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "That jacket has a 2.6 rating."
+				"response": "That jacket is rated 2.6."
 			}
 		]
 	},
@@ -35286,7 +35286,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the green one on the top right, the green one on the bottom left, or the green one on the bottom right?"
+				"response": "How about the green hoodie on the top right, the green hoodie on the top left, or the green hoodie on the bottom right?"
 			},
 			{
 				"turn_id": 1,
@@ -35361,7 +35361,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the dark grey sweater on the back wall?"
+				"response": "What do you think of the dark grey sweater on the back left wall?"
 			},
 			{
 				"turn_id": 1,
@@ -35811,11 +35811,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the grey pair in the back left cubby, the black pair in the middle cubby, and the blue pair in the middle cubby"
+				"response": "What do you think of the dark blue jeans on the bottom right?"
 			},
 			{
 				"turn_id": 1,
-				"response": "Ok, I will add those to your cart now."
+				"response": "Ok, I'll put those in your cart for you."
 			},
 			{
 				"turn_id": 2,
@@ -35823,11 +35823,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I have the gray pair in the middle of the top row."
+				"response": "How about these dark blue jeans?"
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure thing.  I'll add that to your cart as well."
+				"response": "I'll put that in your cart as well."
 			}
 		]
 	},
@@ -35836,15 +35836,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the white shirt on the bottom row?"
+				"response": "There are several shirts which match your criteria. What do you think of them?"
 			},
 			{
 				"turn_id": 1,
-				"response": "Okay, I will add it to your cart."
+				"response": "Okay, I'll add it to your cart."
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, that's the only one I have."
+				"response": "I have a blue and white shirt, a grey and white shirt, and a brown shirt."
 			},
 			{
 				"turn_id": 3,
@@ -35852,7 +35852,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "It comes in M, L, XL, and S."
+				"response": "It comes in M, XL, and L."
 			}
 		]
 	},
@@ -35861,7 +35861,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the blue ones on the right, the grey ones on the left, and the brown ones on the left."
+				"response": "I have the blue pair in the back left cubby, the grey pair in the back right cubby, and the blue pair in the front left"
 			},
 			{
 				"turn_id": 1,
@@ -35886,7 +35886,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black coats?"
+				"response": "What do you think of the black coat on the back wall or the grey coat on the back wall?"
 			},
 			{
 				"turn_id": 1,
@@ -35898,7 +35898,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The dress is $174.99 and is by 212 Local. The beige dress is $239.99 and is by Fancy Nails."
+				"response": "The black dress is $174.99 and by 212 Local. The beige dress is $239.99 and by Fancy Nails."
 			},
 			{
 				"turn_id": 4,
@@ -35911,7 +35911,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this blue pair on the right."
+				"response": "I have these two blue ones on the right."
 			},
 			{
 				"turn_id": 1,
@@ -35919,15 +35919,15 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The brown ones are from River Chateau and have a 3.6 rating. The blue ones are from Pedals & Gears and have a 3"
+				"response": "The brown pair is from River Chateau and has a 3.6 rating. The blue pair is from Pedals & Gears and has a 3"
 			},
 			{
 				"turn_id": 3,
-				"response": "The brown pair is a plain pattern and is by Pedals & Gears. The blue pair is a plain pattern and is by River Chateau."
+				"response": "The blue pair is a plain pattern and is by River Chateau. The brown pair is a plain pattern and is by Pedals & Gears."
 			},
 			{
 				"turn_id": 4,
-				"response": "I have the grey ones in the back."
+				"response": "I have the grey ones on the bottom row on the wall."
 			}
 		]
 	},
@@ -35940,11 +35940,11 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I'll put that in your cart."
+				"response": "I'll add that to your cart."
 			},
 			{
 				"turn_id": 2,
-				"response": "I'm sorry, I don't have anything like that right now."
+				"response": "I'm sorry, I don't have anything like that."
 			},
 			{
 				"turn_id": 3,
@@ -35961,7 +35961,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I've got the black one hanging on the top right of the wall, the grey one hanging on the bottom left, and the brown one hanging on"
+				"response": "I've got the black one hanging in the back right corner, the black one in the middle of the back wall, and the black one in the"
 			},
 			{
 				"turn_id": 1,
@@ -35969,7 +35969,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I don't happen to have any jeans like that.  Can I help you find something else?"
+				"response": "I've got the dark blue ones on the bottom row on the wall."
 			},
 			{
 				"turn_id": 3,
@@ -35977,7 +35977,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "It's $184.99."
+				"response": "It costs $184.99."
 			}
 		]
 	},
@@ -36744,7 +36744,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "I have this black one."
+				"response": "I have this black one and this black one in the back."
 			},
 			{
 				"turn_id": 3,
@@ -36923,7 +36923,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The black and white one is $29.99 and the grey and white one is $ 4.99."
+				"response": "The black and white one is $29.99 and the grey and white one is $4.99."
 			},
 			{
 				"turn_id": 4,
@@ -37236,7 +37236,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, there's a brown one hanging on the left side of the rack."
+				"response": "Sure, there's a brown one hanging on the left side of the rack in front of you, a green one hanging on the right side of the"
 			},
 			{
 				"turn_id": 1,
@@ -38536,7 +38536,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Do you like the white and black one on the top left, the red and white one on the top right, or the white and black one on"
+				"response": "Do you like the blue and white one on the top left, the red and white one on the top right, or the white and blue one on"
 			},
 			{
 				"turn_id": 1,
@@ -38544,7 +38544,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The white and black one is rated 3.4 and is available in XS, M, L, XL, and XXL. It is made"
+				"response": "The one on the top is rated 3.4 and comes in XS, S, M, L, XL, and XXL. It comes"
 			},
 			{
 				"turn_id": 3,
@@ -38586,11 +38586,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I can help with that. I have the maroon, white, and blue blouse on the top left of the wall, the maroon,"
+				"response": "I have this blue and white one on the top left of the wall, the blue one on the bottom right, and the blue one on the bottom"
 			},
 			{
 				"turn_id": 1,
-				"response": "I have a white and black one on the top left, a white and grey one on the top right, and a maroon, white and blue"
+				"response": "I have a couple, the maroon, white and blue one on the top right and the white and blue one on the bottom left."
 			},
 			{
 				"turn_id": 2,
@@ -38598,7 +38598,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "The white and black blouse is available in XS, M, L, and XXL. The maroon, white, and blue blouse"
+				"response": "The one on the top right is available in XS, M, L, and XXL. The one on the bottom right is available in X"
 			},
 			{
 				"turn_id": 4,
@@ -38611,7 +38611,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the white and black one hanging on the top left, the red and white one on the top right, and the white and black one on"
+				"response": "I have the blue and white one hanging on the top left, the red, white, and yellow one on the bottom right, and the white and"
 			},
 			{
 				"turn_id": 1,
@@ -38619,7 +38619,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "It is in size XS."
+				"response": "It's an XS."
 			},
 			{
 				"turn_id": 3,
@@ -38661,7 +38661,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the maroon, white, and blue one hanging on the top left of the wall, the maroon, white, and blue one on"
+				"response": "I have the blue one on the top left, the blue one on the bottom right, and the blue one on the bottom right."
 			},
 			{
 				"turn_id": 1,
@@ -38819,7 +38819,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "There are several similar items, including a grey pair, a grey pair, and a black pair."
+				"response": "There are several similar items, including a grey pair, a black pair, and a grey pair."
 			},
 			{
 				"turn_id": 3,
@@ -38836,7 +38836,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the ones on the right?"
+				"response": "I have the two on the bottom row on the right."
 			},
 			{
 				"turn_id": 1,
@@ -38848,11 +38848,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Both of those pairs of shoes are black and white."
+				"response": "Both of those shoes are black and white."
 			},
 			{
 				"turn_id": 4,
-				"response": "Ok. I will do that now."
+				"response": "Ok. I will add those now."
 			}
 		]
 	},
@@ -38861,11 +38861,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, there's a pair of blue jeans on the right side of the room."
+				"response": "Sure, there's a pair in the second cubby from the right."
 			},
 			{
 				"turn_id": 1,
-				"response": "They both have a 4.9 rating."
+				"response": "Sure, the pair on the right has a 4.9 rating, while the pair on the left has a 4.9."
 			},
 			{
 				"turn_id": 2,
@@ -38877,7 +38877,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "They are both from Yogi Fit."
+				"response": "Both of those jeans are by Yogi Fit."
 			}
 		]
 	},
@@ -38911,7 +38911,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There are several grey shoes which match your criteria."
+				"response": "There is a pair of blue shoes which match your criteria."
 			},
 			{
 				"turn_id": 1,
@@ -38927,7 +38927,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "There are several options, including a black pair, a grey pair, and a white pair."
+				"response": "There are several options. What do you think?"
 			}
 		]
 	},
@@ -38940,7 +38940,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "I have the first one in the second cubicle in the center row, the first one in the third cubicle, and the second one in the"
+				"response": "I have the first one in the third cubicle in the center row, the first one in the third cubicle, and the second one in the"
 			},
 			{
 				"turn_id": 2,
@@ -38961,7 +38961,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the black and white one on the top left, the grey and white one next to it, or the black one on the bottom right?"
+				"response": "How about this black and white one?"
 			},
 			{
 				"turn_id": 1,
@@ -38977,7 +38977,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "The grey pair on the right and the black and white pair on the left are the only ones like that."
+				"response": "The two grey shoes on the right are the only ones that match your criteria."
 			}
 		]
 	},
@@ -40161,7 +40161,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black coat on the top right, the grey and white one on the bottom right, or the black one on the top"
+				"response": "There is a grey coat on the wall which matches your criteria."
 			},
 			{
 				"turn_id": 1,
@@ -40202,7 +40202,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure! I have a light grey coat on the top shelf on the left, a grey one on the top shelf on the right, and a green"
+				"response": "Sure! I have a light grey coat on the top shelf on the left, a light grey coat on the top shelf on the right, and a"
 			}
 		]
 	},
@@ -40336,7 +40336,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, what do you think of the blue jacket on the rack to the left, the black jacket on the rack to the right, or the grey"
+				"response": "Sure, what do you think of the blue jacket on the rack to the left, the grey and black jacket on the rack to the right, or"
 			},
 			{
 				"turn_id": 1,
@@ -40440,7 +40440,7 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "What do you think of the black dress on the bottom rack?"
+				"response": "What do you think of the black dress on the bottom left?"
 			},
 			{
 				"turn_id": 2,
@@ -40461,7 +40461,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about this pink and white shirt on the back wall?"
+				"response": "How about this red and white one?"
 			},
 			{
 				"turn_id": 1,
@@ -40473,7 +40473,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I'll put that in your cart."
+				"response": "I'll put that in your cart for you."
 			},
 			{
 				"turn_id": 4,
@@ -40486,7 +40486,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black one hanging on the top left of the wall, the grey one on the bottom right, and the blue one on the bottom right"
+				"response": "What do you think of the grey and white jacket on the top right or the red and white jacket on the bottom right?"
 			},
 			{
 				"turn_id": 1,
@@ -40711,7 +40711,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the brown hoodie on the right?"
+				"response": "What do you think of the green one on the right?"
 			},
 			{
 				"turn_id": 1,
@@ -40719,11 +40719,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "What do you think of the grey ones on the bottom left?"
+				"response": "I have these red shoes in the middle, what do you think?"
 			},
 			{
 				"turn_id": 3,
-				"response": "Sure thing!"
+				"response": "Okay, adding those now."
 			},
 			{
 				"turn_id": 4,
@@ -40736,11 +40736,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the light grey coat on the left or the black coat on the right?"
+				"response": "What do you think of the black coat on the left, the grey coat on the right, or the brown coat on the right?"
 			},
 			{
 				"turn_id": 1,
-				"response": "The grey coat on the wall and the black one on the left are what I have like that."
+				"response": "The two black ones on the wall, the one on the right and the one on the left."
 			},
 			{
 				"turn_id": 2,
@@ -40748,11 +40748,11 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "Okay, I will add those two items to your cart."
+				"response": "Okay, I'll add those to your cart."
 			},
 			{
 				"turn_id": 4,
-				"response": "What do you think of the grey coat on the left side of the rack?"
+				"response": "What do you think of the grey coat on the front of the rack?"
 			}
 		]
 	},
@@ -40761,15 +40761,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the brown pair in the back left cubby."
+				"response": "I have the grey pair in the middle of the bottom row."
 			},
 			{
 				"turn_id": 1,
-				"response": "I'm sorry, I don't have anything like that."
+				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
 			},
 			{
 				"turn_id": 2,
-				"response": "I have this grey pair in the back left cubby."
+				"response": "I have these grey ones in the back left cubby."
 			},
 			{
 				"turn_id": 3,
@@ -40786,11 +40786,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "Sure, there's a brown hoodie in the back right corner."
+				"response": "Sure, there's a grey one at the back left of the room."
 			},
 			{
 				"turn_id": 1,
-				"response": "Sure, what do you think of the brown coat hanging on the bottom rack to the left?"
+				"response": "I'm sorry, I don't have anything like that right now."
 			},
 			{
 				"turn_id": 2,
@@ -40802,7 +40802,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "I have the grey coat on the left side of the rack to the left, the brown coat on the right side of the rack to the right,"
+				"response": "I'm sorry, that's all I have right now."
 			}
 		]
 	},
@@ -40811,7 +40811,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the brown coat on the left or the black coat on the right?"
+				"response": "What do you think of the black coat on the bottom right?"
 			},
 			{
 				"turn_id": 1,
@@ -40823,7 +40823,7 @@
 			},
 			{
 				"turn_id": 3,
-				"response": "I will add those to your cart."
+				"response": "I will add them to your cart."
 			},
 			{
 				"turn_id": 4,
@@ -40836,7 +40836,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the brown one on the back left wall?"
+				"response": "How about this grey and white one?"
 			},
 			{
 				"turn_id": 1,
@@ -40986,7 +40986,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I can't find anything like that, sorry."
+				"response": "I can help with that. I have the black sweater on the table to the left, the red and white sweater on the table to the right,"
 			},
 			{
 				"turn_id": 1,
@@ -40994,15 +40994,15 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The red and green one is by Downtown Consignment, and the grey one is by River Chateau."
+				"response": "The red and green one is from Downtown Consignment, and the grey one is from River Chateau."
 			},
 			{
 				"turn_id": 3,
-				"response": "I've got the black and white one on the top row of the wall, the black and white one on the bottom row, and the black and"
+				"response": "I've got the black one hanging up on the left side of the wall, the black one hanging up on the right side of the wall, and"
 			},
 			{
 				"turn_id": 4,
-				"response": "Both of those blouses are available in M, XL, XS and cost $54.99."
+				"response": "Both of those blouses are available in M, XL, XS, and priced at $54.99."
 			}
 		]
 	},
@@ -41027,7 +41027,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "The grey and white one is a size L. The black and white one is a size S."
+				"response": "The grey and white one is a large and the black and white one is a small."
 			}
 		]
 	},
@@ -41036,7 +41036,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black and white one on the top left of the wall, the red, white, and yellow one on the bottom right of the wall"
+				"response": "I have the black and white one hanging on the top right of the wall, the black and white one on the bottom left of the wall, and"
 			},
 			{
 				"turn_id": 1,
@@ -41052,7 +41052,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sure! I have a black blouse hanging on the bottom row on the wall on the right, a white and black blouse on the floor rack"
+				"response": "Sure, how about this black and white blouse hanging on the bottom right?"
 			}
 		]
 	},
@@ -41061,7 +41061,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the purple one on the table, the black one on the table, and the maroon one on the table."
+				"response": "I have a black dress on the top left, a black dress on the top right, and a black dress on the bottom right."
 			},
 			{
 				"turn_id": 1,
@@ -41086,11 +41086,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the red and white one on the table in the middle of the room, the red and white one on the table in the middle of the"
+				"response": "I have this black and white one on the top right of the wall."
 			},
 			{
 				"turn_id": 1,
-				"response": "I'm sorry, I don't have anything like that."
+				"response": "I'm sorry, I don't have anything like that. Can I get you something different?"
 			},
 			{
 				"turn_id": 2,
@@ -41111,11 +41111,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the white and black blouse, the grey and white blouse, or the black blouse?"
+				"response": "What do you think of the black blouse, the grey and white blouse, or the black blouse?"
 			},
 			{
 				"turn_id": 1,
-				"response": "Sorry, but no other item matches your criteria."
+				"response": "There is a black blouse and a red, white, and yellow blouse."
 			},
 			{
 				"turn_id": 2,
@@ -41127,7 +41127,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Okay, it will be added."
+				"response": "Okay, it will be added to your cart."
 			}
 		]
 	},
@@ -41136,11 +41136,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the black dresses on the table?"
+				"response": "There are several black dresses which match your criteria."
 			},
 			{
 				"turn_id": 1,
-				"response": "What do you think of the black sweater?"
+				"response": "What do you think of the grey sweater?"
 			},
 			{
 				"turn_id": 2,
@@ -41152,7 +41152,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Sorry, but no item matches your search criteria."
+				"response": "Sorry, but no item matches your criteria."
 			}
 		]
 	},
@@ -41165,11 +41165,11 @@
 			},
 			{
 				"turn_id": 1,
-				"response": "Okay, it will be added."
+				"response": "Okay, it will be added to your cart."
 			},
 			{
 				"turn_id": 2,
-				"response": "There is a green sweater which matches your criteria."
+				"response": "There is a grey sweater which matches your criteria."
 			},
 			{
 				"turn_id": 3,
@@ -41186,15 +41186,15 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "There is a grey shirt which matches your criteria."
+				"response": "There are several shirts which match your criteria. What do you think of them?"
 			},
 			{
 				"turn_id": 1,
-				"response": "Sorry, but no item matches your search criteria."
+				"response": "Sorry, but no item matches your criteria."
 			},
 			{
 				"turn_id": 2,
-				"response": "There is a black sweater, a green sweater, and a pink sweater which match your criteria."
+				"response": "There is a green sweater and a grey sweater which match your criteria."
 			},
 			{
 				"turn_id": 3,
@@ -41202,7 +41202,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "Okay, both items will be added to your cart."
+				"response": "Okay, they will be added to your cart."
 			}
 		]
 	},
@@ -41937,7 +41937,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "Certainly, I've added it to your cart."
+				"response": "I'll add it to your cart."
 			},
 			{
 				"turn_id": 3,
@@ -42500,7 +42500,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have this blue and white shirt on the top right of the table."
+				"response": "I have this blue and white shirt on the top right of the wall."
 			},
 			{
 				"turn_id": 1,
@@ -42533,7 +42533,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "The grey and black jeans are available in XXL, XS, and XXL and have a rating of 4.6. The other is available"
+				"response": "The grey and black jeans are available in XXL, XS, and XXL and have a rating of 4.6. The other pair is"
 			},
 			{
 				"turn_id": 3,
@@ -42550,7 +42550,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the dark blue pair in the back right corner and the dark blue pair in the middle."
+				"response": "I have the blue pair in the back left corner and the grey pair in the middle."
 			},
 			{
 				"turn_id": 1,
@@ -42575,11 +42575,11 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "How about the blue one on the left or the grey one on the right?"
+				"response": "I have a couple of jackets in size M.  There's a blue one on the back wall, and a grey and white one on the front"
 			},
 			{
 				"turn_id": 1,
-				"response": "What do you think of the grey and white one on the right?"
+				"response": "What do you think of the grey and white shirt on the table, the grey and white one on the table, or the grey and white one on"
 			},
 			{
 				"turn_id": 2,
@@ -42600,7 +42600,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the blue jacket on the left or the grey and white one on the right?"
+				"response": "What do you think of the blue jacket on the back wall?"
 			},
 			{
 				"turn_id": 1,
@@ -42633,7 +42633,7 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "How about the blue and white one on the table, the blue and white one on the table, or the blue and white one on the table?"
+				"response": "How about the blue and white one on the table, the grey and white one on the table, or the blue and white one on the table?"
 			},
 			{
 				"turn_id": 3,
@@ -42650,7 +42650,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "I have the black and white one hanging on the back wall, the black and white one on the front rack, and the black and white one on"
+				"response": "I have the black and white one on the top left of the wall, the black and white one on the bottom right of the wall, and the"
 			},
 			{
 				"turn_id": 1,
@@ -42675,7 +42675,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the blue jacket on the left, the grey and white jacket on the right, or the blue jacket on the right?"
+				"response": "What do you think of the blue jacket on the back wall?"
 			},
 			{
 				"turn_id": 1,
@@ -42700,7 +42700,7 @@
 		"predictions": [
 			{
 				"turn_id": 0,
-				"response": "What do you think of the blue and grey shirt on the table, the grey and white one on the table, or the grey and white one on"
+				"response": "I have the grey and white one on the table, the grey and white one on the table, and the grey and white one on the table."
 			},
 			{
 				"turn_id": 1,
@@ -42716,7 +42716,7 @@
 			},
 			{
 				"turn_id": 4,
-				"response": "That is an XS."
+				"response": "It's an XS."
 			}
 		]
 	},
@@ -42733,11 +42733,11 @@
 			},
 			{
 				"turn_id": 2,
-				"response": "There is a black blouse and a grey and white blouse which match your criteria."
+				"response": "There is a black blouse and a white and black blouse which match your criteria."
 			},
 			{
 				"turn_id": 3,
-				"response": "Sorry, but no item matches your criteria."
+				"response": "Sorry, but no item matches your search criteria."
 			},
 			{
 				"turn_id": 4,
