@@ -49,22 +49,7 @@ def CELoss(pred_logits, labels, ignore_index=-100):
 def _SaveModel(model, path):
     if not os.path.exists(path):
         os.makedirs(path)
-    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
-    
-def padding_system(system_labels):
-    pad_value = -100
-    max_len = 0
-    for system_label in system_labels:
-        if len(system_label) > max_len :
-            max_len = len(system_label)
-    padding_labels = []
-    for system_label in system_labels:
-        padding_label = []
-        for _ in range(max_len-len(system_label)):
-            padding_label.append(pad_value)
-        padding_label += system_label
-        padding_labels.append(padding_label)
-    return padding_labels
+    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))    
 
 def CalPER(model, dataloader):
     model.eval()

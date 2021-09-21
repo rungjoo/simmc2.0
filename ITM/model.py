@@ -12,8 +12,8 @@ import pdb
 class BaseModel(nn.Module):
     def __init__(self,):
         super(BaseModel, self).__init__()        
-        """RoBERTa 세팅"""
-        text_model_path = '/data/project/rw/rung/02_source/model/roberta-large'
+        """RoBERTa setting"""
+        text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large'
         self.text_model = RobertaModel.from_pretrained(text_model_path)
         self.text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
         special_token_list = ['[USER]', '[SYSTEM]']
@@ -24,8 +24,8 @@ class BaseModel(nn.Module):
         system_pos = self.text_tokenizer.additional_special_tokens.index('[SYSTEM]')
         self.system_token_id = self.text_tokenizer.additional_special_tokens_ids[system_pos]        
         
-        """Deit 세팅"""
-        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'
+        """Deit setting"""
+        image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'
         
         self.image_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
         # self.feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
@@ -34,11 +34,7 @@ class BaseModel(nn.Module):
         self.hid_dim = 128
         self.text2hid = nn.Linear(self.text_model.config.hidden_size, self.hid_dim) # (1024, 128) self.text_model.config.hidden_size
         self.visual2hid = nn.Linear(self.image_model.config.hidden_size, self.hid_dim) # (768, 128) self.image_model.config.hidden_size
-        
-        # self.concat2score2 = nn.Linear(self.hid_dim*2, 2) # (128*2, 2)
-        # self.concat2score3 = nn.Linear(self.hid_dim*3, 2) # (128*3, 2)
-        # self.concat2score4 = nn.Linear(self.hid_dim*4, 2) # (128*4, 2)
-        
+                
         """multi-task"""
         # utterance category prediction
         self.W_category = nn.Linear(self.hid_dim, 4) # (128, 4)
