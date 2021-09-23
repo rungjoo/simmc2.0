@@ -76,14 +76,17 @@ class task1_loader(Dataset):
                                                     object_data['bbox'], object_data['position']
                                     total_objects.append(object_id)
                                     
-                                    # if object_id in mentioned_object_ids: ## find obejct
-                                    self.dial2object[dialog_cnt]['object'][object_id] = {}                                    
+                                    if object_id not in self.dial2object[dialog_cnt]['object'].keys():
+                                        self.dial2object[dialog_cnt]['object'][object_id] = {}                                    
 
-                                    left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
-                                    object_crop = image.crop((left, top, left+width, top+height))
+                                        left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
+                                        object_crop = image.crop((left, top, left+width, top+height))
 
-                                    self.dial2object[dialog_cnt]['object'][object_id]['visual'] = object_crop
-                                    self.dial2object[dialog_cnt]['object'][object_id]['background'] = image
+                                        self.dial2object[dialog_cnt]['object'][object_id]['visual'] = [object_crop]
+                                        self.dial2object[dialog_cnt]['object'][object_id]['background'] = [image]
+                                    else:
+                                        self.dial2object[dialog_cnt]['object'][object_id]['visual'].append(object_crop)
+                                        self.dial2object[dialog_cnt]['object'][object_id]['background'].append(image)
             
 
             """ text input """

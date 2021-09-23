@@ -18,18 +18,17 @@ from dataset import task1_loader
 from utils import img2feature
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
+text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
+image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_batch(sessions):
-    # dict_keys(['input', 'label', 'domain_label', 'pre_system_utts', 'object', 'background'])
     input_strs = [session['input'] for session in sessions]
     disamb_labels = [session['label'] for session in sessions]
     domain_labels = [session['domain_label'] for session in sessions]
@@ -63,8 +62,11 @@ def make_batch(sessions):
         object_features = []
         for object_id, object_data in object_datas.items():
             if object_id in system_object_ids:
-                object_visual = object_data['visual']
-                object_feature = img2feature(object_visual, image_feature_extractor)
+                object_visual_list = object_data['visual']
+                
+                object_feature = 0
+                for object_visual in object_visual_list:
+                    object_feature += img2feature(object_visual, image_feature_extractor)
                 object_features.append(object_feature)
         if len(object_features) > 0:
             total_object_features.append(torch.cat(object_features, 0))
@@ -135,7 +137,7 @@ def main():
     
     """Model Loading"""
     model = BaseModel(post).cuda()
-    checkpoint = torch.load(os.path.join('model', 'model.pt'))
+    checkpoint = torch.load(os.path.join('model', 'model_ori.pt'))
     model.load_state_dict(checkpoint)    
     model.eval()    
     
