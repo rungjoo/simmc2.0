@@ -1,7 +1,7 @@
 # Subtask1
 
 ## Download the pre-trained model 
-Download model.pt from the [model folder]().
+Download model.pt from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub1/model).
 
 ## Training
 ```bash
