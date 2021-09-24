@@ -11,7 +11,7 @@ from torch.nn.functional import softmax
 
 import pdb
 import argparse, logging
-import glob
+import glob, json
 
 from model import BaseModel
 from dataset import task1_loader
@@ -37,6 +37,9 @@ def make_batch(sessions):
     system_object_ids_list = [session['system_object'] for session in sessions]    
     object_datas_list = [session['object'] for session in sessions]
     backgrounds = [session['background'] for session in sessions]
+    
+    batch_dialogue_id = [session['dialogue_id'] for session in sessions]
+    batch_turn_id = [session['turn_id'] for session in sessions]    
     
     batch_tokens = model_text_tokenizer(input_strs, padding='longest', add_special_tokens=False).input_ids # (batch, text_len, 1024)
     batch_token_list = []
@@ -73,21 +76,41 @@ def make_batch(sessions):
         else:
             total_object_features.append(torch.tensor([0]))
     
-    return batch_tokens, batch_disamb_labels, batch_domain_labels, batch_background_features, total_object_features
+    return batch_tokens, batch_disamb_labels, batch_domain_labels, batch_background_features, total_object_features, batch_dialogue_id, batch_turn_id
 
-def _CalACC(model, dataloader, args):
+def _CalACC(model, dataloader, test_path, args):
+    """
+    Expected JSON format:
+        [
+            "dialog_id": <dialog_id>,
+            "predictions": [
+                {
+                    "turn_id": <turn_id>,
+                    "disambiguation_label": <bool>,
+                }
+                ...
+            ]
+            ...
+        ]
+    """
+    
     model.eval()
     
     domain, background= args.domain, args.background
     obj = args.object
     
+    session_list = []
+    session_dict = {'dialog_id': -1, 'predictions': []}
+    
     disamb_correct, domain_correct = 0, 0    
     with torch.no_grad():
         for i_batch, (input_sample) in enumerate(tqdm(dataloader, desc='evaluation')):
-            batch_tokens, disamb_label, domain_label, batch_background_features, batch_object_features = input_sample
+            batch_tokens, disamb_label, domain_label, batch_background_features, batch_object_features, batch_dialogue_id, batch_turn_id = input_sample
             batch_tokens = batch_tokens.cuda() # (1, len)
             batch_background_features = batch_background_features.type('torch.FloatTensor').cuda() # [1, 3, 224, 224]
             batch_object_features = [x.type('torch.FloatTensor').cuda() for x in batch_object_features] # [[objnum, 3, 224, 224], ..., ]
+            
+            dialogue_id, turn_id = batch_dialogue_id[0], batch_turn_id[0]
             
             """ prediction """                
             disamb_logit, domain_logit = model(batch_tokens, batch_background_features, batch_object_features, domain, background, obj)
@@ -101,6 +124,19 @@ def _CalACC(model, dataloader, args):
                 pred_domain = domain_logit.argmax(1).item()
                 if pred_domain == domain_label.item():
                     domain_correct += 1
+                    
+            temp = {}
+            temp['turn_id'] = turn_id
+            temp['disambiguation_label'] = pred_disamb
+            if session_dict['dialog_id'] == dialogue_id:
+                session_dict['predictions'].append(temp)
+            else:
+                if i_batch > 0:
+                    session_list.append(session_dict)
+                session_dict = {'dialog_id': dialogue_id, 'predictions': [temp]}
+    session_list.append(session_dict)
+    with open(test_path, 'w', encoding='utf-8') as make_file:
+        json.dump(session_list, make_file, indent="\t")       
     
     acc = disamb_correct/len(dataloader)*100
     if domain:
@@ -118,8 +154,12 @@ def main():
     background = args.background
     obj = args.object
     post = args.post
-    # save_path = os.path.join(model_type+'_models', current, domain_type, background_type, obj_type, post_type)
-    save_path = 'results'
+    model_path = args.model_path
+    if os.path.basename(model_path) == 'model.pt':
+        save_path = './results/dstc10-simmc-entry'
+    else: # model_final.pt
+        save_path = './results/dstc10-simmc-final-entry'
+        
     print("###Save Path### ", save_path)
     print("use history utterance?: ", current)
     print("domain prediction learning?: ", domain)
@@ -137,7 +177,7 @@ def main():
     
     """Model Loading"""
     model = BaseModel(post).cuda()
-    checkpoint = torch.load(os.path.join('model', 'model_ori.pt'))
+    checkpoint = torch.load(model_path)
     model.load_state_dict(checkpoint)    
     model.eval()    
     
@@ -152,7 +192,8 @@ def main():
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)     
     
     """Testing"""    
-    devtestAcc, devtestDomainACC = _CalACC(model, devtest_loader, args)
+    test_path = os.path.join(save_path, "dstc10-simmc-teststd-pred-subtask-1.json")    
+    devtestAcc, devtestDomainACC = _CalACC(model, devtest_loader, test_path, args)
     logger.info("DevTestAcc: {}, DevTestDomainAcc: {}".format(devtestAcc, devtestDomainACC))
 
 if __name__ == '__main__':
@@ -161,6 +202,7 @@ if __name__ == '__main__':
     """Parameters"""
     parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
     parser.add_argument( "--model_type", help = "base", default = 'roberta-large') # base
+    parser.add_argument( "--model_path", type=str, help = "./model/model.pt or model_final.pt", default = './model/model_final.pt')
     
     parser.add_argument( "--current", type=str, help = 'only use current utt / system current / context', default = 'context') # current or sys_current        
     parser.add_argument('--domain', action='store_true', help='domain multi-task learning')

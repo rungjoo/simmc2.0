@@ -133,6 +133,10 @@ class task1_loader(Dataset):
                         self.task1_input[cnt]['object'][object_id]['background'] = object_data['background']
                     self.task1_input[cnt]['background'] = self.dial2object[dialog_cnt]['background']
                     
+                    """ for dstc """
+                    self.task1_input[cnt]['dialogue_id'] = dialogue_idx
+                    self.task1_input[cnt]['turn_id'] = i
+                    
                     cnt += 1
     
                 """ system text input """

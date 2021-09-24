@@ -77,7 +77,7 @@ def _CalACC(model, dataloader, args):
 def _SaveModel(model, path):
     if not os.path.exists(path):
         os.makedirs(path)
-    torch.save(model.state_dict(), os.path.join(path, 'model.pt'))
+    torch.save(model.state_dict(), os.path.join(path, 'model_final.pt'))
 
 def make_batch(sessions):
     input_strs = [session['input'] for session in sessions]
@@ -149,15 +149,16 @@ def main():
     if post:
         post_type = 'post_use'
     else:
-        post_type = 'post_no_use'
-    save_path = './results/dstc10-simmc-entry'
+        post_type = 'post_no_use'      
+    
+    save_path = './results/dstc10-simmc-final-entry'
     print("###Save Path### ", save_path)
     print("use history utterance?: ", current)
     print("domain prediction learning?: ", domain)
     print("background image use?: ", background)
     print("object image use?: ", obj)
     
-    log_path = os.path.join(save_path, 'train.log')
+    log_path = os.path.join(save_path, 'train_final.log')
     if not os.path.exists(save_path):
         os.makedirs(save_path)
     fileHandler = logging.FileHandler(log_path)
@@ -185,11 +186,11 @@ def main():
     
     """ for training """
     train_dataset = task1_loader(train_path, image_obj_path, description_path, fashion_path, furniture_path, current)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=make_batch)
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=make_batch)    
+    dev_dataset = task1_loader(dev_path, image_obj_path, description_path, fashion_path, furniture_path, current)
+    dev_loader = DataLoader(dev_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=make_batch)
     
     """ for dev """
-    dev_dataset = task1_loader(dev_path, image_obj_path, description_path, fashion_path, furniture_path, current)
-    dev_loader = DataLoader(dev_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)    
     devtest_dataset = task1_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path, current)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
     
@@ -198,14 +199,14 @@ def main():
     print('Training Epochs: ', str(training_epochs))
     max_grad_norm = args.norm
     lr = args.lr
-    num_training_steps = len(train_dataset)*training_epochs
-    num_warmup_steps = len(train_dataset)
+    num_training_steps = (len(train_dataset)+len(dev_dataset))*training_epochs
+    num_warmup_steps = (len(train_dataset)+len(dev_dataset))
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr) # , eps=1e-06, weight_decay=0.01    
     scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_training_steps)    
     
     """Training"""    
     logger.info('########################################')
-    best_dev_acc, best_epoch = 0, 0
+    best_devtest_acc, best_devtest_domainacc, best_epoch = 0, 0, 0
     total_disamb_loss, total_domain_loss = 0, 0
     for epoch in range(training_epochs):
         model.train()
@@ -245,21 +246,55 @@ def main():
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)  # Gradient clipping is not in AdamW anymore (so you can use amp without issue)
             optimizer.step()
             scheduler.step()
+        for i_batch, (input_sample) in enumerate(tqdm(dev_loader, desc='traindev_iteration')):
+            batch_tokens, disamb_labels, domain_labels, batch_background_features, total_object_features = input_sample
+            batch_tokens = batch_tokens.cuda() # (1, len)
+            disamb_labels = disamb_labels.cuda() # [1]
+            domain_labels = domain_labels.cuda() # [1]
+            batch_background_features = batch_background_features.type('torch.FloatTensor') #.cuda() # [1, 3, 224, 224]
+            batch_object_features = [x.type('torch.FloatTensor').cuda() for x in total_object_features] # [[objnum, 3, 224, 224], ..., ]
+            total_obj_num = 0
+            for batch_object_feature in batch_object_features:
+                total_obj_num += batch_object_feature.shape[0]
+            if total_obj_num > 100:
+                print(total_obj_num)
+            
+            """ model training """
+            disamb_logits, domain_logits = model(batch_tokens, batch_background_features, batch_object_features, domain, background, obj)
+                
+            disamb_loss_val = CELoss(disamb_logits, disamb_labels)
+            total_disamb_loss += disamb_loss_val.item()
+            
+            if domain:
+                domain_loss_val = CELoss(domain_logits, domain_labels)
+                total_domain_loss += domain_loss_val.item()
+            else:
+                domain_loss_val = 0
+                total_domain_loss += domain_loss_val
+            if (i_batch+1) % 4000 == 0:
+                print("i_batch: {}, disamb_loss: {}, domain_loss: {}".format(i_batch+1, total_disamb_loss/(i_batch+1), total_domain_loss/(i_batch+1)))
+                
+            loss_val = disamb_loss_val + domain_loss_val
+            
+            optimizer.zero_grad()
+            loss_val.backward()
+
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)  # Gradient clipping is not in AdamW anymore (so you can use amp without issue)
+            optimizer.step()
+            scheduler.step()
             
         """ Score and Save"""
         model.eval()
-        devAcc, devDomainAcc = _CalACC(model, dev_loader, args)
-        logger.info("Epoch: {}, DevAcc: {}, DevDomainAcc: {}".format(epoch, devAcc, devDomainAcc))
-        if devAcc > best_dev_acc:
+        devtestAcc, devtestDomainACC = _CalACC(model, devtest_loader, args)
+        logger.info("DevTestAcc: {}, DevTestDomainAcc: {}".format(devtestAcc, devtestDomainACC))
+        if devtestAcc > best_devtest_acc:
             _SaveModel(model, 'model')
-            best_dev_acc = devAcc
-            
+            best_devtest_acc = devtestAcc
+            best_devtest_domainacc = devtestDomainACC
             best_epoch = epoch
-            devtestAcc, devtestDomainACC = _CalACC(model, devtest_loader, args)
-            logger.info("DevTestAcc: {}, DevTestDomainAcc: {}".format(devtestAcc, devtestDomainACC))
     
     logger.info("")
-    logger.info("Epoch: {}, DevTestAcc: {}, DevTestDomainAcc: {}".format(best_epoch, devtestAcc, devtestDomainACC))
+    logger.info("Epoch: {}, DevTestAcc: {}, DevTestDomainAcc: {}".format(best_epoch, best_devtest_acc, best_devtest_domainacc))
             
 
 if __name__ == '__main__':
