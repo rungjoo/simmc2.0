@@ -18,14 +18,14 @@ from dataset import task1_loader
 from utils import img2feature
 
 from transformers import RobertaTokenizer
-text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
+text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
 
 from transformers import DeiTFeatureExtractor
-image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
+image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_batch(sessions):
@@ -33,7 +33,6 @@ def make_batch(sessions):
     disamb_labels = [session['label'] for session in sessions]
     domain_labels = [session['domain_label'] for session in sessions]
     
-    pre_system_utts_list = [session['pre_system_utts'] for session in sessions]
     system_object_ids_list = [session['system_object'] for session in sessions]    
     object_datas_list = [session['object'] for session in sessions]
     backgrounds = [session['background'] for session in sessions]

@@ -91,8 +91,6 @@ class task1_loader(Dataset):
 
             """ text input """
             text_data = one_dialogue['dialogue']
-            pre_system_utts = []
-            system_obj_visual = []
             system_obj_ids = []
 
             task1_sample_input = ''
@@ -123,9 +121,8 @@ class task1_loader(Dataset):
                     self.task1_input[cnt]['input'] = task1_sample_input                         
                     self.task1_input[cnt]['label'] = disambiguation_label
                     self.task1_input[cnt]['domain_label'] = domain_label
-                    self.task1_input[cnt]['pre_system_utts'] = pre_system_utts[:]                    
                     
-                    self.task1_input[cnt]['system_object'] = system_obj_ids
+                    self.task1_input[cnt]['system_object'] = system_obj_ids[:]
                     self.task1_input[cnt]['object'] = {}
                     for object_id, object_data in self.dial2object[dialog_cnt]['object'].items():
                         self.task1_input[cnt]['object'][object_id] = {}
@@ -143,7 +140,6 @@ class task1_loader(Dataset):
                 system_transcript = text['system_transcript']
                 task1_sample_input += ' [SYSTEM] '
                 task1_sample_input += system_transcript
-                pre_system_utts.append(system_transcript)
                 
                 ## system object features
                 system_transcript_annotated = text['system_transcript_annotated']

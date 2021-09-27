@@ -1,35 +1,17 @@
 ########################################
-Epoch: 0, DevAcc: 81.45363408521304, DevDomainAcc: 0
-DevTestAcc: 86.34453781512606, DevTestDomainAcc: 0
-Epoch: 1, DevAcc: 78.0701754385965, DevDomainAcc: 0
-Epoch: 2, DevAcc: 87.96992481203007, DevDomainAcc: 0
-DevTestAcc: 89.75840336134453, DevTestDomainAcc: 0
-Epoch: 3, DevAcc: 90.72681704260651, DevDomainAcc: 0
-DevTestAcc: 90.86134453781513, DevTestDomainAcc: 0
-Epoch: 4, DevAcc: 89.59899749373433, DevDomainAcc: 0
-Epoch: 5, DevAcc: 54.01002506265664, DevDomainAcc: 0
-Epoch: 6, DevAcc: 92.4812030075188, DevDomainAcc: 0
-DevTestAcc: 91.59663865546219, DevTestDomainAcc: 0
-Epoch: 7, DevAcc: 93.35839598997494, DevDomainAcc: 0
-DevTestAcc: 91.7016806722689, DevTestDomainAcc: 0
-Epoch: 8, DevAcc: 94.61152882205513, DevDomainAcc: 0
-DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
+Epoch: 0, DevAcc: 92.60651629072682, DevDomainAcc: 0
+DevTestAcc: 90.49369747899159, DevTestDomainAcc: 0
+Epoch: 1, DevAcc: 92.98245614035088, DevDomainAcc: 0
+DevTestAcc: 91.85924369747899, DevTestDomainAcc: 0
+Epoch: 2, DevAcc: 92.98245614035088, DevDomainAcc: 0
+Epoch: 3, DevAcc: 48.1203007518797, DevDomainAcc: 0
+Epoch: 4, DevAcc: 49.24812030075188, DevDomainAcc: 0
+Epoch: 5, DevAcc: 91.22807017543859, DevDomainAcc: 0
+Epoch: 6, DevAcc: 93.35839598997494, DevDomainAcc: 0
+DevTestAcc: 91.80672268907563, DevTestDomainAcc: 0
+Epoch: 7, DevAcc: 93.23308270676691, DevDomainAcc: 0
+Epoch: 8, DevAcc: 93.98496240601504, DevDomainAcc: 0
+DevTestAcc: 92.27941176470588, DevTestDomainAcc: 0
 Epoch: 9, DevAcc: 93.734335839599, DevDomainAcc: 0
 
-Epoch: 8, DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
-########################################
-Epoch: 0, DevAcc: 78.69674185463658, DevDomainAcc: 0
-DevTestAcc: 83.71848739495799, DevTestDomainAcc: 0
-Epoch: 1, DevAcc: 92.73182957393483, DevDomainAcc: 0
-DevTestAcc: 92.06932773109243, DevTestDomainAcc: 0
-Epoch: 2, DevAcc: 90.6015037593985, DevDomainAcc: 0
-Epoch: 3, DevAcc: 89.72431077694235, DevDomainAcc: 0
-Epoch: 4, DevAcc: 88.84711779448622, DevDomainAcc: 0
-Epoch: 5, DevAcc: 91.72932330827066, DevDomainAcc: 0
-Epoch: 6, DevAcc: 91.22807017543859, DevDomainAcc: 0
-Epoch: 7, DevAcc: 93.98496240601504, DevDomainAcc: 0
-DevTestAcc: 92.48949579831933, DevTestDomainAcc: 0
-Epoch: 8, DevAcc: 93.85964912280701, DevDomainAcc: 0
-Epoch: 9, DevAcc: 93.48370927318295, DevDomainAcc: 0
-
-Epoch: 7, DevTestAcc: 92.48949579831933, DevTestDomainAcc: 0
+Epoch: 8, DevTestAcc: 92.27941176470588, DevTestDomainAcc: 0

@@ -1,16 +1,13 @@
 ########################################
-########################################
-DevTestAcc: 90.75630252100841, DevTestDomainAcc: 0
-########################################
-DevTestAcc: 92.33193277310924, DevTestDomainAcc: 0
-DevTestAcc: 92.12184873949579, DevTestDomainAcc: 0
-DevTestAcc: 91.80672268907563, DevTestDomainAcc: 0
-DevTestAcc: 91.91176470588235, DevTestDomainAcc: 0
-DevTestAcc: 92.33193277310924, DevTestDomainAcc: 0
+DevTestAcc: 91.64915966386555, DevTestDomainAcc: 0
+DevTestAcc: 91.33403361344537, DevTestDomainAcc: 0
+DevTestAcc: 92.48949579831933, DevTestDomainAcc: 0
 DevTestAcc: 92.22689075630252, DevTestDomainAcc: 0
-DevTestAcc: 92.06932773109243, DevTestDomainAcc: 0
-DevTestAcc: 92.27941176470588, DevTestDomainAcc: 0
-DevTestAcc: 92.75210084033614, DevTestDomainAcc: 0
+DevTestAcc: 92.69957983193278, DevTestDomainAcc: 0
+DevTestAcc: 91.85924369747899, DevTestDomainAcc: 0
+DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
+DevTestAcc: 92.12184873949579, DevTestDomainAcc: 0
+DevTestAcc: 92.12184873949579, DevTestDomainAcc: 0
 DevTestAcc: 92.64705882352942, DevTestDomainAcc: 0
 
-Epoch: 8, DevTestAcc: 92.75210084033614, DevTestDomainAcc: 0
+Epoch: 4, DevTestAcc: 92.69957983193278, DevTestDomainAcc: 0
