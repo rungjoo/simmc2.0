@@ -11,14 +11,12 @@ import os, sys
 import pdb
 
 class BaseModel(nn.Module):
-    def __init__(self, model_type, post):
+    def __init__(self, post):
         super(BaseModel, self).__init__()
-        self.model_type = model_type
-        if model_type == "gpt2-large":
-            """GPT2 setting"""
-            text_model_path = "gpt2-large" # '/data/project/rw/rung/02_source/model/gpt2-large'
-            self.text_model = GPT2Model.from_pretrained(text_model_path)
-            self.text_tokenizer = GPT2Tokenizer.from_pretrained(text_model_path)
+        """GPT2 setting"""
+        text_model_path = '/data/project/rw/rung/02_source/model/gpt2-large' # "gpt2-large" # 
+        self.text_model = GPT2Model.from_pretrained(text_model_path)
+        self.text_tokenizer = GPT2Tokenizer.from_pretrained(text_model_path)
             
         special_token_list = ['[USER]', '[SYSTEM]', '[RES]', '[META]']
         special_tokens = {'additional_special_tokens': special_token_list, 'pad_token': '[PAD]'}
@@ -31,7 +29,7 @@ class BaseModel(nn.Module):
         self.system_token_id = self.text_tokenizer.additional_special_tokens_ids[system_pos]        
         
         """Deit setting"""
-        image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'
+        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
         self.image_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
         if post:
             post_path = "../ITM/post_training/all"
@@ -64,10 +62,7 @@ class BaseModel(nn.Module):
         batch_decoder_outs = []
         for input_tokens, obj_features in zip(batch_tokens_list, batch_obj_features_list):
             """ dialogue text projection"""
-            if self.model_type == 'gpt2-large':
-                text_logits = self.text_model(input_tokens).last_hidden_state # (1, text_len, 1280)
-            else: # bart-arge
-                text_logits = self.text_model(input_tokens).encoder_last_hidden_state # (1, text_len, 1024) 
+            text_logits = self.text_model(input_tokens).last_hidden_state # (1, text_len, 1280)
 
             """ object projection """
             if obj and (type(obj_features)!=type(False)):

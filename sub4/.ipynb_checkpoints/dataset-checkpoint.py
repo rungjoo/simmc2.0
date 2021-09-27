@@ -89,17 +89,26 @@ class task4_loader(Dataset):
                                             non_visual_metalist.append(v)
                                     visual_meta_flatten = ' '.join([str(x) for x in visual_metalist])
                                     non_visual_meta_flatten = ' '.join([str(x) for x in non_visual_metalist])
+                                    
+                                    if object_id not in self.dial2object[dialog_cnt]['object'].keys():
+                                        self.dial2object[dialog_cnt]['object'][object_id] = {}
+                                        self.dial2object[dialog_cnt]['object'][object_id]['visual_meta'] = visual_meta_flatten
+                                        self.dial2object[dialog_cnt]['object'][object_id]['non_visual_meta'] = non_visual_meta_flatten
+                                        self.dial2object[dialog_cnt]['object'][object_id]['bbox'] = [bbox]
 
-                                    self.dial2object[dialog_cnt]['object'][object_id] = {}
-                                    self.dial2object[dialog_cnt]['object'][object_id]['visual_meta'] = visual_meta_flatten
-                                    self.dial2object[dialog_cnt]['object'][object_id]['non_visual_meta'] = non_visual_meta_flatten
-                                    self.dial2object[dialog_cnt]['object'][object_id]['bbox'] = bbox
+                                        left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
+                                        object_visual = image.crop((left, top, left+width, top+height))
+                                        self.dial2object[dialog_cnt]['object'][object_id]['visual'] = [object_visual]
 
-                                    left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
-                                    object_visual = image.crop((left, top, left+width, top+height))
-                                    self.dial2object[dialog_cnt]['object'][object_id]['visual'] = object_visual
+                                        self.dial2object[dialog_cnt]['object'][object_id]['background'] = [image]
+                                    else:
+                                        self.dial2object[dialog_cnt]['object'][object_id]['bbox'].append(bbox)
 
-                                    self.dial2object[dialog_cnt]['object'][object_id]['background'] = image
+                                        left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
+                                        object_visual = image.crop((left, top, left+width, top+height))
+                                        self.dial2object[dialog_cnt]['object'][object_id]['visual'].append(object_visual)
+
+                                        self.dial2object[dialog_cnt]['object'][object_id]['background'].append(image)                                    
             cand_objects = total_objects                
                                         
             """ Text input """
