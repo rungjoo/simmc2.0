@@ -5,17 +5,10 @@ Our apporach description will be updated.
 Download model from the [model folder](https://github.com/rungjoo/dstc10/tree/master/sub4/model).
 
 ## Training
-
-### for dstc10-simmc-entry
 ```bash
 bash train.sh
 ```
-
-### for dstc10-simmc-entry
-```bash
-bash train_final.sh
-```
-The model (model.pt / model_final.pt) is saved in the model folder, and the log (train.log / train_final.log) is saved in the results.
+**train.py** is for **dstc10-simmc-entry** and **train_final.py** is for **dstc10-simmc-final-entry**. The model (model.pt / model_final.pt) is saved in the model folder, and the log (train.log / train_final.log) is saved in the ./results/{model_type}.
 
 ## Testing
 ```bash
