@@ -143,21 +143,9 @@ def make_batch_generate(sessions):
 def main():
     """save & log path"""
     model_type = args.model_type
-    obj = args.object
-    if obj:
-        obj_type = 'object_use'
-    else:
-        obj_type = 'object_no_use'    
+    obj = args.object 
     post = args.post
-    if post:
-        post_type = 'post_use'
-    else:
-        post_type = 'post_no_use' 
     user_train = args.user_train
-    if user_train:
-        user_train_type = 'user_train_use'
-    else:
-        user_train_type = 'user_train_no_use'
     
     save_path = './results/dstc10-simmc-entry'
     
