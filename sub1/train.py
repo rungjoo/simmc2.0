@@ -249,7 +249,7 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Task1" )
+    parser  = argparse.ArgumentParser(description = "Subtask1" )
     parser.add_argument( "--epoch", type=int, help = 'training epohcs', default = 10)
     parser.add_argument( "--norm", type=int, help = "max_grad_norm", default = 10)
     parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-5) # 1e-5
