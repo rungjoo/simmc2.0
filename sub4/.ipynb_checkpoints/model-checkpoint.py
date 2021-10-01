@@ -14,7 +14,7 @@ class BaseModel(nn.Module):
     def __init__(self, post):
         super(BaseModel, self).__init__()
         """GPT2 setting"""
-        text_model_path = '/data/project/rw/rung/02_source/model/gpt2-large' # "gpt2-large" # 
+        text_model_path = "gpt2-large" # '/data/project/rw/rung/02_source/model/gpt2-large' # 
         self.text_model = GPT2Model.from_pretrained(text_model_path)
         self.text_tokenizer = GPT2Tokenizer.from_pretrained(text_model_path)
             
@@ -29,7 +29,7 @@ class BaseModel(nn.Module):
         self.system_token_id = self.text_tokenizer.additional_special_tokens_ids[system_pos]        
         
         """Deit setting"""
-        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
+        image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
         self.image_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
         if post:
             post_path = "../ITM/post_training/all"
