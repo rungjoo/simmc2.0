@@ -130,25 +130,9 @@ def main():
     model_type = args.model_type
     current = args.current
     domain = args.domain
-    if domain:
-        domain_type = 'domain_use'
-    else:
-        domain_type = 'domain_no_use'
     background = args.background
-    if background:
-        background_type = 'background_use'
-    else:
-        background_type = 'background_no_use'
     obj = args.object
-    if background:
-        obj_type = 'object_use'
-    else:
-        obj_type = 'object_no_use'
     post = args.post
-    if post:
-        post_type = 'post_use'
-    else:
-        post_type = 'post_no_use'
     save_path = './results/dstc10-simmc-entry'
     print("###Save Path### ", save_path)
     print("use history utterance?: ", current)
