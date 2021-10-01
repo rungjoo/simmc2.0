@@ -22,14 +22,14 @@ from utils import img2feature, CalBELU
 
 """ generate model """
 from transformers import GPT2Tokenizer
-gpt_model_path = '/data/project/rw/rung/02_source/model/gpt2-large' # "gpt2-large" # 
+gpt_model_path = "gpt2-large" # '/data/project/rw/rung/02_source/model/gpt2-large' # 
 gpt_tokenizer = GPT2Tokenizer.from_pretrained(gpt_model_path)
 
 text_tokenizer = gpt_tokenizer
 endIDX, whichres, resIDX = -1, -1, -1
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
+image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_input_generate(context, slots):
