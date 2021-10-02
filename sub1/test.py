@@ -146,16 +146,7 @@ def main():
     print("use history utterance?: ", current)
     print("domain prediction learning?: ", domain)
     print("background image use?: ", background)
-    print("object image use?: ", obj)
-    
-    log_path = os.path.join(save_path, 'test.log')
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-    fileHandler = logging.FileHandler(log_path)
-    
-    logger.addHandler(streamHandler)
-    logger.addHandler(fileHandler)    
-    logger.setLevel(level=logging.DEBUG)    
+    print("object image use?: ", obj)    
     
     """Model Loading"""
     model = BaseModel(post).cuda()
