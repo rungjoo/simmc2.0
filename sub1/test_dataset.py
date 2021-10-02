@@ -31,8 +31,7 @@ class task1_loader(Dataset):
         self.dial2object = {}
         cnt = 0
         for dialog_cnt, one_dialogue in enumerate(dialogue_data):
-            dialogue_idx, domain, mentioned_object_ids, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], \
-                                                                    one_dialogue['mentioned_object_ids'], one_dialogue['scene_ids']
+            dialogue_idx, domain, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], one_dialogue['scene_ids']
             
             if domain == 'fashion':
                 metadata = fashion_metadata
@@ -111,11 +110,8 @@ class task1_loader(Dataset):
 
                 if 'disambiguation_label' in text.keys():
                     """ save """
-                    disambiguation_label = text['disambiguation_label']
                     self.task1_input[cnt] = {}
-                    self.task1_input[cnt]['input'] = task1_sample_input                         
-                    self.task1_input[cnt]['label'] = disambiguation_label
-                    self.task1_input[cnt]['domain_label'] = domain_label
+                    self.task1_input[cnt]['input'] = task1_sample_input
                     
                     self.task1_input[cnt]['system_object'] = system_obj_ids[:]
                     self.task1_input[cnt]['object'] = {}
@@ -132,14 +128,16 @@ class task1_loader(Dataset):
                     cnt += 1
     
                 """ system text input """
-                system_transcript = text['system_transcript']
-                task1_sample_input += ' [SYSTEM] '
-                task1_sample_input += system_transcript
-                
+                ## last turn doesn't have system_transcript
+                if i < len(text_data) - 1:
+                    system_transcript = text['system_transcript']
+                    task1_sample_input += ' [SYSTEM] '
+                    task1_sample_input += system_transcript
+
                 ## system object features
                 system_transcript_annotated = text['system_transcript_annotated']
                 system_transcript_objects = system_transcript_annotated['act_attributes']['objects']
-                                               
+
                 for object_id in system_transcript_objects:
                     if object_id not in system_obj_ids:
                         system_obj_ids.append(object_id)
