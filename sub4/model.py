@@ -40,11 +40,7 @@ class BaseModel(nn.Module):
         
         """ decoder """
         self.visual2hid = nn.Linear(self.image_model.config.hidden_size, self.text_model.config.hidden_size) # (768, 1280)
-        self.decoder_layer = nn.TransformerDecoderLayer(d_model=self.text_model.config.hidden_size, nhead=8)
-        self.transformer_decoder = nn.TransformerDecoder(self.decoder_layer, num_layers=4)
         self.hid2vocab = nn.Linear(self.text_model.config.hidden_size, self.vocab_size) # (1280, 50261)
-        
-        """multi-task"""
         
     def imgfea2rep(self, image_features):
         patch_represent = self.image_model(image_features)['last_hidden_state'] # (1, 196, 768)

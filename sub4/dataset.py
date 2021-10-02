@@ -17,13 +17,8 @@ class task4_loader(Dataset):
             dialogue_data = json_data['dialogue_data']
 
         """ Image Input """
-        try:
-            with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
-                image_visual = pickle.load(f)
-        except:
-            image_obj_path = os.path.splitext(image_obj_path)[0]+'_py37'+os.path.splitext(image_obj_path)[1]
-            with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
-                image_visual = pickle.load(f)
+        with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
+            image_visual = pickle.load(f)
         
         image_des_list = glob.glob(description_path) # "./simmc2/data/public/*scene*"
         

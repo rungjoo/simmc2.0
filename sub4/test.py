@@ -17,7 +17,7 @@ import argparse, logging
 import glob
 
 from model import BaseModel
-from dataset import task4_loader
+from test_dataset import task4_loader
 from utils import img2feature, CalBELU
 
 """ generate model """
@@ -37,14 +37,12 @@ def make_input_generate(context, slots):
     return input_str
 
 def make_batch_generate(sessions):
-    # dict_keys(['sess_cnt', 'context', 'response', 'slot_values', 'request_slots', 'object_visual', 'visual_meta', 'background', 'dialogue_idx', 'turn_idx'])
     dialogue_idxs = [session['dialogue_idx'] for session in sessions]
     turn_idxs = [session['turn_idx'] for session in sessions]
     
     context_strs = [session['context'] for session in sessions]
     slot_values = [session['slot_values'] for session in sessions]
     request_slots = [session['request_slots'] for session in sessions]
-    responses = [session['response'] for session in sessions]
     
     batch_visuals = [session['object_visual'] for session in sessions]
     
@@ -74,7 +72,7 @@ def make_batch_generate(sessions):
         else:
             batch_obj_features.append(False)
     
-    return batch_token_list, batch_obj_features, responses, dialogue_idxs, turn_idxs
+    return batch_token_list, batch_obj_features, dialogue_idxs, turn_idxs
 
 def main():
     """save & log path"""
@@ -82,26 +80,19 @@ def main():
     obj = args.object
     post = args.post
     user_train = args.user_train
-    model_path = args.model_path
-    if os.path.basename(model_path) == 'model.pt':
-        save_path = './results/dstc10-simmc-entry'        
-    else: # model_final.pt
+
+    if args.final:
         save_path = './results/dstc10-simmc-final-entry'
+        model_path = './model/model_final.pt'
+    else:
+        save_path = './results/dstc10-simmc-entry'
+        model_path = './model/model.pt'    
     
     print("###Save Path### ", save_path)
     print("post? (meta matching): ", post)
     print("object visual information?: ", obj)
     print("user_train: ", user_train)
-    
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-    log_path = os.path.join(save_path, 'test.log')    
-    fileHandler = logging.FileHandler(log_path)
-    
-    logger.addHandler(streamHandler)
-    logger.addHandler(fileHandler)    
-    logger.setLevel(level=logging.DEBUG)    
-    
+
     """tokenizer"""
     global text_tokenizer, endIDX, whichres, resIDX
     text_tokenizer = gpt_tokenizer
@@ -138,43 +129,41 @@ def main():
     model.eval()
     
     """dataset Loading"""
-    image_obj_path = "../res/image_obj.pickle"
-    description_path = "../data/public/*scene*"
     fashion_path = '../data/fashion_prefab_metadata_all.json'
     furniture_path = '../data/furniture_prefab_metadata_all.json'
     
-    devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
+    if args.final:
+        image_obj_path = "../res/image_obj_final.pickle"
+        description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
+        devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
+    else:
+        image_obj_path = "../res/image_obj.pickle"
+        description_path = "../data/public/*"
+        devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
             
-    user_eval = False
-    devtest_dataset = task4_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path, user_eval)
+    devtest_dataset = task4_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch_generate)
             
     """Testing"""    
     test_path = os.path.join(save_path, "dstc10-simmc-teststd-pred-subtask-4-generation.json")
-    test_bleuscore, test_bleustd = Generate(model, devtest_loader, test_path, args)
-    logger.info("BLEU: {}, std: {}".format(test_bleuscore, test_bleustd))
+    Generate(model, devtest_loader, test_path, args)
 
 def Generate(model, dataloader, test_path, args):
     obj = args.object
     
     model.eval()
     
-    ## batch = 1 in generate function
-    list_predicted = []    
-    list_target = []
-    
+    ## batch = 1 in generate function    
     session_list = []
     session_dict = {'dialog_id': -1, 'predictions': []}
     
     with torch.no_grad():
-        for i_batch, (batch_token_list, batch_obj_features, responses, dialogue_idxs, turn_idxs) in enumerate(tqdm(dataloader, desc='generation')):
+        for i_batch, (batch_token_list, batch_obj_features, dialogue_idxs, turn_idxs) in enumerate(tqdm(dataloader, desc='generation')):
             """
             batch_token_list: [(1, len), (1, len), ..., ]
             batch_obj_features: [(1, 3, 224, 224), False, ..., (1, 3, 224, 224)]
-            responses: [str, str, ...]
             """
             dialogue_idx = dialogue_idxs[0]
-            true_response = responses[0]        
             input_tokens = batch_token_list[0].cuda()
 
             batch_obj_features_list = []        
@@ -193,9 +182,6 @@ def Generate(model, dataloader, test_path, args):
             out_str = text_tokenizer.decode(input_tokens.tolist()[0])
             context = out_str.split('[RES]')[0].strip()
             pred_response = out_str.split('[RES]')[-1].strip()
-            list_predicted.append(pred_response)
-
-            list_target.append(true_response)
 
             temp = {}
             temp['turn_id'] = turn_idxs[0]
@@ -210,8 +196,7 @@ def Generate(model, dataloader, test_path, args):
     with open(test_path, 'w', encoding='utf-8') as make_file:
         json.dump(session_list, make_file, indent="\t")    
     
-    bleuscore, bleustd = CalBELU(list_predicted, list_target)    
-    return bleuscore, bleustd
+    return 
 
     
 if __name__ == '__main__':
@@ -227,7 +212,7 @@ if __name__ == '__main__':
     parser.add_argument('--user_train', action='store_true', help='training from system object matching')        
     parser.add_argument('--post', action='store_true', help='post-trained model')    
     
-    parser.add_argument( "--model_path", type=str, help = "./model/model.pt or model_final.pt", default = './model/model_final.pt')
+    parser.add_argument('--final', action='store_true', help='for dstc10-simmc-final-entry')
     
     parser.add_argument("--local_rank", type=int, default=0)
         

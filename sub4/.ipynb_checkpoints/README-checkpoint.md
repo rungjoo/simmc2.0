@@ -14,4 +14,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-dstc10-simmc-teststd-pred-subtask-4-generation and the log (test.log) is saved in the ./results/{model_type}.
+dstc10-simmc-teststd-pred-subtask-4-generation.json saved in the ./results/{model_type}.
