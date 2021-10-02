@@ -19,8 +19,9 @@ Download the [data](https://github.com/facebookresearch/simmc2/tree/master/data)
 Preprocess the image files in advance. The preprocessed result has the image name as the key and visual as the value.
 ```bash
 python3 image_preprocessor.py
+python3 image_preprocessor_final.py
 ```
-The result is saved in res folder.
+The result(.pickle) is saved in res folder.
 
 ## Step 1 (ITM)
 
