@@ -72,22 +72,16 @@ def make_batch(sessions):
     
     """ object features """
     object_visuals = []
-    for visual_list in visuals:
-        visual_features = 0
-        for visual in visual_list:
-            visual_features += img2feature(visual, image_feature_extractor)
-        object_visuals.append(visual_features)        
+    for visual, visual_meta in zip(visuals, visual_metas):
+        object_visuals.append(img2feature(visual, image_feature_extractor))
             
     batch_obj_features = torch.cat(object_visuals,0)
-    
+        
     """ backgroubd of object features """
     bg_visuals = []
-    for background_list in batch_backgrounds:
-        background_features = 0
-        for background in background_list:
-            background_features += img2feature(background, image_feature_extractor)
-        bg_visuals.append(background_features)
-    batch_bg_visuals = torch.cat(bg_visuals, 0)        
+    for background in batch_backgrounds:
+        bg_visuals.append(img2feature(background, image_feature_extractor))
+    batch_bg_visuals = torch.cat(bg_visuals, 0)           
     
     return input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, \
             batch_obj_features, object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list

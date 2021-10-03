@@ -13,7 +13,7 @@ class BaseModel(nn.Module):
     def __init__(self, post_back):
         super(BaseModel, self).__init__()        
         """RoBERTa 세팅"""
-        text_model_path = '/data/project/rw/rung/02_source/model/roberta-large'
+        text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" #
         self.text_model = RobertaModel.from_pretrained(text_model_path)
         self.text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
         special_token_list = ['[USER]', '[SYSTEM]']
@@ -25,12 +25,12 @@ class BaseModel(nn.Module):
         self.system_token_id = self.text_tokenizer.additional_special_tokens_ids[system_pos]        
         
         """Deit 세팅"""
-        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'        
+        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" #  
         self.image_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
         
         if post_back:            
             self.back_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
-            post_back_path = "/data/project/rw/rung/00_company/03_DSTC10_SIMMC/sub2_post_back/post_training"
+            post_back_path = "../BTM/bg_model"
             post_back_model = os.path.join(post_back_path, 'model.pt')
             checkpoint = torch.load(post_back_model)
             self.back_model.load_state_dict(checkpoint, strict=False)
@@ -41,11 +41,7 @@ class BaseModel(nn.Module):
         self.text2hid = nn.Linear(self.text_model.config.hidden_size, self.hid_dim) # (1024, 128) self.text_model.config.hidden_size
         self.visual2hid = nn.Linear(self.image_model.config.hidden_size, self.hid_dim) # (768, 128) self.image_model.config.hidden_size
         self.bg2hid = nn.Linear(self.image_model.config.hidden_size, self.hid_dim) # (768, 128) self.image_model.config.hidden_size
-        
-        # self.concat2score2 = nn.Linear(self.hid_dim*2, 2) # (128*2, 2)
-        # self.concat2score3 = nn.Linear(self.hid_dim*3, 2) # (128*3, 2)
-        # self.concat2score4 = nn.Linear(self.hid_dim*4, 2) # (128*4, 2)
-        
+                
         """multi-task"""
         # utterance category prediction
         self.W_category = nn.Linear(self.hid_dim, 4) # (128, 4)

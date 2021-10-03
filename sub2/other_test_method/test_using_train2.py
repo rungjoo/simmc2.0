@@ -8,6 +8,7 @@ from sklearn.metrics import precision_recall_fscore_support
 from apex.parallel import DistributedDataParallel as DDP
 
 from torch.utils.data import Dataset, DataLoader
+from collections import OrderedDict
 
 from transformers import get_linear_schedule_with_warmup
 
@@ -16,44 +17,20 @@ import argparse, logging
 import glob
 
 from model import BaseModel
-from dataset import task2_loader
+# from dataset import task2_loader
+from test_dataset import task2_loader
 from utils import img2feature
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
+text_model_path = '/data/project/rw/rung/02_source/model/roberta-large'
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
+image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'        
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
-    
-def clsLoss(batch_t2v_score, labels):
-    """
-    batch_t2v_score: [batch]
-    labels: [batch]
-    """
-    loss = nn.BCELoss()
-    
-    loss_val = loss(batch_t2v_score, labels)
-    
-    return loss_val
-
-def CELoss(pred_logits, labels, ignore_index=-100):
-    """
-    pred_logits: [batch, clsNum]
-    labels: [batch]
-    """
-    loss = nn.CrossEntropyLoss(ignore_index=ignore_index)
-    loss_val = loss(pred_logits, labels)
-    return loss_val
-        
-def _SaveModel(model, path):
-    if not os.path.exists(path):
-        os.makedirs(path)
-    torch.save(model.state_dict(), os.path.join(path, 'model_final.pt'))    
 
 def make_batch(sessions):
     # dict_keys(['input', 'object_id', 'object_label', 'dial2rel', 'dial2bg', 'system_label', 'visual', 'visual_meta'])    
@@ -61,12 +38,10 @@ def make_batch(sessions):
     object_labels = [session['object_label'] for session in sessions]
     visuals = [session['visual'] for session in sessions]
     
-    dial2rels = [session['dial2rel'] for session in sessions]
     batch_backgrounds = [session['background'] for session in sessions]
     
     system_labels = [session['system_label'] for session in sessions]
     uttcat_labels = [session['uttcat_label'] for session in sessions]
-    batch_meta_labels = torch.ones([len(visuals)])
     
     batch_pre_system_objects_list = [session['pre_system_objects'] for session in sessions]
     
@@ -95,29 +70,29 @@ def make_batch(sessions):
     batch_system_labels = system_labels
     batch_uttcat_labels = torch.tensor(uttcat_labels)
     
-    """ object&meta features """
-    meta_strs = []
+    """ object features """
     object_visuals = []
     for visual, visual_meta in zip(visuals, visual_metas):
-        meta_strs.append(visual_meta)
         object_visuals.append(img2feature(visual, image_feature_extractor))
             
-    batch_meta_tokens = model_text_tokenizer(meta_strs, padding='longest', return_tensors='pt').input_ids
     batch_obj_features = torch.cat(object_visuals,0)
-    
+        
+    """ backgroubd of object features """
     bg_visuals = []
     for background in batch_backgrounds:
         bg_visuals.append(img2feature(background, image_feature_extractor))
-    batch_bg_visuals = torch.cat(bg_visuals, 0)   
+    batch_bg_visuals = torch.cat(bg_visuals, 0)            
     
-    return input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_meta_labels, batch_meta_tokens, \
+    return input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, \
             batch_obj_features, object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list
+
 
 def CalPER(model, dataloader, args):
     model.eval()
     
     score_type, system_matching, utt_category = args.score, args.system_matching, args.utt_category
-    background, original, post_back = args.background, args.original, args.post_back
+    background, post_back = args.background, args.post_back
+    original = args.original
     
     pred_list = []
     total_label_list = []
@@ -126,8 +101,9 @@ def CalPER(model, dataloader, args):
     uttcat_pred_list, uttcat_label_list = [], []
     dstc_test_dict = {}
     cc = -1
-    pre_str = ''    
+    pre_str = ''
     
+    threshold = 0.5
     def score2pred(score, threshold):
         if score >= threshold:
             pred = 1
@@ -155,13 +131,12 @@ def CalPER(model, dataloader, args):
         elif object_id in non_cand_obj_ids:
             pred = 0
         else:
-            pred = 0 # score2pred(visual_score, threshold)
+            pred = 0 # score2pred(visual_score, threshold) # 0: original
         return pred
     
-    meta = False
-    threshold = 0.5
+    meta = False    
     with torch.no_grad():
-        for i_batch, (input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_meta_labels, batch_meta_tokens, batch_obj_features, batch_object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list) in enumerate(tqdm(dataloader, desc='evaluation')):
+        for i_batch, (input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_obj_features, batch_object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list) in enumerate(tqdm(dataloader, desc='evaluation')):
             """
             batch_pre_system_objects: 이전의 unique system object ids
             batch_pre_system_objects_list: 이전의 각 시스템 발화에 해당하는 object ids
@@ -177,8 +152,7 @@ def CalPER(model, dataloader, args):
             batch_tokens = batch_tokens.cuda()
             batch_object_labels = batch_object_labels
             batch_system_labels = batch_system_labels
-            batch_meta_labels = batch_meta_labels
-            batch_meta_tokens = batch_meta_tokens.cuda()
+            batch_meta_tokens = 0
             batch_obj_features = batch_obj_features.type('torch.FloatTensor').cuda()
             batch_bg_visuals = batch_bg_visuals.type('torch.FloatTensor').cuda()
             
@@ -212,32 +186,24 @@ def CalPER(model, dataloader, args):
                             
             """ predicion """
             """
-            utt_category_logits: (1, 2)
+            utt_category_logits: (1, 4)
             """                
             uttcat_pred = utt_category_logits.argmax(1).item()
             uttcat_label = batch_uttcat_labels.item()
             if uttcat_label != -100:
                 uttcat_pred_list.append(uttcat_pred)
                 uttcat_label_list.append(uttcat_label)
+
+            """
+            0 # 매칭될 object 존재가 없는 발화
+            1 # 이전의 system에서 언급된 object는 없고, 새로운 object가 있는 것
+            2 # 이전의 system에서 언급된 object들이 후보일 경우
+            3 # 이전의 system에서 언급된 object들도 있고 새로운 object도 후보일 경우     
+            """
             
             object_id = batch_object_ids[0]
             batch_pre_system_objects = batch_pre_system_objects_list[0]
-            if system_matching:
-                if utt_category and (not original):
-                    if uttcat_pred == 0:
-                        pred = 0
-                    else:
-                        pred = sys2pred(visual_score, system_logits_num, system_logits_list, batch_pre_system_objects)
-                else:
-                    pred = sys2pred(visual_score, system_logits_num, system_logits_list, batch_pre_system_objects)
-            else: # not system_matching
-                if utt_category and (not original):
-                    if uttcat_pred == 0:
-                        pred = 0
-                    else: # 3
-                        pred = score2pred(visual_score, threshold)
-                else:
-                    pred = score2pred(visual_score, threshold)
+            pred = sys2pred(visual_score, system_logits_num, system_logits_list, batch_pre_system_objects)     
                 
             """ for F1 """
             pred_list.append(pred)
@@ -250,7 +216,7 @@ def CalPER(model, dataloader, args):
                 
             """ for dstc """
             if pred == 1:
-                dstc_test_dict[cc]['true_object_ids'].append(str(object_id))                    
+                dstc_test_dict[cc]['true_object_ids'].append(str(object_id))
                     
     """ preicions & recall & f1"""
     precision, recall, f1, _ = precision_recall_fscore_support(total_label_list, pred_list, labels=[1], average='weighted')
@@ -264,7 +230,6 @@ def CalPER(model, dataloader, args):
             if utt_pred == utt_label:
                 utt_cnt += 1
         acc_uttcat = utt_cnt/len(uttcat_pred_list)*100
-        # _, _, f1_uttcat, _ = precision_recall_fscore_support(uttcat_label_list, uttcat_pred_list, average='weighted')
     else:
         acc_uttcat = 0
     
@@ -280,16 +245,53 @@ def main():
     balance_type = args.balance
     current = args.current
     utt_category = args.utt_category
+    if utt_category:
+        utt_category_type = 'utt_category_use'
+    else:
+        utt_category_type = 'utt_category_no_use'
     meta = args.meta
+    if meta:
+        meta_type = 'meta_use'
+    else:
+        meta_type = 'meta_no_use'
     mention_inform = args.mention_inform
+    if mention_inform:
+        mention_inform_type = 'mention_inform_use'
+    else:
+        mention_inform_type = 'mention_inform_no_use'
     system_train = args.system_train
+    if system_train:
+        system_train_type = 'system_train_use'
+    else:
+        system_train_type = 'system_train_no_use'
     system_matching = args.system_matching
+    if system_matching:
+        system_matching_type = 'system_matching_use'
+    else:
+        system_matching_type = 'system_matching_no_use'
     background = args.background
+    if background:
+        background_type = 'background_use'
+    else:
+        background_type = 'background_no_use'
     post = args.post
+    if post:
+        post_type = 'post_use'
+    else:
+        post_type = 'post_no_use'
     post_back = args.post_back
+    if post_back:
+        post_back_type = 'post_back_use'
+    else:
+        post_back_type = 'post_back_no_use'
     
-    save_path = './results/dstc10-simmc-final-entry'
-    
+    if args.final:
+        save_path = os.path.join('dstc', model_type+'_models', post_type+'_'+args.post_balance, score_type, current, balance_type, mention_inform_type, \
+                             utt_category_type, meta_type, system_matching_type, system_train_type, background_type, post_back_type)
+    else:
+        save_path = os.path.join(model_type+'_models', post_type+'_'+args.post_balance, score_type, current, balance_type, mention_inform_type, \
+                             utt_category_type, meta_type, system_matching_type, system_train_type, background_type, post_back_type)
+
     print("###Save Path### ", save_path)
     print("score method: ", score_type)
     print("use history utterance?: ", current)
@@ -302,11 +304,9 @@ def main():
     print("use background image features?", background)
     print("post-traeind model?: {}, type: {}".format(post, args.post_balance))
     
-    log_path = os.path.join(save_path, 'train_final.log')
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-    fileHandler = logging.FileHandler(log_path)
+    log_path = os.path.join(save_path, 'test.log')
     
+    fileHandler = logging.FileHandler(log_path)    
     logger.addHandler(streamHandler)
     logger.addHandler(fileHandler)    
     logger.setLevel(level=logging.DEBUG)      
@@ -327,192 +327,73 @@ def main():
                                          init_method='env://')    
         
     model = BaseModel(post_back).cuda()
-    if post:
-        post_path = "../ITM/post_training/all"
-        post_model = os.path.join(post_path, args.post_balance, 'model.pt')
-        checkpoint = torch.load(post_model)
-        model.load_state_dict(checkpoint, strict=False)
-        print('Post-trained Model Loading!!')
+    model_text_tokenizer = model.text_tokenizer
     if args.distributed:
         model = DDP(model, delay_allreduce=True)
-    model.train()    
+    
+    model_path = os.path.join(save_path, 'model.pt')    
+#     checkpoint = torch.load(model_path)
+    checkpoint = torch.load(model_path, map_location='cuda:0')
+    modify_checkpoint = OrderedDict()
+    for k, v in checkpoint.items():
+        if 'module' in k:
+            k = k.replace('module.', '')
+        modify_checkpoint[k] = v
+    model.load_state_dict(modify_checkpoint, strict=False)
+    model.eval()
     
     """dataset Loading"""
-    image_obj_path = "../res/image_obj.pickle"
-    description_path = "../data/public/*"
-    fashion_path = '../data/fashion_prefab_metadata_all.json'
-    furniture_path = '../data/furniture_prefab_metadata_all.json'
-
-    train_path = '../data/simmc2_dials_dstc10_train.json'
-    dev_path = '../data/simmc2_dials_dstc10_dev.json'
-    devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
+    image_obj_path = "/data/project/rw/rung/00_company/03_DSTC10_SIMMC/res/image_obj.pickle"
+    description_path = "/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/public/*scene*"
+    fashion_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/fashion_prefab_metadata_all.json'
+    furniture_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/furniture_prefab_metadata_all.json'
+    
+    devtest_path = '/data/project/rw/rung/00_company/03_DSTC10_SIMMC/simmc2/data/simmc2_dials_dstc10_devtest.json'
             
-    batch_size = args.batch
-    print('batch size: ', batch_size)
-    
-    train_dataset = task2_loader(train_path, image_obj_path, description_path, fashion_path, furniture_path, current, balance_type, mention_inform, system_train)
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=make_batch)
-    
-    dev_dataset = task2_loader(dev_path, image_obj_path, description_path, fashion_path, furniture_path, current, balance_type, mention_inform, system_train)
-    dev_loader = DataLoader(dev_dataset, batch_size=batch_size, shuffle=True, num_workers=4, collate_fn=make_batch)
-    
-    mention_eval = False
-    system_eval = False
-    devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path, current, 'unbalance', mention_eval, system_eval)
+    devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
-    
-    """Training Parameter Setting"""    
-    training_epochs = args.epoch
-    print('Training Epochs: ', str(training_epochs))
-    max_grad_norm = args.norm
-    lr = args.lr
-    num_training_steps = len(train_dataset)*training_epochs
-    num_warmup_steps = len(train_dataset)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=lr) # , eps=1e-06, weight_decay=0.01    
-    scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=num_warmup_steps, num_training_steps=num_training_steps)    
         
-    """Training"""    
-    logger.info('########################################')
-    # model.text_tokenizer.save_pretrained(save_path)
-    best_devtest_f1, best_devtest_acc, best_epoch = -1, -1, 0
-    best_devtestf1_system, best_devtestacc_uttcat = -1, -1
-    print("Data Num ## ", len(train_loader))
-    for epoch in range(training_epochs):
-        model.train()
-        for i_batch, (_, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_meta_labels, batch_meta_tokens, batch_obj_features, _, _, batch_bg_visuals, _) in enumerate(tqdm(train_loader, desc='train-iteration')):            
-            batch_tokens = batch_tokens.cuda()
-            batch_object_labels = batch_object_labels.type('torch.FloatTensor').cuda()
-            # batch_system_labels = batch_system_labels.cuda()
-            batch_uttcat_labels = batch_uttcat_labels.cuda()
-            batch_meta_labels = batch_meta_labels.type('torch.FloatTensor').cuda()
-            batch_meta_tokens = batch_meta_tokens.cuda()
-            batch_obj_features = batch_obj_features.type('torch.FloatTensor').cuda()
-            batch_bg_visuals = batch_bg_visuals.type('torch.FloatTensor').cuda()
+    """Testing"""
+    print("Data Num ## ", len(devtest_loader))
             
-            """모델 스코어 뽑기"""
-            batch_t2v_score, batch_m2v_score, system_logits_list, utt_category_logits = model(batch_tokens, batch_meta_tokens, batch_obj_features, batch_bg_visuals, \
-                                                     score_type, meta, system_matching, utt_category, background, post_back)
-
-            """ goal loss"""
-            clsloss_val = clsLoss(batch_t2v_score, batch_object_labels)
-            
-            """ multi-task loss"""
-            if meta:
-                metaloss_val = clsLoss(batch_m2v_score, batch_meta_labels)                
-            else:
-                metaloss_val = 0
-            if system_matching:
-                """
-                batch_system_labels: [[-100,-100,0,0,1], [0,1,0,0,1], []]
-                tensor([[-100,-100,0,0,1], [0,1,0,0,1]]) (2,5)
-                system_logits_list: [(len1,2), (len2,2)]
-                """
-                sysloss_val = 0
-                for system_logits, system_labels in zip(system_logits_list, batch_system_labels):
-                    if (len(system_labels)>0) and (len(system_logits)>0): 
-                        system_labels = system_labels[-system_logits.shape[0]:] # (pred_num), 위의 문제로 잘라서 학습
-                        system_labels = torch.tensor(system_labels).cuda()
-                        sysloss_val += CELoss(system_logits, system_labels)
-            else:
-                sysloss_val = 0
-            if utt_category:                
-                uttloss_val = CELoss(utt_category_logits, batch_uttcat_labels)
-            else:
-                uttloss_val = 0
-                
-            loss_val = clsloss_val + metaloss_val + sysloss_val + uttloss_val
-
-            optimizer.zero_grad()
-            loss_val.backward()
-
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)  # Gradient clipping is not in AdamW anymore (so you can use amp without issue)
-            optimizer.step()
-            scheduler.step()
-            
-        for i_batch, (_, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_meta_labels, batch_meta_tokens, batch_obj_features, _, _, batch_bg_visuals, _) in enumerate(tqdm(dev_loader, desc='traindev-iteration')):            
-            batch_tokens = batch_tokens.cuda()
-            batch_object_labels = batch_object_labels.type('torch.FloatTensor').cuda()
-            # batch_system_labels = batch_system_labels.cuda()
-            batch_uttcat_labels = batch_uttcat_labels.cuda()
-            batch_meta_labels = batch_meta_labels.type('torch.FloatTensor').cuda()
-            batch_meta_tokens = batch_meta_tokens.cuda()
-            batch_obj_features = batch_obj_features.type('torch.FloatTensor').cuda()
-            batch_bg_visuals = batch_bg_visuals.type('torch.FloatTensor').cuda()
-            
-            """모델 스코어 뽑기"""
-            batch_t2v_score, batch_m2v_score, system_logits_list, utt_category_logits = model(batch_tokens, batch_meta_tokens, batch_obj_features, batch_bg_visuals, \
-                                                     score_type, meta, system_matching, utt_category, background, post_back)
-
-            """ goal loss"""
-            clsloss_val = clsLoss(batch_t2v_score, batch_object_labels)
-            
-            """ multi-task loss"""
-            if meta:
-                metaloss_val = clsLoss(batch_m2v_score, batch_meta_labels)
-            else:
-                metaloss_val = 0
-            if system_matching:
-                """
-                batch_system_labels: [[-100,-100,0,0,1], [0,1,0,0,1], []]
-                tensor([[-100,-100,0,0,1], [0,1,0,0,1]]) (2,5)
-                system_logits_list: [(len1,2), (len2,2)]
-                """
-                sysloss_val = 0
-                for system_logits, system_labels in zip(system_logits_list, batch_system_labels):
-                    if (len(system_labels)>0) and (len(system_logits)>0): 
-                        system_labels = system_labels[-system_logits.shape[0]:] # (pred_num), 위의 문제로 잘라서 학습
-                        system_labels = torch.tensor(system_labels).cuda()
-                        sysloss_val += CELoss(system_logits, system_labels)
-            else:
-                sysloss_val = 0
-            if utt_category:                
-                uttloss_val = CELoss(utt_category_logits, batch_uttcat_labels)
-            else:
-                uttloss_val = 0
-                
-            loss_val = clsloss_val + metaloss_val + sysloss_val + uttloss_val
-
-            optimizer.zero_grad()
-            loss_val.backward()
-
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)  # Gradient clipping is not in AdamW anymore (so you can use amp without issue)
-            optimizer.step()
-            scheduler.step()            
-            
-        """ Score and Save"""        
-        model.eval()
-        devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat, dstc_test_dict = CalPER(model, devtest_loader, args)
-        logger.info("Epoch: {}, DevTestf1: {}, Acc: {}, DevTestSysf1: {}, DevTestUttcat_acc: {}".format(epoch, devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat))
-        
-        if devtestf1 > best_devtest_f1:
-            _SaveModel(model, 'model')                        
-            best_epoch = epoch
-            best_devtest_f1 = devtestf1
-            best_devtest_acc = devtestacc
-            best_devtestf1_system = devtestf1_system
-            best_devtestacc_uttcat = devtestacc_uttcat
-            
-            
-    logger.info("")
-    logger.info("BEST Epoch: {}, DevTestf1: {}, Acc: {}, DevTestSysf1: {}, DevTestUttcat_acc: {}".format(best_epoch, best_devtest_f1, best_devtest_acc, best_devtestf1_system, best_devtestacc_uttcat))
+    """ Score """
+    devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat, dstc_test_dict = CalPER(model, devtest_loader, args)
     
-    print("###Save Path### ", save_path)
+    if not os.path.exists('results'):
+        os.makedirs('results')
+    if args.final:
+        filename = post_type+'_'+args.post_balance+'_'+mention_inform_type+'_'+utt_category_type+'_'+system_matching_type+'_'+system_train_type+'_'+background_type+'_'+post_back_type+'_nouttcat_finaldstc.txt'
+    else:
+        filename = post_type+'_'+args.post_balance+'_'+mention_inform_type+'_'+utt_category_type+'_'+system_matching_type+'_'+system_train_type+'_'+background_type+'_'+post_back_type+'_nouttcat_dstc.txt'
+    file_path = os.path.join('results', filename)    
+    f = open(file_path, 'w')    
+    for session, data in dstc_test_dict.items():
+        input_str, object_list = data['input_str'], data['true_object_ids']
+        object_list = list(set(object_list))
+        input_str = input_str.replace('[USER]', 'User :')
+        input_str = input_str.replace('[SYSTEM]', 'System :')
+        input_str += " => Belief State :"
+        input_str += " REQUEST:GET [ type = blouse ] (availableSizes, pattern) < "
+        input_str += ', '.join(object_list)
+        input_str += " > <EOB> DUMP <EOS>"
+        f.write(input_str+'\n')
+    f.close()
+    logger.info("DevTestf1: {}, Acc: {}, DevTestSysf1: {}, DevTestUttcat_acc: {}".format(devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat))
+    
+    print(save_path)    
+            
 
 if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
     parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
-    parser.add_argument( "--epoch", type=int, help = 'training epochs', default = 5) # 12 for iemocap
-    parser.add_argument( "--norm", type=int, help = "max_grad_norm", default = 10)    
-    parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-6) # 1e-5
     parser.add_argument( "--model_type", help = "large", default = 'roberta-large') # large
     parser.add_argument( "--batch", type=int, help = "training batch size", default =1) 
     parser.add_argument( "--score", type=str, help = "cosine norm or sigmoid or concat", default = 'sigmoid') # cos or sigmoid
     
     parser.add_argument( "--balance", type=str, help = 'when if utt has true object candidates', default = 'unbalance') # balance or unblance
     parser.add_argument( "--current", type=str, help = 'only use current utt / system current / context', default = 'context') # current or sys_current
-    parser.add_argument('--relation', action='store_true', help='use around object features')
     parser.add_argument('--background', action='store_true', help='use background image features')
     
     parser.add_argument('--meta', action='store_true', help='multi-task meta matching learning?')
@@ -526,6 +407,8 @@ if __name__ == '__main__':
     parser.add_argument('--post', action='store_true', help='post-trained model')
     parser.add_argument( "--post_balance", type=str, help = '11 / all', default = '11') # current or sys_current
     parser.add_argument('--post_back', action='store_true', help='post-trained model at background')
+    
+    parser.add_argument('--final', action='store_true', help='final version for dstc')
     
     parser.add_argument("--local_rank", type=int, default=0)
         

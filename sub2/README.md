@@ -2,7 +2,7 @@
 Our apporach description will be updated.
 
 ## Download the pre-trained model 
-Download model from the [model folder]().
+Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2/model).
 
 ## Training
 ```bash
@@ -14,4 +14,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-dstc10-simmc-teststd-pred-subtask-3.txt and the log (test.log) is saved in the ./results/{model_type}.
+dstc10-simmc-teststd-pred-subtask-3.txt is saved in the ./results/{model_type}.

@@ -42,8 +42,7 @@ class task2_loader(Dataset):
         self.dial2bg = {}
         cnt = 0
         for dialog_cnt, one_dialogue in enumerate(dialogue_data):
-            dialogue_idx, domain, mentioned_object_ids, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], \
-                                                                    one_dialogue['mentioned_object_ids'], one_dialogue['scene_ids']
+            dialogue_idx, domain, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], one_dialogue['scene_ids']
 
             if domain == 'fashion':
                 metadata = fashion_metadata
@@ -93,8 +92,6 @@ class task2_loader(Dataset):
 
                                     if object_id not in self.dial2object[dialog_cnt]['object'].keys():
                                         self.dial2object[dialog_cnt]['object'][object_id] = {}
-                                        self.dial2object[dialog_cnt]['object'][object_id]['visual_meta'] = visual_meta_flatten
-                                        self.dial2object[dialog_cnt]['object'][object_id]['non_visual_meta'] = non_visual_meta_flatten
                                         self.dial2object[dialog_cnt]['object'][object_id]['bbox'] = [bbox]
 
                                         left, top, height, width = bbox[0], bbox[1], bbox[2], bbox[3]
@@ -127,116 +124,41 @@ class task2_loader(Dataset):
                     task2_sample_input += '[USER] '
                 else:
                     task2_sample_input += ' [USER] '                
-                task2_sample_input += transcript
-
-                transcript_annotated = text['transcript_annotated']
-                transcript_objects = transcript_annotated['act_attributes']['objects']
-                
-                """ for system matching """
-                for object_id in cand_objects:
-                    if object_id in transcript_objects:                    
-                        utt2object_list[object_id] = 1
-                    else:
-                        utt2object_list[object_id] = 0
-                system2label, objcat2label = self.utt2system(utt2object_list, system2object_list[:])
+                task2_sample_input += transcript                
                 
                 """ data save """
-                # for obj_cnt, (object_id, dial2object_data) in enumerate(self.dial2object[dialog_cnt]['object'].items()):     
                 for obj_cnt, (object_id) in enumerate(cand_objects):
                     dial2object_data = self.dial2object[dialog_cnt]['object'][object_id]
-                    self.task2_input[cnt] = {}
-                    self.task2_input[cnt]['input'] = task2_sample_input
-                    self.task2_input[cnt]['object_id'] = object_id
-                    self.task2_input[cnt]['sess_cnt'] = i
-                    if object_id in transcript_objects:                 
-                        self.task2_input[cnt]['object_label'] = 1
-                    else:
-                        self.task2_input[cnt]['object_label'] = 0
-                    # self.task2_input[cnt]['dial2rel'] = self.dial2rel[dialog_cnt]
-                    if obj_cnt == 0:
-                        self.task2_input[cnt]['system_label'] = system2label
-                        self.task2_input[cnt]['uttcat_label'] = objcat2label
+                    for obj_visual, obj_background in zip(dial2object_data['visual'], dial2object_data['background']):
+                        self.task2_input[cnt] = {}
+                        self.task2_input[cnt]['input'] = task2_sample_input
+                        self.task2_input[cnt]['object_id'] = object_id
+                        self.task2_input[cnt]['sess_cnt'] = i                        
                         self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
-                    else:
-                        self.task2_input[cnt]['system_label'] = system2label # 학습에 사용 X
-                        self.task2_input[cnt]['uttcat_label'] = -100 # objcat2label # 학습에 사용 X
-                        self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
-                    self.task2_input[cnt]['visual'] = dial2object_data['visual']
-                    self.task2_input[cnt]['visual_meta'] = dial2object_data['visual_meta']
-                    self.task2_input[cnt]['background'] = dial2object_data['background']
-                    cnt += 1
+                        self.task2_input[cnt]['visual'] = obj_visual
+                        self.task2_input[cnt]['background'] = obj_background
+                        cnt += 1 
 
                 """ system 텍스트 입력 """
-                system_transcript = text['system_transcript']
-                task2_sample_input += ' [SYSTEM] '
-                task2_sample_input += system_transcript
-                
-                system_transcript_annotated = text['system_transcript_annotated']
-                system_transcript_objects = system_transcript_annotated['act_attributes']['objects']
-                
-                ## system object matching
-                system2object = {}
-                system2object_id = []
-                for object_id in cand_objects:
-                    if object_id in system_transcript_objects:
-                        system2object[object_id] = 1
-                        system2object_id.append(object_id)
-                    else:
-                        system2object[object_id] = 0
-                system2object_list.append(system2object)
-                system2object_id_list.append(system2object_id)                
-                
+                if i < len(text_data) - 1:
+                    system_transcript = text['system_transcript']
+                    task2_sample_input += ' [SYSTEM] '
+                    task2_sample_input += system_transcript
 
-    def utt2system(self, utt_obj, sys_obj_list):
-        utt_match_id = []
-        for utt_obj_id, utt_label in utt_obj.items():
-            if utt_label == 1:
-                utt_match_id.append(utt_obj_id)
-        
-        """ system matching label (0,1) """
-        system2label = []
-        total_sys_match_id = []
-        for turn, sys_obj in enumerate(sys_obj_list):
-            sys_match_id = []
-            for sys_obj_id, sys_label in sys_obj.items():
-                if sys_label == 1:
-                    sys_match_id.append(sys_obj_id)
-                    total_sys_match_id.append(sys_obj_id)
-            
-            temp_match_id = []
-            match_num = 0
-            for sys_obj_id in sys_match_id:
-                if sys_obj_id in utt_match_id:
-                    match_num += 1
-                    temp_match_id.append(sys_obj_id)
-            
-            if match_num == 0:
-                system2label.append(0)
-            else:
-                system2label.append(1)
-        
-        """ object category label (0,1,2,3) """
-        objcat2label = []        
-        match_num = 0
-        non_match_num = 0
-        for utt_obj_id in utt_match_id:
-            if utt_obj_id in total_sys_match_id:
-                match_num += 1
-            else:
-                non_match_num += 1
-        
-        if match_num == 0:
-            if non_match_num == 0:
-                objcat2label = 0 # 매칭될 object 존재가 없는 발화
-            else:
-                objcat2label = 1 # 이전의 system에서 언급된 object는 없고, 새로운 object가 있는 것
-        else:
-            if non_match_num == 0:
-                objcat2label = 1 # 2 이전의 system에서 언급된 object들이 후보일 경우
-            else:
-                objcat2label = 1 # 3 이전의 system에서 언급된 object들도 있고 새로운 object도 후보일 경우        
-        
-        return system2label, objcat2label
+                    system_transcript_annotated = text['system_transcript_annotated']
+                    system_transcript_objects = system_transcript_annotated['act_attributes']['objects']
+
+                    ## system object matching
+                    system2object = {}
+                    system2object_id = []
+                    for object_id in cand_objects:
+                        if object_id in system_transcript_objects:
+                            system2object[object_id] = 1
+                            system2object_id.append(object_id)
+                        else:
+                            system2object[object_id] = 0
+                    system2object_list.append(system2object)
+                    system2object_id_list.append(system2object_id)
                 
     def __len__(self):
         return len(self.task2_input)

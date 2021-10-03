@@ -98,23 +98,17 @@ def make_batch(sessions):
     """ object&meta features """
     meta_strs = []
     object_visuals = []
-    for visual_list, visual_meta in zip(visuals, visual_metas):
-        meta_strs.append(visual_meta)        
-        visual_features = 0
-        for visual in visual_list:
-            visual_features += img2feature(visual, image_feature_extractor)
-        object_visuals.append(visual_features)
+    for visual, visual_meta in zip(visuals, visual_metas):
+        meta_strs.append(visual_meta)
+        object_visuals.append(img2feature(visual, image_feature_extractor))
             
     batch_meta_tokens = model_text_tokenizer(meta_strs, padding='longest', return_tensors='pt').input_ids
     batch_obj_features = torch.cat(object_visuals,0)
     
     bg_visuals = []
-    for background_list in batch_backgrounds:
-        background_features = 0
-        for background in background_list:
-            background_features += img2feature(background, image_feature_extractor)
-        bg_visuals.append(background_features)
-    batch_bg_visuals = torch.cat(bg_visuals, 0)    
+    for background in batch_backgrounds:
+        bg_visuals.append(img2feature(background, image_feature_extractor))
+    batch_bg_visuals = torch.cat(bg_visuals, 0) 
     
     return input_strs, batch_tokens, batch_object_labels, batch_system_labels, batch_uttcat_labels, batch_meta_labels, batch_meta_tokens, \
             batch_obj_features, object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list
@@ -218,20 +212,13 @@ def CalPER(model, dataloader, args):
                             
             """ predicion """
             """
-            utt_category_logits: (1, 4)
+            utt_category_logits: (1, 2)
             """                
             uttcat_pred = utt_category_logits.argmax(1).item()
             uttcat_label = batch_uttcat_labels.item()
             if uttcat_label != -100:
                 uttcat_pred_list.append(uttcat_pred)
                 uttcat_label_list.append(uttcat_label)
-
-            """
-            0 # 매칭될 object 존재가 없는 발화
-            1 # 이전의 system에서 언급된 object는 없고, 새로운 object가 있는 것
-            2 # 이전의 system에서 언급된 object들이 후보일 경우
-            3 # 이전의 system에서 언급된 object들도 있고 새로운 object도 후보일 경우     
-            """
             
             object_id = batch_object_ids[0]
             batch_pre_system_objects = batch_pre_system_objects_list[0]
@@ -329,6 +316,9 @@ def main():
     if 'WORLD_SIZE' in os.environ: 
         args.distributed = int(os.environ['WORLD_SIZE']) > 1
         print('#Num of GPU: {}'.format(int(os.environ['WORLD_SIZE'])))
+        # GPU 개수개념인 듯
+        # WORD_SIZE가 os에 들어가려면 torch.distributed.launch으로 실행해야함.
+        # ex) python3 -m torch.distributed.launch --nproc_per_node=2 train.py    
     
     if args.distributed:
         args.gpu = args.local_rank
@@ -338,7 +328,7 @@ def main():
         
     model = BaseModel(post_back).cuda()
     if post:
-        post_path = "/data/project/rw/rung/00_company/03_DSTC10_SIMMC/sub2_post/post_training"
+        post_path = "../ITM/post_training/all"
         post_model = os.path.join(post_path, args.post_balance, 'model.pt')
         checkpoint = torch.load(post_model)
         model.load_state_dict(checkpoint, strict=False)
@@ -349,11 +339,11 @@ def main():
     
     """dataset Loading"""
     image_obj_path = "../res/image_obj.pickle"
-    description_path = "../data/public/*scene*"
+    description_path = "../data/public/*"
     fashion_path = '../data/fashion_prefab_metadata_all.json'
     furniture_path = '../data/furniture_prefab_metadata_all.json'
-    
-    train_path = '../data/simmc2_dials_dstc10_train.json'    
+
+    train_path = '../data/simmc2_dials_dstc10_train.json'
     dev_path = '../data/simmc2_dials_dstc10_dev.json'
     devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
             
@@ -397,13 +387,13 @@ def main():
             batch_obj_features = batch_obj_features.type('torch.FloatTensor').cuda()
             batch_bg_visuals = batch_bg_visuals.type('torch.FloatTensor').cuda()
             
-            """모델 스코어 뽑기"""
+            """모델 스코어 뽑기"""            
             batch_t2v_score, batch_m2v_score, system_logits_list, utt_category_logits = model(batch_tokens, batch_meta_tokens, batch_obj_features, batch_bg_visuals, \
                                                      score_type, meta, system_matching, utt_category, background, post_back)
-
+            
             """ goal loss"""
             clsloss_val = clsLoss(batch_t2v_score, batch_object_labels)
-            
+
             """ multi-task loss"""
             if meta:
                 metaloss_val = clsLoss(batch_m2v_score, batch_meta_labels)
@@ -416,7 +406,7 @@ def main():
                 system_logits_list: [(len1,2), (len2,2)]
                 """
                 sysloss_val = 0
-                for system_logits, system_labels in zip(system_logits_list, batch_system_labels):
+                for system_logits, system_labels in zip(system_logits_list, batch_system_labels):                    
                     # system_logits (4,2)
                     # system_labels (5) 이처럼 labels가 더 많을 수 있음 (매우 드물게) 토큰이 길면 앞의 부분을 자를 수 있으므로
                     # system 발화를 학습할 땐 system_labels에 빈 리스트 []가 있으므로 학습 X
@@ -431,9 +421,9 @@ def main():
                 uttloss_val = CELoss(utt_category_logits, batch_uttcat_labels)
             else:
                 uttloss_val = 0
-                
-            loss_val = clsloss_val + metaloss_val + sysloss_val + uttloss_val
 
+            loss_val = clsloss_val + metaloss_val + sysloss_val + uttloss_val
+                
             optimizer.zero_grad()
             loss_val.backward()
 
@@ -452,18 +442,6 @@ def main():
             best_epoch = epoch
             devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat, dstc_test_dict = CalPER(model, devtest_loader, args)
             
-#             f = open(os.path.join(save_path, "dstc10-simmc-teststd-pred-subtask-3.txt"), 'w')
-#             for session, data in dstc_test_dict.items():
-#                 input_str, object_list = data['input_str'], data['true_object_ids']
-#                 input_str = input_str.replace('[USER]', 'User :')
-#                 input_str = input_str.replace('[SYSTEM]', 'System :')
-#                 input_str += " => Belief State :"
-#                 input_str += " REQUEST:GET [ type = blouse ] (availableSizes, pattern) < "
-#                 input_str += ', '.join(object_list)
-#                 input_str += " > <EOB> DUMP <EOS>"
-#                 f.write(input_str+'\n')
-#             f.close()      
-            
             logger.info("Epoch: {}, DevTestf1: {}, Acc: {}, DevTestSysf1: {}, DevTestUttcat_acc: {}".format(epoch, devtestf1, devtestacc, devtestf1_system, devtestacc_uttcat))
     logger.info("")
     logger.info("BEST Devf1: {}".format(best_dev_f1))
@@ -474,7 +452,7 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Subtask2" )
+    parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
     parser.add_argument( "--epoch", type=int, help = 'training epochs', default = 5) # 12 for iemocap
     parser.add_argument( "--norm", type=int, help = "max_grad_norm", default = 10)    
     parser.add_argument( "--lr", type=float, help = "learning rate", default = 1e-6) # 1e-5
