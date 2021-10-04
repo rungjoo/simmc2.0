@@ -206,7 +206,8 @@ def main():
     
     if args.final:
         save_path = './results/dstc10-simmc-final-entry'
-        model_path = './model/model_final.pt'
+        model_path = './model/model.pt'
+        # model_path = './model/model_final.pt'
     else:
         save_path = './results/dstc10-simmc-entry'
         model_path = './model/model.pt'
