@@ -328,7 +328,7 @@ def main():
         
     model = BaseModel(post_back).cuda()
     if post:
-        post_path = "../ITM/post_training/all"
+        post_path = "../ITM/post_training"
         post_model = os.path.join(post_path, args.post_balance, 'model.pt')
         checkpoint = torch.load(post_model)
         model.load_state_dict(checkpoint, strict=False)
