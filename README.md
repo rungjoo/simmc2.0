@@ -47,7 +47,7 @@ This is the learning process for each subtask. You can train the model in each f
 | Test Method | Object F1 |
 | :------: | :-------: |
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2) | 0.366 |
-| **Ours** | **0.56** |
+| **Ours** | **0.593** |
 
 **Subtask #4: Multimodal Dialog Response Generation**
 
