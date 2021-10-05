@@ -38,9 +38,12 @@ This is the learning process for each subtask. You can train the model in each f
 ## Evlauation
 
 Using the evaluation script suggested by the challenge organizer
-    * [Evlauation script for subtask1](https://github.com/facebookresearch/simmc2/blob/master/model/utils/disambiguator_evaluation.py)
-    * [Evlauation script for subtask2](https://github.com/facebookresearch/simmc2/blob/master/model/mm_dst/gpt2_dst/scripts/evaluate.py)
-    * [Evlauation script for subtask4-generation](https://github.com/facebookresearch/simmc2/blob/master/model/utils/retrieval_evaluation.py)
+
+* [Evlauation script for subtask1](https://github.com/facebookresearch/simmc2/blob/master/model/utils/disambiguator_evaluation.py)
+    
+* [Evlauation script for subtask2](https://github.com/facebookresearch/simmc2/blob/master/model/mm_dst/gpt2_dst/scripts/evaluate.py)
+    
+* [Evlauation script for subtask4-generation](https://github.com/facebookresearch/simmc2/blob/master/model/utils/retrieval_evaluation.py)
 
 The SIMMC organizers introduce the scripts:
 ```
