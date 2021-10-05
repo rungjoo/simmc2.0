@@ -92,6 +92,7 @@ $ python tools/retrieval_evaluation.py \
 | **Ours** | **0.593** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
+
 No Training/Testing
 
 **Subtask #4: Multimodal Dialog Response Generation**
@@ -104,4 +105,5 @@ No Training/Testing
 | **Ours** | **0.285** |
 
 **Retrieval**
+
 No Training/Testing
