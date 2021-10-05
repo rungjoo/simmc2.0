@@ -33,20 +33,60 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 ## Step 3
 
-This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).
+This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
+
+## Evlauation
+
+Using the evaluation script suggested by the challenge organizer
+    - [Evlauation script for subtask1](https://github.com/facebookresearch/simmc2/blob/master/model/utils/disambiguator_evaluation.py)
+    - [Evlauation script for subtask2](https://github.com/facebookresearch/simmc2/blob/master/model/mm_dst/gpt2_dst/scripts/evaluate.py)
+    - [Evlauation script for subtask4-generation](https://github.com/facebookresearch/simmc2/blob/master/model/utils/retrieval_evaluation.py)
+
+The SIMMC organizers introduce the scripts:
+```
+<Subtask 1>
+$ python tools/disambiguator_evaluation.py \
+	--pred_file="{PATH_TO_PRED_FILE}" \
+	--test_file="{PATH_TO_TEST_FILE}" \
+
+<Subtask 2 & 3>
+(line-by-line evaluation)
+$ python -m gpt2_dst.scripts.evaluate \
+  --input_path_target={PATH_TO_GROUNDTRUTH_TARGET} \
+  --input_path_predicted={PATH_TO_MODEL_PREDICTIONS} \
+  --output_path_report={PATH_TO_REPORT}
+
+(Or, dialog level evaluation)
+$ python -m utils.evaluate_dst \
+    --input_path_target={PATH_TO_GROUNDTRUTH_TARGET} \
+    --input_path_predicted={PATH_TO_MODEL_PREDICTIONS} \
+    --output_path_report={PATH_TO_REPORT}
+    
+<Subtask 4 Generation>
+$ python tools/response_evaluation.py \
+    --data_json_path={PATH_TO_GOLD_RESPONSES} \
+    --model_response_path={PATH_TO_MODEL_RESPONSES} \
+    --single_round_evaluation
+
+<Subtask 4 Retrieval>
+$ python tools/retrieval_evaluation.py \
+    --retrieval_json_path={PATH_TO_GROUNDTRUTH_RETRIEVAL} \
+    --model_score_path={PATH_TO_MODEL_CANDIDATE_SCORES} \
+    --single_round_evaluation    
+```
 
 ## DevTest Results
 
 **Subtask #1: Multimodal Disambiguation**
 | Test Method | Accuracy |
 | :------: | :-------: |
-| GPT2 from [CO(Challenge Organizer)](https://github.com/facebookresearch/simmc2) | 73.9 |
+| GPT2 from [CO(Challenge Organizer)](https://github.com/facebookresearch/simmc2/tree/master/model/disambiguate#performance-on-simmc-20) | 73.9 |
 | **Ours** | **92.28** |
 
 **Subtask #2: Multimodal Coreference Resolution**
 | Test Method | Object F1 |
 | :------: | :-------: |
-| GPT2 from [CO](https://github.com/facebookresearch/simmc2) | 0.366 |
+| GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
 | **Ours** | **0.593** |
 
 **Subtask #4: Multimodal Dialog Response Generation**
@@ -54,6 +94,6 @@ This is the learning process for each subtask. You can train the model in each f
 **Generation** 
 | Baseline |      BLEU |
 | :------: | :-------: |
-| GPT2 from [CO](https://github.com/facebookresearch/simmc2) | 0.192 |
-| MTN-SIMMC2 from [CO](https://github.com/facebookresearch/simmc2) | 0.217 |
+| GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.192 |
+| MTN-SIMMC2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.217 |
 | **Ours** | **0.285** |
