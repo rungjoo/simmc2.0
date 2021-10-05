@@ -44,7 +44,7 @@ Using the evaluation script suggested by the challenge organizer
 * [Evaluation script for subtask2](https://github.com/rungjoo/simmc2.0/blob/master/evaluation/model/mm_dst/test_sub2.sh)
 * [Evaluation script for subtask4-generation](https://github.com/rungjoo/simmc2.0/blob/master/evaluation/model/utils/test_sub4.sh)
 
-The SIMMC organizers introduce the scripts:
+[The SIMMC organizers introduce the scripts](https://github.com/facebookresearch/simmc2/blob/master/SUBMISSION_INSTRUCTIONS.md):
 ```
 <Subtask 1>
 $ python tools/disambiguator_evaluation.py \
@@ -91,6 +91,9 @@ $ python tools/retrieval_evaluation.py \
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
 | **Ours** | **0.593** |
 
+**Subtask #3: Multimodal Dialog State Tracking**
+No Training/Testing
+
 **Subtask #4: Multimodal Dialog Response Generation**
 
 **Generation** 
@@ -99,3 +102,6 @@ $ python tools/retrieval_evaluation.py \
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.192 |
 | MTN-SIMMC2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.217 |
 | **Ours** | **0.285** |
+
+**Retrieval**
+No Training/Testing
