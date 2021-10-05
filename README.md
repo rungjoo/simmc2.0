@@ -33,20 +33,20 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 ## Step 3
 
-This is the learning process for each subtask. You can train the model in each folder (sub1, sub2, sub4).
+This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).
 
 ## DevTest Results
 
 **Subtask #1: Multimodal Disambiguation**
 | Test Method | Accuracy |
 | :------: | :-------: |
-| GPT2 from CO(Challenge Organizer) | 73.9 |
+| GPT2 from [CO(Challenge Organizer)](https://github.com/facebookresearch/simmc2) | 73.9 |
 | **Ours** | **92.28** |
 
 **Subtask #2: Multimodal Coreference Resolution**
 | Test Method | Object F1 |
 | :------: | :-------: |
-| GPT2 from CO | 0.366 |
+| GPT2 from [CO](https://github.com/facebookresearch/simmc2) | 0.366 |
 | **Ours** | **0.56** |
 
 **Subtask #4: Multimodal Dialog Response Generation**
@@ -54,6 +54,6 @@ This is the learning process for each subtask. You can train the model in each f
 **Generation** 
 | Baseline |      BLEU |
 | :------: | :-------: |
-| GPT2 from CO | 0.192 |
-| MTN-SIMMC2 from CO | 0.217 |
+| GPT2 from [CO](https://github.com/facebookresearch/simmc2) | 0.192 |
+| MTN-SIMMC2 from [CO](https://github.com/facebookresearch/simmc2) | 0.217 |
 | **Ours** | **0.285** |
