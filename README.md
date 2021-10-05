@@ -40,20 +40,20 @@ This is the learning process for each subtask. You can train the model in each f
 **Subtask #1: Multimodal Disambiguation**
 | Test Method | Accuracy |
 | :------: | :-------: |
-| GPT2 from Challenge organizer | 73.9 |
-| Ours | 92.28 |
+| GPT2 from CO(Challenge Organizer) | 73.9 |
+| **Ours** | **92.28** |
 
 **Subtask #2: Multimodal Coreference Resolution**
 | Test Method | Object F1 |
 | :------: | :-------: |
-| GPT2 from Challenge organizer | 0.366 |
-| Ours | 0.56 |
+| GPT2 from CO | 0.366 |
+| **Ours** | **0.56** |
 
 **Subtask #4: Multimodal Dialog Response Generation**
 
 **Generation** 
 | Baseline |      BLEU |
 | :------: | :-------: |
-| GPT2 from Challenge organizer | 0.192 |
-| MTN-SIMMC2 from Challenge organizer | 0.217 |
-| Ours | 0.285 |
+| GPT2 from CO | 0.192 |
+| MTN-SIMMC2 from CO | 0.217 |
+| **Ours** | **0.285** |
