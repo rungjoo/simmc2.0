@@ -1,7 +1,7 @@
 # Subtask4
 Our apporach description will be updated.
 
-## Download the pre-trained model 
+## Download the trained model 
 Download model from the [model folder](https://github.com/rungjoo/dstc10/tree/master/sub4/model).
 
 ## Training

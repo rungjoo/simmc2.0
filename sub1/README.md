@@ -1,7 +1,7 @@
 # Subtask1
 Our apporach description will be updated.
 
-## Download the pre-trained model 
+## Download the trained model 
 Download pre-trained model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub1/model).
 
 ## Training
