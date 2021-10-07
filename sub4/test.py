@@ -46,7 +46,7 @@ def make_batch_generate(sessions):
     
     batch_visuals = [session['object_visual'] for session in sessions]
     
-    batch_backgrounds = [session['background'] for session in sessions]
+    # batch_backgrounds = [session['background'] for session in sessions]
     
     input_strs = []
     for context, slots in zip(context_strs, slot_values):

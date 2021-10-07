@@ -1,5 +1,5 @@
 # Subtask4
-Our apporach description will be updated.
+Our model uses as input the previous utterances and the slot_values of the current turn. That is, concatenated $$(utt_1,utt_2, ..., utt_k, flattening of slots)$$ is the text input of the model. The logits $$t_h$$ of the last token are computed with GPT2-large, the backbone of the text input. To use multimodal, the visual representations of objects are extracted with an ITM model and averaged to $$o_h$$. Finally, these two logits are added to predict the next token.
 
 ## Download the trained model 
 Download model from the [model folder](https://github.com/rungjoo/dstc10/tree/master/sub4/model).
