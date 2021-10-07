@@ -16,7 +16,7 @@ class task2_loader(Dataset):
             json_data = json.load(f)
             dialogue_data = json_data['dialogue_data']
 
-        """ 이미지 입력 """
+        """ image input """
         try:
             with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
                 image_visual = pickle.load(f)
@@ -39,7 +39,6 @@ class task2_loader(Dataset):
         self.task2_input = {}
         self.dial2object = {}
         self.dial2rel = {}
-        self.dial2bg = {}
         cnt = 0
         for dialog_cnt, one_dialogue in enumerate(dialogue_data):
             dialogue_idx, domain, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], one_dialogue['scene_ids']
@@ -49,10 +48,9 @@ class task2_loader(Dataset):
             else:
                 metadata = furniture_metadata            
 
-            """ 이미지 설명 저장 """
+            """ Image description save """
             self.dial2object[dialog_cnt] = {}            
             self.dial2rel[dialog_cnt] = {}
-            # self.dial2bg[dialog_cnt] = {}
             self.dial2object[dialog_cnt]['object'] = {}            
             total_objects = []
             
@@ -64,7 +62,7 @@ class task2_loader(Dataset):
                 image = image_visual[image_find_name]
                 
                 for image_des_path in image_des_list:
-                    if image_name in image_des_path: # 사용하는 이미지 찾기
+                    if image_name in image_des_path: # find using image
                         with open(image_des_path, 'r') as f:
                             image_des_data = json.load(f)
 
@@ -79,7 +77,7 @@ class task2_loader(Dataset):
                                                     object_data['bbox'], object_data['position']
                                     total_objects.append(object_id)
 
-                                    ## object 2D & meta 저장
+                                    ## object 2D & meta save
                                     visual_metalist = []
                                     non_visual_metalist = []
                                     for k, v in metadata[prefab_path].items():
@@ -110,7 +108,7 @@ class task2_loader(Dataset):
             cand_objects = list(set(total_objects))
                 
                                         
-            """ 텍스트 입력 """
+            """ text input """
             text_data = one_dialogue['dialogue']
             
             system2object_list = []
@@ -118,7 +116,7 @@ class task2_loader(Dataset):
             utt2object_list = {}
             task2_sample_input = ''
             for i, text in enumerate(text_data):
-                """ user 텍스트 입력 """
+                """ user text input """
                 transcript = text['transcript']        
                 if i == 0:
                     task2_sample_input += '[USER] '
@@ -139,7 +137,7 @@ class task2_loader(Dataset):
                         self.task2_input[cnt]['background'] = obj_background
                         cnt += 1 
 
-                """ system 텍스트 입력 """
+                """ system text input """
                 if i < len(text_data) - 1:
                     system_transcript = text['system_transcript']
                     task2_sample_input += ' [SYSTEM] '

@@ -22,14 +22,14 @@ from test_dataset import task2_loader
 from utils import img2feature
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large'
+text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224'        
+image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_batch(sessions):
@@ -71,15 +71,15 @@ def make_batch(sessions):
         bg_visuals.append(img2feature(background, image_feature_extractor))
     batch_bg_visuals = torch.cat(bg_visuals, 0)            
     
-    return input_strs, batch_tokens, batch_obj_features, batch_object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list
+    return input_strs, batch_tokens, batch_obj_features, batch_object_ids, batch_pre_system_all_objects, batch_bg_visuals, batch_pre_system_objects_list
 
 
 def Matching(model, dataloader, file_path, args):
+    method = args.method
     model.eval()
     
     score_type, system_matching, utt_category = args.score, args.system_matching, args.utt_category
     background, post_back = args.background, args.post_back
-    original = args.original
     
     dstc_test_dict = {}
     cc = -1
@@ -108,7 +108,10 @@ def Matching(model, dataloader, file_path, args):
         non_cand_obj_ids = list(set(non_cand_obj_ids))
 
         if object_id in cand_obj_ids:
-            pred = score2pred(visual_score, threshold)
+            if int(method) == 1:
+                pred = score2pred(visual_score, threshold)
+            else:
+                pred = 1
         elif object_id in non_cand_obj_ids:
             pred = 0
         else:
@@ -117,10 +120,10 @@ def Matching(model, dataloader, file_path, args):
     
     meta = False    
     with torch.no_grad():
-        for i_batch, (input_strs, batch_tokens, batch_obj_features, batch_object_ids, batch_pre_system_objects, batch_bg_visuals, batch_pre_system_objects_list) in enumerate(tqdm(dataloader, desc='evaluation')):
+        for i_batch, (input_strs, batch_tokens, batch_obj_features, batch_object_ids, batch_pre_system_all_objects, batch_bg_visuals, batch_pre_system_objects_list) in enumerate(tqdm(dataloader, desc='evaluation')):
             """
-            batch_pre_system_objects: 이전의 unique system object ids
-            batch_pre_system_objects_list: 이전의 각 시스템 발화에 해당하는 object ids
+            batch_pre_system_all_objects: unique system object ids of previous system's utterances 
+            batch_pre_system_objects_list: object ids corresponding to the previous each system's utterance
             """
             input_str = input_strs[0]
             if input_str != pre_str:
@@ -140,11 +143,11 @@ def Matching(model, dataloader, file_path, args):
             visual_score = batch_t2v_score.item()
             
             """ for using previous system objects """
+            system_logits_num = 0
             if system_matching:
                 """
                 system_logits_list: [(len1,2), (len2,2)]
-                """                
-                system_logits_num = 0
+                """                                
                 for system_logits in system_logits_list:
                     if system_logits != []:
                         system_logits_num += system_logits.shape[0]            
@@ -157,7 +160,7 @@ def Matching(model, dataloader, file_path, args):
             object_id = batch_object_ids[0]
             batch_pre_system_objects = batch_pre_system_objects_list[0]
             if system_matching:
-                if utt_category and (not original):
+                if utt_category:
                     if uttcat_pred == 0:
                         pred = 0
                     else:
@@ -165,10 +168,10 @@ def Matching(model, dataloader, file_path, args):
                 else:
                     pred = sys2pred(visual_score, system_logits_num, system_logits_list, batch_pre_system_objects, object_id)
             else: # not system_matching
-                if utt_category and (not original):
+                if utt_category:
                     if uttcat_pred == 0:
                         pred = 0
-                    else: # 3
+                    else: 
                         pred = score2pred(visual_score, threshold)
                 else:
                     pred = score2pred(visual_score, threshold)
@@ -197,6 +200,7 @@ def main():
     model_type = args.model_type
     score_type = args.score
     current = args.current
+    meta = args.meta
     utt_category = args.utt_category
     system_train = args.system_train
     system_matching = args.system_matching
@@ -207,7 +211,7 @@ def main():
     if args.final:
         save_path = './results/dstc10-simmc-final-entry'
         model_path = './model/model.pt'
-        # model_path = './model/model_final.pt'
+        # model_path = './model/model_final.pt' # lack of learning time for challenge
     else:
         save_path = './results/dstc10-simmc-entry'
         model_path = './model/model.pt'
@@ -215,6 +219,7 @@ def main():
     print("###Save Path### ", save_path)
     print("score method: ", score_type)
     print("use history utterance?: ", current)
+    print("multi-task (visual) meta matching learning?: ", meta)
     print("multi-task utterance category prediction?: ", utt_category)
     print("multi-task system utterance matching?", system_matching)
     print("training from system object matching?", system_train)
@@ -268,7 +273,7 @@ def main():
     print("Data Num ## ", len(devtest_loader))
             
     """ Prediction """
-    filename = "dstc10-simmc-teststd-pred-subtask-3.txt"
+    filename = "dstc10-simmc-teststd-pred-subtask-3_"+str(args.method)+".txt"
     file_path = os.path.join(save_path, filename)
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -287,15 +292,16 @@ if __name__ == '__main__':
     parser.add_argument( "--current", type=str, help = 'only use current utt / system current / context', default = 'context') # current or sys_current
     parser.add_argument('--background', action='store_true', help='use background image features')
     
+    parser.add_argument('--meta', action='store_true', help='multi-task meta matching learning?')
     parser.add_argument('--system_matching', action='store_true', help='multi-task system utterance matching')
     parser.add_argument('--utt_category', action='store_true', help='multi-task utterance category prediction')
-    parser.add_argument('--original', action='store_true', help='test original (not use utt_category)')    
     parser.add_argument('--system_train', action='store_true', help='training from system object matching')    
     
     parser.add_argument('--post', action='store_true', help='post-trained model')
     parser.add_argument( "--post_balance", type=str, help = '11 / all', default = '11') # current or sys_current
     parser.add_argument('--post_back', action='store_true', help='post-trained model at background')
     
+    parser.add_argument( "--method", type=str, help = '1 / 2', default = '1') # test method 1 or 2
     parser.add_argument('--final', action='store_true', help='final version for dstc')
     
     parser.add_argument("--local_rank", type=int, default=0)
