@@ -22,7 +22,7 @@
 python3 image_preprocessor.py
 python3 image_preprocessor_final.py
 ```
-- The result(.pickle) is saved in res folder.
+- The result(.pickle) is saved in [res folder](https://github.com/rungjoo/simmc2.0/tree/master/res).
 
 ## Step 1 (ITM)
 
@@ -34,11 +34,11 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 ## Step 3
 
-This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
+This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub2_2](https://github.com/rungjoo/simmc2.0/tree/master/sub2_2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
 
 ## Model
 
-All models can be download: [link](https://drive.google.com/drive/folders/10dhrgH7HNenwHSZjvQYY-sk5VpAuoA7G?usp=sharing)
+All models can be downloaded from the following [link](https://drive.google.com/drive/folders/10dhrgH7HNenwHSZjvQYY-sk5VpAuoA7G?usp=sharing)
 
 ## Evlauation
 
@@ -93,8 +93,9 @@ $ python tools/retrieval_evaluation.py \
 | Test Method | Object F1 |
 | :------: | :-------: |
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
-| **Ours-1** | **0.595** |
-| **Ours-2** | **0.601** |
+| **Ours-1** (sub2) | **0.595** |
+| **Ours-2** (sub2) | **0.601** |
+| **Ours-3** (sub2_2) | **0.xxx** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
 

@@ -264,8 +264,7 @@ def main():
             batch_tokens = batch_tokens.cuda()
             
             """ Model forward """            
-            system_logits_list = model(batch_tokens)
-            
+            system_logits_list = model(batch_tokens)            
             
             """
             batch_system_labels: [[-100,-100,0,0,1], [0,1,0,0,1], []]
