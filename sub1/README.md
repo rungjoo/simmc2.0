@@ -1,5 +1,5 @@
 # Subtask1
-Our apporach description will be updated.
+First, we use all previous utterances to connect as input to our model. The text input is passed through Roberta-large to get a representation of the text. To use multimodal information, the visual representation of an object is extracted. The visual model is a pre-trained ITM. Disambiguation is predicted by projecting representations of text and objects to the same dimension.
 
 ## Download the trained model 
 Download pre-trained model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub1/model).
