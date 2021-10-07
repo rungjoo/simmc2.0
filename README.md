@@ -36,6 +36,10 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
 
+## Model
+
+All models can be download: [link](https://drive.google.com/drive/folders/10dhrgH7HNenwHSZjvQYY-sk5VpAuoA7G?usp=sharing)
+
 ## Evlauation
 
 Using the evaluation script suggested by the challenge organizer
