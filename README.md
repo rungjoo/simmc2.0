@@ -89,7 +89,8 @@ $ python tools/retrieval_evaluation.py \
 | Test Method | Object F1 |
 | :------: | :-------: |
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
-| **Ours** | **0.593** |
+| **Ours-1** | **0.595** |
+| **Ours-2** | **0.602** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
 
