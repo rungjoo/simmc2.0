@@ -17,7 +17,7 @@ When we test, we use the following method:
 - All other objects are considered False.
 
 ## Download the trained model 
-Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12/model).
+Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1/model).
 
 ## Training
 ```bash

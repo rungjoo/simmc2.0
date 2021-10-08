@@ -1,5 +1,5 @@
 # Subtask2
-This approach is the same as [sub2_12](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12), but without mention_inform in the training step. Therefore, the model learns more about mismatched objects because it learns matching with all object information.
+This approach is the same as [sub2_1](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1), but without mention_inform in the training step. Therefore, the model learns more about mismatched objects because it learns matching with all object information.
 
 Therefore, the method of the test is changed as follows.
 
@@ -8,7 +8,7 @@ Therefore, the method of the test is changed as follows.
 - Other objects that do not appear in previous system utterances: predicted by matching score
 
 ## Download the trained model 
-Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_4/model).
+Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_34/model).
 
 ## Training
 ```bash

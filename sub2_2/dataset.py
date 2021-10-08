@@ -16,7 +16,7 @@ class task2_loader(Dataset):
             json_data = json.load(f)
             dialogue_data = json_data['dialogue_data']
 
-        """ 이미지 입력 """
+        """ image input """
         try:
             with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
                 image_visual = pickle.load(f)
@@ -39,7 +39,6 @@ class task2_loader(Dataset):
         self.task2_input = {}
         self.dial2object = {}
         self.dial2rel = {}
-        self.dial2bg = {}
         cnt = 0
         for dialog_cnt, one_dialogue in enumerate(dialogue_data):
             dialogue_idx, domain, mentioned_object_ids, scene_ids = one_dialogue['dialogue_idx'], one_dialogue['domain'], \
@@ -50,10 +49,9 @@ class task2_loader(Dataset):
             else:
                 metadata = furniture_metadata            
 
-            """ 이미지 설명 저장 """
+            """ image description save """
             self.dial2object[dialog_cnt] = {}            
             self.dial2rel[dialog_cnt] = {}
-            # self.dial2bg[dialog_cnt] = {}
             self.dial2object[dialog_cnt]['object'] = {}            
             total_objects = []
             
@@ -63,10 +61,9 @@ class task2_loader(Dataset):
                 else:
                     image_find_name = image_name
                 image = image_visual[image_find_name]
-                # self.dial2bg[dialog_cnt][image_find_name] = image
                 
                 for image_des_path in image_des_list:
-                    if image_name in image_des_path: # 사용하는 이미지 찾기
+                    if image_name in image_des_path: 
                         with open(image_des_path, 'r') as f:
                             image_des_data = json.load(f)
 
@@ -82,8 +79,8 @@ class task2_loader(Dataset):
                                     total_objects.append(object_id)
 
                                     if mention_use:
-                                        if object_id in mentioned_object_ids: ## 사용하는 obejct 찾기
-                                            ## object 2D & meta 저장
+                                        if object_id in mentioned_object_ids: 
+                                            ## object 2D & meta save
                                             visual_metalist = []
                                             non_visual_metalist = []
                                             for k, v in metadata[prefab_path].items():
@@ -115,7 +112,7 @@ class task2_loader(Dataset):
                                                 self.dial2object[dialog_cnt]['object'][object_id]['background'].append(image)                                              
                                             
                                     else:                                  
-                                        ## object 2D & meta 저장
+                                        ## object 2D & meta save
                                         visual_metalist = []
                                         non_visual_metalist = []
                                         for k, v in metadata[prefab_path].items():
@@ -151,7 +148,7 @@ class task2_loader(Dataset):
                 cand_objects = list(set(total_objects))
                 
                                         
-            """ 텍스트 입력 """
+            """ text input """
             text_data = one_dialogue['dialogue']
             
             system2object_list = []
@@ -159,7 +156,7 @@ class task2_loader(Dataset):
             utt2object_list = {}
             task2_sample_input = ''
             for i, text in enumerate(text_data):
-                """ user 텍스트 입력 """
+                """ user text input """
                 transcript = text['transcript']        
                 if i == 0:
                     task2_sample_input += '[USER] '
@@ -167,7 +164,7 @@ class task2_loader(Dataset):
                     task2_sample_input += ' [USER] '
                     
                 if current == 'current':
-                    task2_sample_input = transcript # 진짜 curret
+                    task2_sample_input = transcript 
                 elif current == 'sys_current':
                     if i == 0:
                         task2_sample_input = '[USER] ' + transcript
@@ -181,7 +178,6 @@ class task2_loader(Dataset):
                 transcript_objects = transcript_annotated['act_attributes']['objects']
                 
                 """ for system matching """
-                # utt2object_list: 현재 발화의 object가 포함되냐 안되냐를 dict으로 저장
                 for object_id in cand_objects:
                     if object_id in transcript_objects:                    
                         utt2object_list[object_id] = 1
@@ -192,7 +188,6 @@ class task2_loader(Dataset):
                 """ data save """
                 if balance_type == 'balance':
                     if len(transcript_objects) > 0:
-                        # for obj_cnt, (object_id, dial2object_data) in enumerate(self.dial2object[dialog_cnt]['object'].items()):
                         for obj_cnt, (object_id) in enumerate(cand_objects):
                             dial2object_data = self.dial2object[dialog_cnt]['object'][object_id]
                             for obj_visual, obj_background in zip(dial2object_data['visual'], dial2object_data['background']):
@@ -210,8 +205,8 @@ class task2_loader(Dataset):
                                     self.task2_input[cnt]['uttcat_label'] = objcat2label
                                     self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
                                 else:
-                                    self.task2_input[cnt]['system_label'] = system2label # 학습에 사용 X
-                                    self.task2_input[cnt]['uttcat_label'] = -100 # objcat2label # 학습에 사용 X
+                                    self.task2_input[cnt]['system_label'] = system2label
+                                    self.task2_input[cnt]['uttcat_label'] = -100
                                     self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
                                 self.task2_input[cnt]['visual_meta'] = dial2object_data['visual_meta']
 
@@ -219,7 +214,6 @@ class task2_loader(Dataset):
                                 self.task2_input[cnt]['background'] = obj_background
                                 cnt += 1
                 else: # unbalance
-                    # for obj_cnt, (object_id, dial2object_data) in enumerate(self.dial2object[dialog_cnt]['object'].items()):
                     for obj_cnt, (object_id) in enumerate(cand_objects):
                         dial2object_data = self.dial2object[dialog_cnt]['object'][object_id]
                         for obj_visual, obj_background in zip(dial2object_data['visual'], dial2object_data['background']):
@@ -237,8 +231,8 @@ class task2_loader(Dataset):
                                 self.task2_input[cnt]['uttcat_label'] = objcat2label
                                 self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
                             else:
-                                self.task2_input[cnt]['system_label'] = system2label # 학습에 사용 X
-                                self.task2_input[cnt]['uttcat_label'] = -100 # objcat2label # 학습에 사용 X
+                                self.task2_input[cnt]['system_label'] = system2label
+                                self.task2_input[cnt]['uttcat_label'] = -100
                                 self.task2_input[cnt]['pre_system_objects'] = system2object_id_list[:]
                             self.task2_input[cnt]['visual_meta'] = dial2object_data['visual_meta']
 
@@ -246,7 +240,7 @@ class task2_loader(Dataset):
                             self.task2_input[cnt]['background'] = obj_background
                             cnt += 1                            
 
-                """ system 텍스트 입력 """
+                """ system text input """
                 system_transcript = text['system_transcript']
                 task2_sample_input += ' [SYSTEM] '                
                 if current == 'current':
@@ -270,7 +264,7 @@ class task2_loader(Dataset):
                 system2object_id_list.append(system2object_id)
                 
                 """ data save """
-                if system_use: ## 학습 데이터 사용
+                if system_use: 
                     if balance_type == 'balance':
                         if len(system_transcript_objects) > 0:
                             # for object_id, dial2object_data in self.dial2object[dialog_cnt]['object'].items():
@@ -287,8 +281,8 @@ class task2_loader(Dataset):
                                         self.task2_input[cnt]['object_label'] = 0
                                     self.task2_input[cnt]['dial2rel'] = self.dial2rel[dialog_cnt]
                                     self.task2_input[cnt]['pre_system_objects'] = []
-                                    self.task2_input[cnt]['system_label'] = [] # 학습에 사용 X
-                                    self.task2_input[cnt]['uttcat_label'] = -100 # 학습에 사용 X
+                                    self.task2_input[cnt]['system_label'] = []
+                                    self.task2_input[cnt]['uttcat_label'] = -100
                                     self.task2_input[cnt]['visual_meta'] = dial2object_data['visual_meta']
                                     self.task2_input[cnt]['visual'] = obj_visual
                                     self.task2_input[cnt]['background'] = obj_background
@@ -308,20 +302,17 @@ class task2_loader(Dataset):
                                     self.task2_input[cnt]['object_label'] = 0
                                 self.task2_input[cnt]['dial2rel'] = self.dial2rel[dialog_cnt]
                                 self.task2_input[cnt]['pre_system_objects'] = []
-                                self.task2_input[cnt]['system_label'] = [] # 학습에 사용 X
-                                self.task2_input[cnt]['uttcat_label'] = -100 # 학습에 사용 X
+                                self.task2_input[cnt]['system_label'] = []
+                                self.task2_input[cnt]['uttcat_label'] = -100
                                 self.task2_input[cnt]['visual_meta'] = dial2object_data['visual_meta']
                                 self.task2_input[cnt]['visual'] = obj_visual
                                 self.task2_input[cnt]['background'] = obj_background
                                 cnt += 1
     def utt2system(self, utt_obj, sys_obj_list):
-        """
-        utt_obj: obj_id가 key, 현재 발화에 포함되냐 안되냐가 value (0 or 1)
-        """
         utt_match_id = []
         for utt_obj_id, utt_label in utt_obj.items():
-            if utt_label == 1: # 현재 발화의 obj가 속하면
-                utt_match_id.append(utt_obj_id) # 현재 발화의 obj들
+            if utt_label == 1:
+                utt_match_id.append(utt_obj_id)
         
         """ system matching label (0,1) """
         system2label = []
@@ -333,13 +324,13 @@ class task2_loader(Dataset):
             sys_match_id = []
             for sys_obj_id, sys_label in sys_obj.items():
                 if sys_label == 1:
-                    sys_match_id.append(sys_obj_id) # 시스템 발화의 id들
-                    total_sys_match_id.append(sys_obj_id) # 모든 시스템 발화의 id들
+                    sys_match_id.append(sys_obj_id)
+                    total_sys_match_id.append(sys_obj_id)
             
             temp_match_id = []
             match_num = 0
             for sys_obj_id in sys_match_id:
-                if sys_obj_id in utt_match_id: # 시스템 발화의 id가 utt_match에 있으면 label 1 아니면 0
+                if sys_obj_id in utt_match_id:
                     match_num += 1
                     temp_match_id.append(sys_obj_id)
             
@@ -351,7 +342,7 @@ class task2_loader(Dataset):
         """ object category label (0,1,2,3) """
         match_num = 0
         non_match_num = 0
-        for utt_obj_id in utt_match_id: # 현재 발화에 속하는 obj_id가 이전 시스템 발화 중에 포함되는게 있을 수록 match_num++
+        for utt_obj_id in utt_match_id:
             if utt_obj_id in total_sys_match_id:
                 match_num += 1
             else:
@@ -359,14 +350,14 @@ class task2_loader(Dataset):
         
         if match_num == 0:
             if non_match_num == 0:
-                objcat2label = 0 # 매칭될 object 존재가 없는 발화
+                objcat2label = 0
             else:
-                objcat2label = 1 # 이전의 system에서 언급된 object는 없고, 새로운 object가 있는 것
+                objcat2label = 1
         else:
             if non_match_num == 0:
-                objcat2label = 1 # 2 이전의 system에서 언급된 object들이 후보일 경우
+                objcat2label = 1
             else:
-                objcat2label = 1 # 3 이전의 system에서 언급된 object들도 있고 새로운 object도 후보일 경우        
+                objcat2label = 1
         
         return system2label, objcat2label
                 

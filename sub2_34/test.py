@@ -22,14 +22,14 @@ from test_dataset import task2_loader
 from utils import img2feature
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
+text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
 
 from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
+image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
 image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
 
 def make_batch(sessions):
@@ -75,6 +75,7 @@ def make_batch(sessions):
 
 
 def Matching(model, dataloader, file_path, args):
+    method = args.method
     model.eval()
     
     score_type, system_matching, utt_category = args.score, args.system_matching, args.utt_category
@@ -107,7 +108,10 @@ def Matching(model, dataloader, file_path, args):
         non_cand_obj_ids = list(set(non_cand_obj_ids))
 
         if object_id in cand_obj_ids:
-            pred = score2pred(visual_score, threshold) # 1
+            if int(method) == 3:
+                pred = 1
+            else:
+                pred = score2pred(visual_score, threshold)
         elif object_id in non_cand_obj_ids:
             pred = 0
         else:
@@ -203,6 +207,7 @@ def main():
     background = args.background
     post = args.post
     post_back = args.post_back
+    method = args.method
     
     if args.final:
         save_path = './results/dstc10-simmc-final-entry'
@@ -257,12 +262,12 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
-        filename = "dstc10-simmc-teststd-pred-subtask-3_5.txt"
+        filename = "dstc10-simmc-teststd-pred-subtask-3_"+str(method)+".txt"
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json' 
-        filename = "dstc10-simmc-devtest-pred-subtask-3_5.txt"
+        filename = "dstc10-simmc-devtest-pred-subtask-3_"+str(method)+".txt"
             
     devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
@@ -282,9 +287,10 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
+    parser  = argparse.ArgumentParser(description = "Subtask2" )
     parser.add_argument( "--model_type", help = "large", default = 'roberta-large') # large
     parser.add_argument( "--score", type=str, help = "cosine norm or sigmoid or concat", default = 'sigmoid') # cos or sigmoid
+    parser.add_argument( "--method", type=str, help = '3 / 4', default = '3') # test method
     
     parser.add_argument( "--current", type=str, help = 'only use current utt / system current / context', default = 'context') # current or sys_current
     parser.add_argument('--background', action='store_true', help='use background image features')
@@ -295,7 +301,7 @@ if __name__ == '__main__':
     parser.add_argument('--system_train', action='store_true', help='training from system object matching')    
     
     parser.add_argument('--post', action='store_true', help='post-trained model')
-    parser.add_argument( "--post_balance", type=str, help = '11 / all', default = '11') # current or sys_current
+    parser.add_argument( "--post_balance", type=str, help = '11 / all', default = '11')
     parser.add_argument('--post_back', action='store_true', help='post-trained model at background')
     
     parser.add_argument('--final', action='store_true', help='final version for dstc')

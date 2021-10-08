@@ -16,7 +16,7 @@ class task2_loader(Dataset):
             json_data = json.load(f)
             dialogue_data = json_data['dialogue_data']
 
-        """ 이미지 입력 """
+        """ image input """
         try:
             with open(image_obj_path, 'rb') as f: # "../res/image_obj.pickle"
                 image_visual = pickle.load(f)
@@ -50,10 +50,9 @@ class task2_loader(Dataset):
             else:
                 metadata = furniture_metadata            
 
-            """ 이미지 설명 저장 """
+            """ image description save """
             self.dial2object[dialog_cnt] = {}            
             self.dial2rel[dialog_cnt] = {}
-            # self.dial2bg[dialog_cnt] = {}
             self.dial2object[dialog_cnt]['object'] = {}            
             total_objects = []
             
@@ -63,7 +62,6 @@ class task2_loader(Dataset):
                 else:
                     image_find_name = image_name
                 image = image_visual[image_find_name]
-                # self.dial2bg[dialog_cnt][image_find_name] = image
                 
                 for image_des_path in image_des_list:
                     if image_name in image_des_path: # 사용하는 이미지 찾기

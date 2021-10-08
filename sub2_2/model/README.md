@@ -2,6 +2,6 @@
 
 Download and unzip the download folder.
 
-- [dstc10-simmc-entry](https://drive.google.com/file/d/1d1yhk384RlYOcoaRCcLx05B5MnpEGJ7U/view?usp=sharing): model.pt
+- [dstc10-simmc-entry](https://drive.google.com/file/d/1Wlg5ekR3FaIfTY3xytJzKG9HewdlFz88/view?usp=sharing): model.pt
 - [dstc10-simmc-final-entry](): model_final.pt (Due to the limited time of the challenge, it will be released at a later date. Currently, dstc10-simmc-final-entry is tested using the model of dstc10-simmc-entry.)
 
