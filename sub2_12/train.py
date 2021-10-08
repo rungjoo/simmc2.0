@@ -71,13 +71,13 @@ def make_batch(sessions):
     
     """ for utt category """    
     object_ids = [session['object_id'] for session in sessions]
-    batch_pre_system_objects = []
+    batch_pre_system_all_objects = []
     for pre_system_objects_list in batch_pre_system_objects_list:
         uniq_obj_id = set()
         for utt_system_objects in pre_system_objects_list:
             for obj_id in utt_system_objects:
                 uniq_obj_id.add(obj_id)
-        batch_pre_system_objects.append(list(uniq_obj_id))
+        batch_pre_system_all_objects.append(list(uniq_obj_id))
     
     visual_metas = [session['visual_meta'] for session in sessions]
     

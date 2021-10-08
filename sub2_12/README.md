@@ -13,8 +13,9 @@ Additionally, we apply the following 3 multi-task learning.
     
 When testing, there are two ways to predict matching objects.
 
-1. **method** 1 judges the objects corresponding to the system utterance predicted to share the same objects as the current turn as a matching score.
-2. **method** 2 judges all objects corresponding to system firing predicted to share the same objects as the current turn as true.    
+1. **method 1** judges the objects corresponding to the system utterance predicted to share the same objects as the current turn as a matching score.
+2. **method 2** judges all objects corresponding to system firing predicted to share the same objects as the current turn as true.  
+- All other objects are considered False.
 
 ## Download the trained model 
 Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12/model).
@@ -29,4 +30,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-There are two test methods here. You can give *method* 1 or 2 as a command argument. (refer to test.sh) dstc10-simmc-teststd-pred-subtask-3_{method}.txt is saved in the ./results/{test_type}.
+There are two test methods here. You can give *method 1 or 2* as a command argument. (refer to test.sh) dstc10-simmc-{devtest/teststd}-pred-subtask-3_{method}.txt is saved in the ./results/{test_type}.

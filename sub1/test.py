@@ -162,16 +162,17 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
+        test_path = os.path.join(save_path, "dstc10-simmc-teststd-pred-subtask-1.json")
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json'
+        test_path = os.path.join(save_path, "dstc10-simmc-devtest-pred-subtask-1.json")
     
     devtest_dataset = task1_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path, current)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)     
     
-    """Testing"""    
-    test_path = os.path.join(save_path, "dstc10-simmc-teststd-pred-subtask-1.json")
+    """Testing"""        
     _Prediction(model, devtest_loader, test_path, args)
 
 if __name__ == '__main__':

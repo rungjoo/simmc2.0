@@ -21,7 +21,7 @@ from model import BaseModel
 from test_dataset import task2_loader
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large'
+text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
@@ -179,10 +179,12 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
+        filename = "dstc10-simmc-teststd-pred-subtask-3_3.txt"
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json' 
+        filename = "dstc10-simmc-devtest-pred-subtask-3_3.txt"
             
     devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
@@ -190,8 +192,7 @@ def main():
     """Testing"""
     print("Data Num ## ", len(devtest_loader))
             
-    """ Prediction """
-    filename = "dstc10-simmc-teststd-pred-subtask-3_3.txt"
+    """ Prediction """    
     file_path = os.path.join(save_path, filename)
     if not os.path.exists(save_path):
         os.makedirs(save_path)

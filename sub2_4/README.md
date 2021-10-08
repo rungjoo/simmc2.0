@@ -3,9 +3,9 @@ This approach is the same as [sub2_12](https://github.com/rungjoo/simmc2.0/tree/
 
 Therefore, the method of the test is changed as follows.
 
-1. objects corresponding to system utterances for which system matching is predicted to be 1: true
-2. Objects corresponding to system utterances for which system matching is predicted to be 0: false
-3. Objects that do not appear in previous system utterances: predicted by matching score
+- All Objects corresponding to system utterances for which system matching is predicted to be 1: true
+- All Objects corresponding to system utterances for which system matching is predicted to be 0: false
+- Other objects that do not appear in previous system utterances: predicted by matching score
 
 ## Download the trained model 
 Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_4/model).

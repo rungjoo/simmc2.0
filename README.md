@@ -40,6 +40,8 @@ This is the learning process for each subtask. You can train the model in each f
 
 All models can be downloaded from the following [link](https://drive.google.com/drive/folders/10dhrgH7HNenwHSZjvQYY-sk5VpAuoA7G?usp=sharing)
 
+**model.pt** is a model for evaluating devtest, and the result is saved in the **dstc10-simmc-entry** folder. **model_final.pt** is a model for evaluating teststd, and the result is saved in the **dstc10-simmc-final-entry** folder.
+
 ## Evlauation
 
 Using the evaluation script suggested by the challenge organizer
@@ -93,9 +95,10 @@ $ python tools/retrieval_evaluation.py \
 | Test Method | Object F1 |
 | :------: | :-------: |
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
-| **Ours-1** (sub2) | **0.595** |
-| **Ours-2** (sub2) | **0.601** |
-| **Ours-3** (sub2_2) | **0.xxx** |
+| **Ours-1** (sub2_12) | **0.595** |
+| **Ours-2** (sub2_12) | **0.601** |
+| **Ours-3** (sub2_3) | **0.602** |
+| **Ours-4** (sub2_4) | **0.607** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
 

@@ -13,7 +13,7 @@ class BaseModel(nn.Module):
     def __init__(self):
         super(BaseModel, self).__init__()        
         """RoBERTa setting"""
-        text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" #
+        text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
         self.text_model = RobertaModel.from_pretrained(text_model_path)
         self.text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
         special_token_list = ['[USER]', '[SYSTEM]']

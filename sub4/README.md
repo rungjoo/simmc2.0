@@ -17,4 +17,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-dstc10-simmc-teststd-pred-subtask-4-generation.json saved in the ./results/{test_type}.
+dstc10-simmc-{devtest/teststd}-pred-subtask-4-generation.json saved in the ./results/{test_type}.

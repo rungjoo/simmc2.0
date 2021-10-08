@@ -19,27 +19,12 @@ from model import BaseModel
 from dataset import task2_loader
 
 from transformers import RobertaTokenizer
-text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
+text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
 model_text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
 special_token_list = ['[USER]', '[SYSTEM]']
 special_tokens = {'additional_special_tokens': special_token_list}
 model_text_tokenizer.add_special_tokens(special_tokens)
-
-from transformers import DeiTFeatureExtractor
-image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
-image_feature_extractor = DeiTFeatureExtractor.from_pretrained(image_model_path)
     
-def clsLoss(batch_t2v_score, labels):
-    """
-    batch_t2v_score: [batch]
-    labels: [batch]
-    """
-    loss = nn.BCELoss()
-    
-    loss_val = loss(batch_t2v_score, labels)
-    
-    return loss_val
-
 def CELoss(pred_logits, labels, ignore_index=-100):
     """
     pred_logits: [batch, clsNum]

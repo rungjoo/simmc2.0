@@ -41,13 +41,13 @@ def make_batch(sessions):
     batch_object_ids = [session['object_id'] for session in sessions]
     
     """ for previous system obj_ids """
-    batch_pre_system_objects = []
+    batch_pre_system_all_objects = []
     for pre_system_objects_list in batch_pre_system_objects_list:
         uniq_obj_id = set()
         for utt_system_objects in pre_system_objects_list:
             for obj_id in utt_system_objects:
                 uniq_obj_id.add(obj_id)
-        batch_pre_system_objects.append(list(uniq_obj_id))
+        batch_pre_system_all_objects.append(list(uniq_obj_id))
     
     """ text tokens """
     batch_tokens = model_text_tokenizer(input_strs, padding='longest', add_special_tokens=False).input_ids # (batch, text_len, 1024)
@@ -257,10 +257,12 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
+        filename = "dstc10-simmc-teststd-pred-subtask-3_4.txt"
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json' 
+        filename = "dstc10-simmc-devtest-pred-subtask-3_4.txt"
             
     devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
@@ -268,8 +270,7 @@ def main():
     """Testing"""
     print("Data Num ## ", len(devtest_loader))
             
-    """ Prediction """
-    filename = "dstc10-simmc-teststd-pred-subtask-3_4.txt"
+    """ Prediction """    
     file_path = os.path.join(save_path, filename)
     if not os.path.exists(save_path):
         os.makedirs(save_path)

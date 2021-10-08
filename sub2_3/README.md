@@ -1,5 +1,5 @@
 # Subtask2
-This is an approach that learned only system matching, which is one of the multi-task learnings in [sub2_12](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12). That is, it is a model that matches previous system utterances with the same object as the current utterance without using visual information. In the test, all objects corresponding to the utterance predicted by the system utterance with the same object are predicted to be true.
+This is an approach that learned only system matching, which is one of the multi-task learnings in [sub2_12](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12). That is, it is a model that matches previous system utterances with the same object as the current utterance without using visual information. In the test, all objects corresponding to the utterance predicted by the system utterance with the same object are predicted to be true. All other objects are considered False.
 
 ## Download the trained model 
 Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_3/model).
