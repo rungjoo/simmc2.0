@@ -96,7 +96,7 @@ $ python tools/retrieval_evaluation.py \
 | :------: | :-------: |
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
 | **Ours-1** (sub2_1) | **0.595** |
-| **Ours-2** (sub2_2) | **0.604  ** |
+| **Ours-2** (sub2_2) | **0.604** |
 | **Ours-3** (sub2_34) | **0.607** |
 | **Ours-4** (sub2_34) | **0.524** |
 
