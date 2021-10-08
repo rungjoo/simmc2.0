@@ -11,10 +11,9 @@ Additionally, we apply the following 3 multi-task learning.
 3. meta-visual matching
     - Matching task between visual meta information of objects
     
-When testing, there are two ways to predict matching objects.
+When we test, we use the following method:
 
-1. **method 1** judges the objects corresponding to the system utterance predicted to share the same objects as the current turn as a matching score.
-2. **method 2** judges all objects corresponding to system firing predicted to share the same objects as the current turn as true.  
+- The model judges the objects corresponding to the system utterance predicted to share the same objects as the current turn as a matching score.
 - All other objects are considered False.
 
 ## Download the trained model 

@@ -179,12 +179,12 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
-        filename = "dstc10-simmc-teststd-pred-subtask-3_3.txt"
+        filename = "dstc10-simmc-teststd-pred-subtask-3_2.txt"
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json' 
-        filename = "dstc10-simmc-devtest-pred-subtask-3_3.txt"
+        filename = "dstc10-simmc-devtest-pred-subtask-3_2.txt"
             
     devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
@@ -204,7 +204,7 @@ if __name__ == '__main__':
     torch.cuda.empty_cache()
     
     """Parameters"""
-    parser  = argparse.ArgumentParser(description = "Emotion Classifier" )
+    parser  = argparse.ArgumentParser(description = "Subtask2" )
     parser.add_argument( "--model_type", help = "large", default = 'roberta-large') # large    
     
     parser.add_argument( "--current", type=str, help = 'only use current utt / system current / context', default = 'context') # current or sys_current

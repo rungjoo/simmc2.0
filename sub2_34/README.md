@@ -3,7 +3,7 @@ This approach is the same as [sub2_12](https://github.com/rungjoo/simmc2.0/tree/
 
 Therefore, the method of the test is changed as follows.
 
-- All Objects corresponding to system utterances for which system matching is predicted to be 1: true
+- All Objects corresponding to system utterances for which system matching is predicted to be 1: true (=method 3) or matching score (=method 4)
 - All Objects corresponding to system utterances for which system matching is predicted to be 0: false
 - Other objects that do not appear in previous system utterances: predicted by matching score
 

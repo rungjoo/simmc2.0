@@ -13,7 +13,7 @@ class BaseModel(nn.Module):
     def __init__(self, post_back):
         super(BaseModel, self).__init__()        
         """RoBERTa setting"""
-        text_model_path = "roberta-large" # '/data/project/rw/rung/02_source/model/roberta-large' # 
+        text_model_path = '/data/project/rw/rung/02_source/model/roberta-large' # "roberta-large" # 
         self.text_model = RobertaModel.from_pretrained(text_model_path)
         self.text_tokenizer = RobertaTokenizer.from_pretrained(text_model_path)
         special_token_list = ['[USER]', '[SYSTEM]']
@@ -25,7 +25,7 @@ class BaseModel(nn.Module):
         self.system_token_id = self.text_tokenizer.additional_special_tokens_ids[system_pos]        
         
         """Deit setting"""
-        image_model_path = "facebook/deit-base-distilled-patch16-224" # '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # 
+        image_model_path = '/data/project/rw/rung/02_source/model/deit-base-distilled-patch16-224' # "facebook/deit-base-distilled-patch16-224" # 
         self.image_model = DeiTModel.from_pretrained(image_model_path, add_pooling_layer=False)
         
         if post_back:            

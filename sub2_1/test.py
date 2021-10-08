@@ -75,7 +75,6 @@ def make_batch(sessions):
 
 
 def Matching(model, dataloader, file_path, args):
-    method = args.method
     model.eval()
     
     score_type, system_matching, utt_category = args.score, args.system_matching, args.utt_category
@@ -108,10 +107,7 @@ def Matching(model, dataloader, file_path, args):
         non_cand_obj_ids = list(set(non_cand_obj_ids))
 
         if object_id in cand_obj_ids:
-            if int(method) == 1:
-                pred = score2pred(visual_score, threshold)
-            else:
-                pred = 1
+            pred = score2pred(visual_score, threshold)
         elif object_id in non_cand_obj_ids:
             pred = 0
         else:
@@ -261,12 +257,12 @@ def main():
         image_obj_path = "../res/image_obj_final.pickle"
         description_path = "../data/simmc2_scene_jsons_dstc10_teststd/*"
         devtest_path = '../data/simmc2_dials_dstc10_teststd_public.json'
-        filename = "dstc10-simmc-teststd-pred-subtask-3_"+str(args.method)+".txt"
+        filename = "dstc10-simmc-teststd-pred-subtask-3_1.txt"
     else:
         image_obj_path = "../res/image_obj.pickle"
         description_path = "../data/public/*"
         devtest_path = '../data/simmc2_dials_dstc10_devtest.json' 
-        filename = "dstc10-simmc-devtest-pred-subtask-3_"+str(args.method)+".txt"
+        filename = "dstc10-simmc-devtest-pred-subtask-3_1.txt"
             
     devtest_dataset = task2_loader(devtest_path, image_obj_path, description_path, fashion_path, furniture_path)
     devtest_loader = DataLoader(devtest_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=make_batch)
@@ -302,7 +298,6 @@ if __name__ == '__main__':
     parser.add_argument( "--post_balance", type=str, help = '11 / all', default = '11') # current or sys_current
     parser.add_argument('--post_back', action='store_true', help='post-trained model at background')
     
-    parser.add_argument( "--method", type=str, help = '1 / 2', default = '1') # test method 1 or 2
     parser.add_argument('--final', action='store_true', help='final version for dstc')
     
     parser.add_argument("--local_rank", type=int, default=0)
