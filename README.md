@@ -34,7 +34,7 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 ## Step 3
 
-This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2](https://github.com/rungjoo/simmc2.0/tree/master/sub2), [sub2_2](https://github.com/rungjoo/simmc2.0/tree/master/sub2_2), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
+This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2_12](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12), [sub2_3](https://github.com/rungjoo/simmc2.0/tree/master/sub2_3), [sub2_4](https://github.com/rungjoo/simmc2.0/tree/master/sub2_4), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
 
 ## Model
 
