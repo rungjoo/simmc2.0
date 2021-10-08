@@ -14,4 +14,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-dstc10-simmc-teststd-pred-subtask-3_3.txt is saved in the ./results/{test_type}.
+dstc10-simmc-{devtest/teststd}-pred-subtask-3_2.txt is saved in the ./results/{test_type}.

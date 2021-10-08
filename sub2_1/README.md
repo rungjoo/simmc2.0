@@ -29,4 +29,4 @@ bash train.sh
 ```bash
 bash test.sh
 ```
-There are two test methods here. You can give *method 1 or 2* as a command argument. (refer to test.sh) dstc10-simmc-{devtest/teststd}-pred-subtask-3_{method}.txt is saved in the ./results/{test_type}.
+dstc10-simmc-{devtest/teststd}-pred-subtask-3_1.txt is saved in the ./results/{test_type}.
