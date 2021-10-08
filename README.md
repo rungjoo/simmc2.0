@@ -1,3 +1,5 @@
+**By my mistake, I deleted the dstc10-simmc-entry tag. So I pushed back to git.**
+
 # The Submission for SIMMC 2.0 Challenge 2021
 - [challenge website](https://github.com/facebookresearch/simmc2)
 
