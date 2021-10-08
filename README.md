@@ -1,5 +1,3 @@
-**By my mistake, I deleted the dstc10-simmc-entry tag. So I pushed back to git.**
-
 # The Submission for SIMMC 2.0 Challenge 2021
 - [challenge website](https://github.com/facebookresearch/simmc2)
 
@@ -100,7 +98,7 @@ $ python tools/retrieval_evaluation.py \
 | **Ours-1** (sub2_1) | **0.595** |
 | **Ours-2** (sub2_2) | **0.604  ** |
 | **Ours-3** (sub2_34) | **0.607** |
-| **Ours-4** (sub2_34) | **0.xxx** |
+| **Ours-4** (sub2_34) | **0.524** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
 
