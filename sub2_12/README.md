@@ -10,9 +10,14 @@ Additionally, we apply the following 3 multi-task learning.
     - In each previous system utterance, whether there is an object to share with the utterance of the current turn.
 3. meta-visual matching
     - Matching task between visual meta information of objects
+    
+When testing, there are two ways to predict matching objects.
+
+1. **method** 1 judges the objects corresponding to the system utterance predicted to share the same objects as the current turn as a matching score.
+2. **method** 2 judges all objects corresponding to system firing predicted to share the same objects as the current turn as true.    
 
 ## Download the trained model 
-Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2/model).
+Download model from the [model folder](https://github.com/rungjoo/simmc2.0/tree/master/sub2_12/model).
 
 ## Training
 ```bash
