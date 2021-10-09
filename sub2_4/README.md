@@ -1,5 +1,5 @@
 # Subtask2
-This approach is to test by combining the two trained models([sub2_1](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1), [sub2_3](https://github.com/rungjoo/simmc2.0/tree/master/sub2_3)).
+This approach is to test by combining the two trained models ([sub2_1](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1), [sub2_3](https://github.com/rungjoo/simmc2.0/tree/master/sub2_3)).
 
 1. The objects corresponding to the utterances for which system_matching is predicted to be 1 are predicted by the sub2_1 model.
 2. The objects corresponding to the utterances for which system_matching is predicted to be 0 are False
