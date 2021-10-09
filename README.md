@@ -34,7 +34,7 @@ Second, pretraining is performed to use background reprsentation of image in sub
 
 ## Step 3
 
-This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2_1](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1), [sub2_2](https://github.com/rungjoo/simmc2.0/tree/master/sub2_2), [sub2_34](https://github.com/rungjoo/simmc2.0/tree/master/sub2_34), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
+This is the learning process for each subtask. You can train the model in each folder ([sub1](https://github.com/rungjoo/simmc2.0/tree/master/sub1), [sub2_1](https://github.com/rungjoo/simmc2.0/tree/master/sub2_1), [sub2_2](https://github.com/rungjoo/simmc2.0/tree/master/sub2_2), [sub2_3](https://github.com/rungjoo/simmc2.0/tree/master/sub2_3), [sub2_4](https://github.com/rungjoo/simmc2.0/tree/master/sub2_4), [sub4](https://github.com/rungjoo/simmc2.0/tree/master/sub4)).\
 
 ## Model
 
@@ -97,8 +97,8 @@ $ python tools/retrieval_evaluation.py \
 | GPT2 from [CO](https://github.com/facebookresearch/simmc2/tree/master/model/mm_dst#results) | 0.366 |
 | **Ours-1** (sub2_1) | **0.595** |
 | **Ours-2** (sub2_2) | **0.604** |
-| **Ours-3** (sub2_34) | **0.607** |
-| **Ours-4** (sub2_34) | **0.524** |
+| **Ours-3** (sub2_3) | **0.607** |
+| **Ours-4** (sub2_4) | **0.608** |
 
 **Subtask #3: Multimodal Dialog State Tracking**
 
