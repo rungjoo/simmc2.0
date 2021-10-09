@@ -10,6 +10,7 @@ Additionally, we apply the following 3 multi-task learning.
     - In each previous system utterance, whether there is an object to share with the utterance of the current turn.
 3. meta-visual matching
     - Matching task between visual meta information of objects
+    - There is no significant impact on performance.
     
 When we test, we use the following method:
 
