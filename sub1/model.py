@@ -99,7 +99,7 @@ class BaseModel(nn.Module):
                 batch_obj_out.append(obj_mean)
             obj_out = torch.cat(batch_obj_out, 0) # (batch, hid_dim)
         else:
-            obj_out = t_h.squeeze(1) # (batch, hid_dim)
+            obj_out = torch.zeros(1, self.hid_dim).cuda() # (batch, hid_dim)
         
         # final_h = torch.cat([t_h[:,0,:], obj_out], 1) # (batch, hid_dim+768)
         final_h = t_h[:,0,:]+obj_out # (batch, hid_dim)
