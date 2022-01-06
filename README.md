@@ -119,7 +119,7 @@ No Training/Testing
 
 ## Citation
 
-```
+```bibtex
 @inproceedings{lee2021multimodal,
   title={Multimodal Interactions Using Pretrained Unimodal Models for SIMMC 2.0},
   author={Lee, Joosung and Han, Kijong},
