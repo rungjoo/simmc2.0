@@ -116,3 +116,14 @@ No Training/Testing
 **Retrieval**
 
 No Training/Testing
+
+## Citation
+
+```
+@inproceedings{lee2021multimodal,
+  title={Multimodal Interactions Using Pretrained Unimodal Models for SIMMC 2.0},
+  author={Lee, Joosung and Han, Kijong},
+  booktitle={AAAI 2022 DSTC10 Workshop},
+  year={2022}
+}
+```
